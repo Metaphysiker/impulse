@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :participants
   resources :messages
   post '/options/create_option_for_suggesters', to: 'options#create_option_for_suggesters', as: 'create_option_for_suggesters'
   resources :options

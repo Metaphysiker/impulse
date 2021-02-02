@@ -1,0 +1,36 @@
+<% # rails g erb:scaffold Participant title:string description:text content:text %>
+
+<% url_cover = image_url("pigs.jpg") %>
+<% height_of_cover = 500 %>
+
+
+  <section class="page-cover-bg bg b-color" style="background-image: url('<%= url_cover %>'); height: <%= height_of_cover %>px;">
+      <div class="container d-flex align-items-start justify-content-center h-100 pt-2">
+
+          <%#= image_tag("logo_stinah_ws_vektor.png", class: "img-fluid mb-4 rounded overlay-darker", style: "height: 180px;") %>
+
+      </div>
+  </section>
+
+
+
+<div class="container pt-3">
+
+
+
+  <h3 class="text-h-color spaced-letters font-weight-light text-uppercase">
+    <%= "#{participant.first_name} #{participant.last_name}" %></h3>
+  <p class="font-weight-bold text-muted pt-3">
+    <%= participant.email %>
+  </p>
+  <p>
+  <%#= simple_format(participant.content) %>
+  </p>
+  <% if is_current_user_admin? %>
+    <div class="text-center m-2">
+      <hr />
+      <%= link_to 'Eintrag bearbeiten', edit_participant_path(participant), class: "btn btn-primary m-2" %>
+      <%= link_to 'Eintrag löschen', participant_path(participant), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2" %>
+    </div>
+  <% end %>
+</div>

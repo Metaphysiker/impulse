@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_094237) do
+ActiveRecord::Schema.define(version: 2021_02_02_190932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_094237) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_pages_on_slug", unique: true
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.string "email", default: ""
+    t.string "status", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "post_tags", force: :cascade do |t|

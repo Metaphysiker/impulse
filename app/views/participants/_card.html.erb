@@ -1,0 +1,25 @@
+<div class="card b-color mb-2">
+  <% if participant.cover && participant.cover.attached? %>
+    <%= image_tag participant.cover, class: "card-img" %>
+  <% end %>
+
+  <div class="card-body">
+    <p class="card-text">
+      <%= l(participant.created_at, format: "%d.%m.%Y") %> <span class="badge e-color rounded-0 text-white"><%= "Participant".upcase %></span>
+    </p>
+    <h5 class="card-title spaced-letters"><%= "#{participant.first_name} #{participant.last_name}" %></h5>
+    <p class="card-text"><%= participant.email %></p>
+    <p>
+      <%= link_to participant_path(participant) do %>
+        <button type="button" class="btn btn-e-color btn-sm spaced-letters text-nowrap rounded-0">MEHR ERFAHREN <%= fa_icon "chevron-right", class: "ml-2" %></button>
+      <% end %>
+    </p>
+  </div>
+  <% if is_current_user_admin? %>
+    <div class="text-center m-2">
+      <hr />
+      <%= link_to 'Eintrag bearbeiten', edit_participant_path(participant), class: "btn btn-primary m-2" %>
+      <%= link_to 'Eintrag löschen', participant_path(participant), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2" %>
+    </div>
+  <% end %>
+</div>
