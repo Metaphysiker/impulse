@@ -24,6 +24,14 @@
     <%= participant.email %>
   </p>
   <p>
+    <strong>Verfügungsdauer</strong><br />
+    <%= "#{l(participant.period_start)} - #{l(participant.period_end)}" unless participant.period_end.blank? || participant.period_start.blank? %>
+  </p>
+  <p>
+    <strong>Status</strong><br />
+    <%= participant.status %>
+  </p>
+  <p>
   <%#= simple_format(participant.content) %>
   </p>
   <% if is_current_user_admin? %>

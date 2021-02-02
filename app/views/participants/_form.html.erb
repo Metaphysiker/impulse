@@ -7,7 +7,9 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
-    <%= f.input :status %>
+    <%= f.input :period_start %>
+    <%= f.input :period_end %>
+    <%= f.input :status, as: :select, selected: @participant.status, collection: Participant.statuses, input_html: {class: 'chosen-select', :data => {:placeholder => "Status auswählen"}, multiple: false} %>
   </div>
 
   <div class="form-actions">
