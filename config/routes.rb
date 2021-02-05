@@ -61,4 +61,6 @@ Rails.application.routes.draw do
   post '/comments/create_comment', to: 'comments#create_comment', as: 'create_comment'
   get '/comments/comment_function/:id', to: 'comments#comment_function', as: 'comment_function'
 
+  get '/exchange', to: "static_pages#exchange", as: "exchange"
+
 end

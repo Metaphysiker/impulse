@@ -1,8 +1,9 @@
 class User < ApplicationRecord
+      has_one_attached :cover
 has_many :user_messages
 has_many :messages, :through => :user_messages
 
-has_many :users
+has_many :skills
 
 has_many :user_roles
 has_many :roles, :through => :user_roles
