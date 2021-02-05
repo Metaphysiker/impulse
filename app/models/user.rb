@@ -2,6 +2,7 @@ class User < ApplicationRecord
 has_many :user_messages
 has_many :messages, :through => :user_messages
 
+has_many :users
 
 has_many :user_roles
 has_many :roles, :through => :user_roles

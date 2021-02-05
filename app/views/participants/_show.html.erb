@@ -21,7 +21,7 @@
   <h3 class="text-h-color spaced-letters font-weight-light text-uppercase">
     <%= "#{participant.first_name} #{participant.last_name}" %></h3>
   <p class="font-weight-bold text-muted pt-3">
-    <%= participant.email %>
+    <%= mail_to participant.email %>
   </p>
   <p>
     <strong>Verfügungsdauer</strong><br />

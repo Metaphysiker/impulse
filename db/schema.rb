@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_204500) do
+ActiveRecord::Schema.define(version: 2021_02_05_072010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2021_02_02_204500) do
     t.string "feed_origin", default: ""
     t.string "published", default: "yes"
     t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.string "skills", default: ""
+    t.string "category", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_exchanges_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -193,6 +202,15 @@ ActiveRecord::Schema.define(version: 2021_02_02_204500) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "title", default: ""
+    t.string "category", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_skills_on_user_id"
+  end
+
   create_table "slides", force: :cascade do |t|
     t.string "name", default: ""
     t.text "content", default: ""
@@ -240,4 +258,6 @@ ActiveRecord::Schema.define(version: 2021_02_02_204500) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "exchanges", "users"
+  add_foreign_key "skills", "users"
 end

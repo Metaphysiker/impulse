@@ -30,4 +30,8 @@ class StaticPagesController < ApplicationController
   def impressum
 
   end
+
+  def exchange
+    
+  end
 end
