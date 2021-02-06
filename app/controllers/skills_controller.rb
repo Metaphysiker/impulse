@@ -38,6 +38,32 @@ class SkillsController < ApplicationController
     end
   end
 
+  def create_skill
+    @skill = Skill.new(skill_params)
+    @skill.user_id = current_user.id
+    @user = current_user
+    @category = params[:skill][:category]
+
+    respond_to do |format|
+      if @skill.save
+        format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+        format.json { render :show, status: :created, location: @skill }
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @skill.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
+  def remove_skill
+    @skill = Skill.find(params[:id])
+    @category = @skill.category
+    @user = current_user
+    @skill.delete
+  end
+
   # PATCH/PUT /skills/1
   # PATCH/PUT /skills/1.json
   def update

@@ -1,0 +1,18 @@
+<div class="<%= category %>_skills_from_user_<%= user.id %>">
+<ul class="<%= category %>_skill_list_from_user_<%= user.id %>">
+  <% user.skills.where(category: category).each do |skill| %>
+    <%= render 'skills/skill_li_item', skill: skill %>
+  <% end %>
+</ul>
+<% if user == current_user %>
+<div class="my-4">
+  <%= simple_form_for :skill, url: create_skill_path, method: :post, remote: true do |f| %>
+  <p>
+    <%= f.input :title, label: false, placeholder: "Lebenslauf anpassen, Bewerbungsgespräch Training...", as: :text%>
+    <%= f.hidden_field :category, value: category %>
+    <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
+  </p>
+  <% end %>
+</div>
+<% end %>
+</div>

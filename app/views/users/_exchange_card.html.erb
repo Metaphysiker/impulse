@@ -1,0 +1,29 @@
+<div class="card b-color my-4 h-100">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <% if user.cover.attached? %>
+          <%= image_tag user.cover, class: "card-img mx-auto" %>
+      <% end %>
+      <div class="text-center mt-2">
+        <%= "#{user.first_name} #{user.last_name}" %>
+        <br />
+        <%= mail_to user.email %>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <% if !user.skills.where(category: "offered").empty? || user == current_user %>
+        <h3 class="card-title spaced-letters text-center"><b>Ich biete an</b></h3>
+          <%= render 'skills/skill_list', user: user, category: "offered" %>
+        <hr />
+        <% end %>
+        <% if !user.skills.where(category: "needed").empty? || user == current_user %>
+        <h3 class="card-title spaced-letters text-center"><b>Ich brauche</b></h3>
+          <%= render 'skills/skill_list', user: user, category: "needed" %>
+        <hr />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

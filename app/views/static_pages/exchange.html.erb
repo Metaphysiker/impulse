@@ -1,47 +1,50 @@
+<% plucked_ids = User.includes(:skills).where.not(skills: {id: nil}).pluck(:id) %>
+<% plucked_ids.unshift(current_user.id) unless current_user.blank? %>
+<%= plucked_ids.uniq! %>
+<% exchange_participants = User.where(id: plucked_ids).sort_by {|m| plucked_ids.index(m.id)}
+ %>
+
 <div class="container">
-  <h1>Tauschbörse</h1>
-  <% User.all.each do |user| %>
-    <div class="card b-color my-2">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-
-          <% if user.cover.attached? %>
-            <%= image_tag user.cover, class: "card-img" %>
-          <% end %>
-
-          <div class="text-center mt-2">
-            <%= "#{user.first_name} #{user.last_name}" %>
-            <br />
-            <%= mail_to user.email %>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h3 class="card-title spaced-letters text-center"><b>Ich biete an</b></h3>
-            <ul>
-              <% user.skills.where(category: "offered").each do |skill| %>
-                <li class="my-4">
-                  <%= skill.title %>
-                </li>
-              <% end %>
-            </ul>
-            <hr />
-            <h3 class="card-title spaced-letters text-center"><b>Ich brauche</b></h3>
-            <ul>
-              <% user.skills.where(category: "needed").each do |skill| %>
-                <li class="my-4">
-                  <%= skill.title %>
-                </li>
-              <% end %>
-            </ul>
-            <h5 class="card-title spaced-letters"><%#= post.title.upcase %></h5>
-            <p class="card-text"><%#= post.content.to_plain_text.truncate(150) %></p>
-            <p>
-            </p>
-          </div>
-        </div>
+  <h1 class="text-center my-4">Tauschbörse</h1>
+  <div class="row">
+    <% exchange_participants.each do |user| %>
+      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <%= render 'users/exchange_card', user: user %>
       </div>
-    </div>
+    <% end %>
+  </div>
+
+  <% unless user_signed_in? %>
+    <hr />
+    <h1 class="text-center my-4">Mitmachen</h1>
+    <p>
+      Möchtest du bei der Tauschbörse mitmachen?
+    </p>
+    <p>
+      Dann erstelle hier deinen Account!
+    </p>
+    <hr />
+    <%= simple_form_for :user, url: create_user_path, method: :post do |f| %>
+    <p>
+      Profilbild <br /><br />
+      <%= f.file_field :cover %>
+    </p>
+    <p>
+      <%= f.input :email%>
+      <br />
+      <%= f.input :first_name %>
+      <br />
+      <%= f.input :last_name %>
+      <br />
+      <%= f.input :password %>
+    </p>
+      <%= f.submit "Anmelden", class: "btn btn-light border my-2" %>
+    <% end %>
+
   <% end %>
+
+</div>
+
+<div class="m-5">
 
 </div>

@@ -1,0 +1,6 @@
+<li class="my-4">
+  <%= skill.title %>
+  <% if skill.user == current_user %><br />
+    <%= link_to "Löschen", remove_skill_path(skill), method: :post, remote: true %>
+   <% end %>
+</li>

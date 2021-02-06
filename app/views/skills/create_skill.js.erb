@@ -1,0 +1,8 @@
+var records_div = ".<%= @category %>_skills_from_user_<%= @user.id %>";
+var list_div = ".<%= @category %>_skill_list_from_user_<%= @user.id %>";
+
+content = $("<%= escape_javascript( render "skills/skill_li_item", skill: @skill ) %>")
+
+$( list_div ).each(function( index ) {
+  $( this ).append(content);
+});

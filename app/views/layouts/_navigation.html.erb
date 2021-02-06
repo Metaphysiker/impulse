@@ -9,20 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Blog", posts_path, class:"nav-link"  %>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortalLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Portal
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownPortalLink">
-          <% Page.all.each do |page| %>
-              <%= link_to page.title, page_path(page), class:"dropdown-item" %>
-          <% end %>
-        </div>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Argumentiere mit mir!", vegan_chat_path, class:"nav-link"  %>
+        <%= link_to "Tauschbörse", exchange_path, class:"nav-link"  %>
       </li>
       <% if is_current_user_admin? %>
         <li class="nav-item">

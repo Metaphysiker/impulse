@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/post_search/search', to: 'post_search#search', as: 'search_posts'
   resources :posts
   devise_for :users
-  root 'static_pages#welcome'
+  root 'static_pages#exchange'
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
@@ -62,5 +62,12 @@ Rails.application.routes.draw do
   get '/comments/comment_function/:id', to: 'comments#comment_function', as: 'comment_function'
 
   get '/exchange', to: "static_pages#exchange", as: "exchange"
+
+  #user controller
+  post '/user_controller/create_user', to: "users#create_user", as: "create_user"
+
+  #skill exchange
+  post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"
+  post '/skills/remove_skill/:id', to: "skills#remove_skill", as: "remove_skill"
 
 end
