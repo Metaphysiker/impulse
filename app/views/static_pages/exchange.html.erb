@@ -1,18 +1,7 @@
-<% plucked_ids = User.includes(:skills).where.not(skills: {id: nil}).pluck(:id) %>
-<% plucked_ids.unshift(current_user.id) unless current_user.blank? %>
-<%= plucked_ids.uniq! %>
-<% exchange_participants = User.where(id: plucked_ids).sort_by {|m| plucked_ids.index(m.id)}
- %>
-
 <div class="container">
   <h1 class="text-center my-4">Tauschbörse</h1>
-  <div class="row">
-    <% exchange_participants.each do |user| %>
-      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
-        <%= render 'users/exchange_card', user: user %>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'skills/search_skill_form' %>
+  <%= render 'skills/search_skill_results', users: @users %>
 
   <% unless user_signed_in? %>
     <hr />

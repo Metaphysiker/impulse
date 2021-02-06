@@ -64,6 +64,19 @@ class SkillsController < ApplicationController
     @skill.delete
   end
 
+  def search_skill
+    search_term = params[:search_skill][:search_term]
+    skills = Skill.ilike("%#{search_term}%")
+    user_ids = skills.pluck(:user_id)
+    @users = User.where(id: user_ids)
+
+    #plucked_ids = User.includes(:skills).where.not(skills: {id: nil}).pluck(:id)
+    #plucked_ids.unshift(current_user.id) unless current_user.blank?
+    #plucked_ids.uniq!
+    #exchange_participants = User.where(id: plucked_ids).sort_by {|m| plucked_ids.index(m.id)}
+    #byebug
+  end
+
   # PATCH/PUT /skills/1
   # PATCH/PUT /skills/1.json
   def update

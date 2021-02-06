@@ -1,0 +1,10 @@
+<div class="row text-center">
+  <div class="col-sm-12 col-md-8 offset-md-2">
+    <%= simple_form_for :search_skill, url: search_skill_path, method: :post, remote: true do |f| %>
+    <p>
+      <%= f.input :search_term, label: false, placeholder: "Tauschbörse durchsuchen" %>
+    </p>
+      <%= f.submit "Suchen", class: "btn btn-light border my-2" %>
+    <% end %>
+  </div>
+</div>

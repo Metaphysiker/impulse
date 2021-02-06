@@ -69,5 +69,6 @@ Rails.application.routes.draw do
   #skill exchange
   post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"
   post '/skills/remove_skill/:id', to: "skills#remove_skill", as: "remove_skill"
+  post '/skills/search_skill/', to: "skills#search_skill", as: "search_skill"
 
 end

@@ -1,5 +1,11 @@
 <div class="card b-color my-4 h-100">
-  <div class="row no-gutters">
+  <% if user == current_user %>
+  <div class="text-center mt-2">
+    <h3>Dein Profil</h3>
+  </div>
+  <hr />
+  <% end %>
+  <div class="row">
     <div class="col-md-4">
       <% if user.cover.attached? %>
           <%= image_tag user.cover, class: "card-img mx-auto" %>
@@ -21,7 +27,6 @@
         <% if !user.skills.where(category: "needed").empty? || user == current_user %>
         <h3 class="card-title spaced-letters text-center"><b>Ich brauche</b></h3>
           <%= render 'skills/skill_list', user: user, category: "needed" %>
-        <hr />
         <% end %>
       </div>
     </div>

@@ -1,0 +1,7 @@
+<div class="row search_skill_results">
+  <% users.each do |user| %>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+      <%= render 'users/exchange_card', user: user %>
+    </div>
+  <% end %>
+</div>

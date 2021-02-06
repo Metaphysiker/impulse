@@ -1,0 +1,14 @@
+var records_div = ".search_skill_results";
+
+$( records_div ).each(function( index ) {
+  $( this ).fadeOut( "fast", function() {
+
+      content = $("<%= escape_javascript( render "skills/search_skill_results", users: @users ) %>")
+
+      $( this ).fadeOut("fast", function(){
+        $( this ).replaceWith(content).fadeIn("fast");
+      });
+
+  });
+
+});

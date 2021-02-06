@@ -32,6 +32,10 @@ class StaticPagesController < ApplicationController
   end
 
   def exchange
-    
+    user_ids = User.includes(:skills).where.not(skills: {id: nil}).pluck(:id)
+    user_ids.unshift(current_user.id) unless current_user.blank?
+    user_ids.uniq!
+    @users = User.where(id: user_ids).sort_by {|m| user_ids.index(m.id)}
+
   end
 end
