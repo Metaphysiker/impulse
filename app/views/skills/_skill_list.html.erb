@@ -8,7 +8,7 @@
 <div class="my-4">
   <%= simple_form_for :skill, url: create_skill_path, method: :post, remote: true do |f| %>
   <p>
-    <%= f.input :title, label: false, placeholder: "Lebenslauf anpassen, Bewerbungsgespräch Training...", as: :text%>
+    <%= f.input :title, as: :text, label: false, placeholder: "Lebenslauf anpassen, Bewerbungsgespräch trainieren, Steuererklärung ausfüllen, etc.", input_html: { rows: 3 } %>
     <%= f.hidden_field :category, value: category %>
     <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
   </p>
