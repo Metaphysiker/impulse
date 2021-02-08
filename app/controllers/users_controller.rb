@@ -7,12 +7,25 @@ class UsersController < ApplicationController
 
     flash[:notice] = "Account wurde erstellt!"
 
-    redirect_to exchange_path
+    redirect_back(fallback_location: exchange_path)
+  end
+
+  def edit_user
+    user = User.find(params[:id])
+    user.update(edit_user_params)
+
+    flash[:notice] = "Account wurde aktualisiert!"
+    #byebug
+    redirect_back(fallback_location: exchange_path)
   end
 
   private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :cover)
+  end
+
+  def edit_user_params
+    params.require(:user).permit(:first_name, :last_name, :cover, :email)
   end
 end

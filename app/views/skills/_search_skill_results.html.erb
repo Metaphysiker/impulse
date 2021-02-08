@@ -1,6 +1,11 @@
 <div class="row search_skill_results">
+  <% if users.empty? %>
+  <div class=" col-12 text-center mt-4">
+    <strong>Leider nichts gefunden!</strong>
+  </div>
+  <% end %>
   <% users.each do |user| %>
-    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
       <%= render 'users/exchange_card', user: user %>
     </div>
   <% end %>

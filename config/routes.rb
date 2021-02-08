@@ -65,10 +65,14 @@ Rails.application.routes.draw do
 
   #user controller
   post '/user_controller/create_user', to: "users#create_user", as: "create_user"
+  post '/user_controller/edit_user/:id', to: "users#edit_user", as: "edit_user"
 
   #skill exchange
   post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"
   post '/skills/remove_skill/:id', to: "skills#remove_skill", as: "remove_skill"
   post '/skills/search_skill/', to: "skills#search_skill", as: "search_skill"
 
+  #devise_for :users, controllers: {
+  #  sessions: 'users/sessions'
+  #}
 end
