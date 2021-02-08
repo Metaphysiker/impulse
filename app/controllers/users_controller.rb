@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: exchange_path)
   end
 
+  def workspace
+    if params[:id].present?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+  end
+
   private
 
   def user_params

@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   #user controller
   post '/user_controller/create_user', to: "users#create_user", as: "create_user"
   post '/user_controller/edit_user/:id', to: "users#edit_user", as: "edit_user"
+  get '/workspace/(:id)', to: "users#workspace", as: "workspace"
 
   #skill exchange
   post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"

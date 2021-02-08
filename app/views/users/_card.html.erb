@@ -1,0 +1,31 @@
+<div class="card b-color my-4 h-100">
+  <div class="row no-gutters">
+    <div class="col-md-8">
+      <div class="card-body">
+        <p>
+          <strong>Name:</strong> <%= "#{user.first_name} #{user.last_name}" %>
+        </p>
+        <p>
+          <strong>Verfügungsdauer:</strong>
+        </p>
+        <p>
+          <strong>Personal-Nummer:</strong>
+        </p>
+        <p>
+          <strong>Coach:</strong>
+        </p>
+        <p>
+          <strong>Personalberater:</strong>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <% if user.cover.attached? %>
+          <%= image_tag user.cover, class: "card-img mx-auto" %>
+      <% else %>
+          <%= image_tag "portrait_placeholder.png", class: "card-img mx-auto" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
