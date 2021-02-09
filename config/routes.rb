@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   post '/user_controller/edit_user/:id', to: "users#edit_user", as: "edit_user"
   get '/workspace/(:id)', to: "users#workspace", as: "workspace"
   get '/user_controller/new_user', to: "users#new_user", as: "new_user"
+  post '/user_controller/create_files_for_impulse/:id', to: "users#create_files_for_impulse", as: "create_files_for_impulse"
 
   #skill exchange
   post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"
