@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  #resources :users
+
   resources :skills
   resources :participants
   resources :messages
@@ -64,11 +66,18 @@ Rails.application.routes.draw do
   get '/exchange', to: "static_pages#exchange", as: "exchange"
 
   #user controller
-  post '/user_controller/create_user', to: "users#create_user", as: "create_user"
-  post '/user_controller/edit_user/:id', to: "users#edit_user", as: "edit_user"
-  get '/workspace/(:id)', to: "users#workspace", as: "workspace"
-  get '/user_controller/new_user', to: "users#new_user", as: "new_user"
+  resources :users
+  #get '/user_controller/new', to: "users#new", as: "new_user"
+  #get '/user_controller/:id/edit', to: "users#edit", as: "edit_user"
+  #post '/user_controller/', to: "users#create", as: "create_user"
+
+  post '/user_controller/create_user_as_user', to: "users#create_user_as_user", as: "create_user_as_user"
+  #post '/user_controller/create_user_as_admin', to: "users#create_user_as_admin", as: "create_user_as_admin"
+  #patch '/user_controller/update_user/:id', to: "users#update_user", as: "update_user"
+
   post '/user_controller/create_files_for_impulse/:id', to: "users#create_files_for_impulse", as: "create_files_for_impulse"
+
+  get '/workspace/(:id)', to: "users#workspace", as: "workspace"
 
   #skill exchange
   post '/skills/create_skill/', to: "skills#create_skill", as: "create_skill"

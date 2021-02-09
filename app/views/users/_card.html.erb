@@ -17,6 +17,9 @@
         </tbody>
       </table>
       <p>
+        <%= link_to "User bearbeiten", edit_user_path(user) %>
+      </p>
+      <p>
         <%= link_to "create_files_for_impulse", create_files_for_impulse_path(user), method: :post %>
       </p>
       </div>

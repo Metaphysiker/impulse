@@ -14,7 +14,7 @@ has_many :roles, :through => :user_roles
 
   def self.showable_attribute_names
     ["email", "name", "address", "phone", "birth_day",
-       "recruitment_consultant", "disposal_period"]
+       "recruitment_consultant", "disposal_period", "personal_number", "unemployment_insurance_number"]
   end
 
   def name

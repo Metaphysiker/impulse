@@ -1,5 +1,5 @@
 <div class="border rounded p-3 mb-2">
-<%= simple_form_for user, url: create_user_as_admin_path(user), method: :post do |f| %>
+<%= simple_form_for user do |f| %>
 <p>
   Profilbild <br /><br />
   <%= f.file_field :cover %>
@@ -24,7 +24,8 @@
   <br />
   <%= f.input :phone %>
   <br />
-  <%= f.input :birth_day %>
+  <%= f.input :birth_day, start_year: Date.today.year - 100,
+                              end_year: Date.today.year %>
   <br />
   <%= f.input :recruitment_consultant %>
   <br />
@@ -36,8 +37,8 @@
   <br />
   <%= f.input :unemployment_insurance_number %>
   <br />
-  <%= f.input :password %>
+  <%#= f.input :password %>
 </p>
-  <%= f.submit "User erstellen", class: "btn btn-light border my-2" %>
+  <%= f.submit class: "btn btn-light border my-2" %>
 <% end %>
 </div>
