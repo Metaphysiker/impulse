@@ -2,21 +2,20 @@
   <div class="row no-gutters">
     <div class="col-md-8">
       <div class="card-body">
-        <p>
-          <strong>Name:</strong> <%= "#{user.first_name} #{user.last_name}" %>
-        </p>
-        <p>
-          <strong>Verfügungsdauer:</strong>
-        </p>
-        <p>
-          <strong>Personal-Nummer:</strong>
-        </p>
-        <p>
-          <strong>Coach:</strong>
-        </p>
-        <p>
-          <strong>Personalberater:</strong>
-        </p>
+        <table class="table">
+        <tbody>
+          <% User.showable_attribute_names.each do |name| %>
+            <tr>
+              <td>
+                <strong><%= User.human_attribute_name(name) %>: </strong>
+              </td>
+              <td>
+                <%= user.send(name) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       </div>
     </div>
     <div class="col-md-4">

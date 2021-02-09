@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def new_user
+    @user = User.new
+  end
+
   def create_user
     user = User.create(user_params)
     #byebug
@@ -12,7 +16,7 @@ class UsersController < ApplicationController
 
   def edit_user
     user = User.find(params[:id])
-    user.update(edit_user_params)
+    user.update(user_params)
 
     flash[:notice] = "Account wurde aktualisiert!"
     #byebug
@@ -30,10 +34,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :cover)
+    params.require(:user).permit(
+      :first_name, :last_name, :email, :password, :cover,
+      :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
+    :disposal_period_start, :disposal_period_end)
   end
 
-  def edit_user_params
-    params.require(:user).permit(:first_name, :last_name, :cover, :email)
-  end
+  #def edit_user_params
+  #  params.require(:user).permit(:first_name, :last_name, :cover, :email)
+  #end
 end

@@ -1,0 +1,40 @@
+<div class="border rounded p-3 mb-2">
+<h5>Neues Profil erstellen</h5>
+<%= simple_form_for User.new, url: create_user_path, method: :post do |f| %>
+<p>
+  Profilbild <br /><br />
+  <%= f.file_field :cover %>
+</p>
+<p>
+  <%= f.input :email%>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <%= f.input :first_name %>
+    </div>
+    <div class="col-6">
+      <%= f.input :last_name %>
+    </div>
+  </div>
+  <br />
+  <%= f.input :location %>
+  <br />
+  <%= f.input :plz %>
+  <br />
+  <%= f.input :street %>
+  <br />
+  <%= f.input :phone %>
+  <br />
+  <%= f.input :birth_day %>
+  <br />
+  <%= f.input :recruitment_consultant %>
+  <br />
+  <%= f.input :disposal_period_start %>
+  <br />
+  <%= f.input :disposal_period_end %>
+  <br />
+  <%= f.input :password %>
+</p>
+  <%= f.submit "User erstellen", class: "btn btn-light border my-2" %>
+<% end %>
+</div>
