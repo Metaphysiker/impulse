@@ -104,6 +104,8 @@ class UsersController < ApplicationController
 
     compressed_filestream = Zip::OutputStream.write_buffer do |zos|
 
+      folder_name = "#{user.first_name} #{user.last_name} - #{user.recruitment_consultant} - #{user.disposal_period} - #{user.unemployment_insurance_number}"
+
       range = user.disposal_period_start..user.disposal_period_end
       end_of_month_dates = range.map(&:end_of_month).uniq
 
@@ -127,19 +129,19 @@ class UsersController < ApplicationController
           r.add_field :recruitment_consultant, user.recruitment_consultant
         end
 
-        zos.put_next_entry "AMM-Bescheinigung_#{user.last_name}_#{month}_#{year}.odt"
+        zos.put_next_entry "#{folder_name}/AMM/AMM-Bescheinigung_#{user.last_name}_#{month}_#{year}.odt"
         zos.write amm_bescheinigung.generate
         #byebug
       end
 
-      zos.put_next_entry "Stammblatt_#{user.last_name}.ods"
+      zos.put_next_entry "#{folder_name}/Stammblatt_#{user.last_name}.ods"
       zos.write stammblatt.generate
-      zos.put_next_entry "Mentoring_50+_Kundenzufriedenheit_#{user.last_name}.odt"
+      zos.put_next_entry "#{folder_name}/Mentoring_50+_Kundenzufriedenheit_#{user.last_name}.odt"
       zos.write kundenzufriedenheit.generate
     end
 
     compressed_filestream.rewind
-    send_data compressed_filestream.read, filename: "neuer_tn.zip"
+    send_data compressed_filestream.read, filename: "#{folder_name}.zip"
     #send_data zippy.read, filename: "zippy.zip"
     #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.odt"
     #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.ods"
