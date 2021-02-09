@@ -67,8 +67,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     current_month = I18n.t("date.month_names")[Date.today.month]
     current_year = Date.today.year
-
-
+    folder_name = "#{user.first_name} #{user.last_name} - #{user.recruitment_consultant} - #{user.disposal_period} - ALK #{user.unemployment_insurance_number}"
 
     kundenzufriedenheit = ODFReport::Report.new("odf-templates/Mentoring_50+_Kundenzufriedenheit_NAME.odt") do |r|
       r.add_field :last_name, user.last_name
@@ -103,8 +102,6 @@ class UsersController < ApplicationController
     end
 
     compressed_filestream = Zip::OutputStream.write_buffer do |zos|
-
-      folder_name = "#{user.first_name} #{user.last_name} - #{user.recruitment_consultant} - #{user.disposal_period} - #{user.unemployment_insurance_number}"
 
       range = user.disposal_period_start..user.disposal_period_end
       end_of_month_dates = range.map(&:end_of_month).uniq
