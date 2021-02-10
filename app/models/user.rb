@@ -30,7 +30,8 @@ has_many :roles, :through => :user_roles
   end
 
   def disposal_period
-    "#{self.disposal_period_start} - #{self.disposal_period_end}"
+    "#{I18n.l(self.disposal_period_start)} - #{I18n.l(self.disposal_period_end)}"
+
   end
 
    def admin?

@@ -131,6 +131,10 @@ class UsersController < ApplicationController
         #byebug
       end
 
+      zos.put_next_entry "#{folder_name}/Matchingformular.odt"
+      matchingformular = File.open("odf-templates/Matchingformular.odt")
+      zos.write matchingformular.read
+      matchingformular.close
       zos.put_next_entry "#{folder_name}/Stammblatt_#{user.last_name}.ods"
       zos.write stammblatt.generate
       zos.put_next_entry "#{folder_name}/Mentoring_50+_Kundenzufriedenheit_#{user.last_name}.odt"
