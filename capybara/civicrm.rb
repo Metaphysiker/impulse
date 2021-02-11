@@ -11,5 +11,6 @@ describe "the signin process", type: :feature, js: true do
     end
     click_button 'Anmelden'
     expect(page).to have_content 'Fohrenbühlstrasse 4'
+    #expect(page).to_not have_content 'Fohrenbühlstrasse 4'
   end
 end

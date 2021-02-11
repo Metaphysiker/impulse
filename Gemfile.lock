@@ -60,6 +60,8 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ancestry (3.2.1)
       activerecord (>= 4.2.0)
+    archive-zip (0.12.0)
+      io-like (~> 0.3.0)
     aws-eventstream (1.1.0)
     aws-partitions (1.425.0)
     aws-sdk-core (3.112.0)
@@ -113,6 +115,8 @@ GEM
       railties (>= 3.2, < 6.2)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
+    geckodriver-helper (0.24.0)
+      archive-zip (~> 0.7)
     geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -126,6 +130,7 @@ GEM
     inline_svg (1.7.2)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
+    io-like (0.3.1)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
@@ -325,6 +330,7 @@ DEPENDENCIES
   devise-i18n
   font-awesome-rails
   friendly_id (~> 5.2.4)
+  geckodriver-helper
   geocoder
   icalendar
   inline_svg

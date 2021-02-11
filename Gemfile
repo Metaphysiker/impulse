@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-#gem 'geckodriver-helper'
+gem 'geckodriver-helper'
 gem 'mechanize'
 #gem 'rspreadsheet'
 gem 'odf-report'
