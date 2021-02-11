@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+require "selenium-webdriver"
 
 Capybara.server = :puma # Until your setup is working
 Capybara.server = :puma, { Silent: true } # To clean up your test output
@@ -100,12 +101,14 @@ RSpec.configure do |config|
 =end
 end
 
-#Capybara.register_driver :selenium do |app|
-#  Capybara::Selenium::Driver.new(app, browser: :firefox)
-#end
-
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
-Capybara.javascript_driver = :chrome
+#driver = Selenium::WebDriver.for :firefox, marionette: false
+
+#Capybara.register_driver :chrome do |app|
+#  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+#end
+
+#Capybara.javascript_driver = :chrome
