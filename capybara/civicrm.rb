@@ -1,18 +1,15 @@
-require 'capybara/rails'
+#require 'capybara/rails'
 require 'capybara/rspec'
 
 describe "the signin process", type: :feature, js: true do
-  before :each do
-    User.make(email: 'user@example.com', password: 'password')
-  end
 
   it "signs me in" do
-    visit '/sessions/new'
-    within("#session") do
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'password'
+    visit 'https://crm.impulse.swiss/user'
+    within("#user-login") do
+      fill_in 'Benutzername', with: 'sara'
+      fill_in 'Passwort', with: 'sara1mpulze_BS253'
     end
-    click_button 'Sign in'
-    expect(page).to have_content 'Success'
+    click_button 'Anmelden'
+    expect(page).to have_content 'Fohrenbühlstrasse 4'
   end
 end
