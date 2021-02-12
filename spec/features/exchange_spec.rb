@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "exchange", :type => :feature do
+RSpec.describe "exchange", :type => :feature, js: true do
 
   before(:each) do
     first_user = User.create!(:email => Faker::Internet.email, :password => "secret")

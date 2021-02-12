@@ -3,6 +3,18 @@ require 'capybara/rspec'
 
 describe "the signin process", type: :feature, js: true do
 
+  before(:each) do
+    puts "before each"
+  end
+
+  after(:each) do
+    puts "after each"
+    if Capybara.app
+      pid = Capybara.current_session.driver.instance_variable_get("@options")[:server].pid
+      Process.kill('TERM', pid)
+    end
+  end
+
   it "signs me in" do
     visit 'https://crm.impulse.swiss/user'
     within("#user-login") do
