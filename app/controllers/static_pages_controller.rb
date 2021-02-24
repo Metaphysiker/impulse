@@ -38,4 +38,8 @@ class StaticPagesController < ApplicationController
     @users = User.where(id: user_ids).sort_by {|m| user_ids.index(m.id)}
 
   end
+
+  def cv_generator
+
+  end
 end

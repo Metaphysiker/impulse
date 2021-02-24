@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   root 'static_pages#exchange'
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 
+  get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
+
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
   get '/static_pages/impressum', to: 'static_pages#impressum', as: 'impressum'
 
