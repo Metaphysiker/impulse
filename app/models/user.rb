@@ -13,8 +13,12 @@ has_many :roles, :through => :user_roles
          :recoverable, :rememberable, :validatable
 
   def self.showable_attribute_names
-    ["email", "name", "address", "phone", "birth_day",
+    ["email", "name", "address", "phone", "localized_birth_day",
        "recruitment_consultant", "disposal_period", "personal_number", "unemployment_insurance_number"]
+  end
+
+  def self.showable_attribute_names_for_cv
+    ["email", "name", "address", "phone", "localized_birth_day"]
   end
 
   def name
@@ -31,7 +35,10 @@ has_many :roles, :through => :user_roles
 
   def disposal_period
     "#{I18n.l(self.disposal_period_start) unless self.disposal_period_start.blank?} - #{I18n.l(self.disposal_period_end) unless self.disposal_period_end.blank?}"
+  end
 
+  def localized_birth_day
+    "#{I18n.l(self.birth_day)}"
   end
 
    def admin?
