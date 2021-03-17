@@ -1,6 +1,14 @@
-<li class="my-4">
-  <%= cv_unit.name %>
-  <% if cv_unit.user == current_user %><br />
+<div class="my-4">
+  <h3><%= cv_unit.name %></h3>
+  <% unless cv_unit.start_date.blank? %>
+    <p class="small">
+      <%= cv_unit.start_date unless cv_unit.start_date.blank? %> <%= " - #{cv_unit.end_date}" unless cv_unit.end_date.blank? %>
+    </p>
+  <% end %>
+  <p>
+    <%= cv_unit.content %>
+  </p>
+  <% if cv_unit.user == current_user %>
     <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
    <% end %>
-</li>
+</div>

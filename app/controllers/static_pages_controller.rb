@@ -48,7 +48,7 @@ class StaticPagesController < ApplicationController
     cv = generate_single_cv(user, Rails.root.join("public/cv/substantial-cv.odt"))
 
     #compressed_filestream.rewind
-    send_data cv.generate, filename: "cv.odt"
+    send_data cv.generate, filename: "substantial.odt"
     #send_data zippy.read, filename: "zippy.zip"
     #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.odt"
     #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.ods"
@@ -60,6 +60,13 @@ class StaticPagesController < ApplicationController
     cv = ODFReport::Report.new(file_path) do |r|
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
+      end
+
+      r.add_section("experience-section", user.cv_units.where(category: "experience")) do |s|
+        s.add_field(:cv_unit_name, :name)
+        s.add_field(:cv_unit_content, :content)
+        s.add_field(:cv_unit_start_date, :start_date)
+        s.add_field(:cv_unit_end_date, :end_date)
       end
     end
 
