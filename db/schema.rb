@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_144220) do
+ActiveRecord::Schema.define(version: 2021_03_17_191011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 2021_02_09_144220) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
+  create_table "cv_units", force: :cascade do |t|
+    t.string "category", default: ""
+    t.string "name", default: ""
+    t.text "content", default: ""
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_cv_units_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -261,5 +273,6 @@ ActiveRecord::Schema.define(version: 2021_02_09_144220) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cv_units", "users"
   add_foreign_key "skills", "users"
 end

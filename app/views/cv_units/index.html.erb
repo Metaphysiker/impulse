@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="jumbotron bg-white my-4">
+    <div class="text-center">
+
+      <h1 class="my-4">Übersicht</h1>
+    </div>
+    <% if is_current_user_admin? %>
+      <div class="text-center">
+        <%= link_to 'Neuer Eintrag', new_cv_unit_path, class: "btn btn-primary my-2" %>
+      </div><hr />
+    <% end %>
+    <%= render partial: "cv_units/card", collection: @cv_units, as: :cv_unit %>
+  </div>
+</div>

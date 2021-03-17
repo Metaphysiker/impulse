@@ -4,6 +4,7 @@ has_many :user_messages
 has_many :messages, :through => :user_messages
 
 has_many :skills
+has_many :cv_units
 
 has_many :user_roles
 has_many :roles, :through => :user_roles

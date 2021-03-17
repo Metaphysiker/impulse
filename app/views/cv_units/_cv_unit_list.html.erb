@@ -1,0 +1,19 @@
+<div class="<%= category %>_cv_units_from_user_<%= user.id %>">
+<ul class="<%= category %>_cv_unit_list_from_user_<%= user.id %>">
+  <% user.cv_units.where(category: category).each do |cv_unit| %>
+    <%= render 'cv_units/cv_unit_li_item', cv_unit: cv_unit %>
+  <% end %>
+</ul>
+<% if user == current_user %>
+<div class="my-4">
+  <%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
+  <p>
+    <%= f.input :name, label: false, placeholder: "Erfahrung" %>
+    <%= f.input :content, as: :text, label: false, placeholder: "Beschreibung", input_html: { rows: 3 } %>
+    <%= f.hidden_field :category, value: category %>
+    <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
+  </p>
+  <% end %>
+</div>
+<% end %>
+</div>

@@ -1,0 +1,14 @@
+var records_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>";
+
+$( records_div ).each(function( index ) {
+  $( this ).fadeOut( "fast", function() {
+
+      content = $("<%= escape_javascript( render "cv_units/cv_unit_list", user: @user, category: @category ) %>")
+
+      $( this ).fadeOut("fast", function(){
+        $( this ).replaceWith(content).fadeIn("fast");
+      });
+
+  });
+
+});

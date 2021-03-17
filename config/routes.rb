@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cv_units
   #resources :users
 
   resources :skills
@@ -89,4 +90,7 @@ Rails.application.routes.draw do
   #devise_for :users, controllers: {
   #  sessions: 'users/sessions'
   #}
+
+  post '/cv_units/create_cv_unit/', to: "cv_units#create_cv_unit", as: "create_cv_unit"
+  post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"
 end

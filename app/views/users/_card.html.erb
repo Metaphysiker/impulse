@@ -17,11 +17,19 @@
           <% end %>
         </tbody>
       </table>
+      <hr />
+      <p>
+        <% CvUnit.categories.each do |category| %>
+        <h3 class="card-title spaced-letters text-center"><b><%= category %></b></h3>
+          <%= render 'cv_units/cv_unit_list', user: user, category: category %>
+        <hr />
+        <% end %>
+      </p>
       <p>
         <%= link_to "User bearbeiten", edit_user_path(user) %>
       </p>
       <p>
-        <%= link_to "create_files_for_impulse", create_files_for_impulse_path(user), method: :post %>
+        <%= link_to "Impulse Ordner erstellen", create_files_for_impulse_path(user), method: :post %>
       </p>
       </div>
     </div>

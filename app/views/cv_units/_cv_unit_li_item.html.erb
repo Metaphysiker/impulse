@@ -1,0 +1,6 @@
+<li class="my-4">
+  <%= cv_unit.name %>
+  <% if cv_unit.user == current_user %><br />
+    <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
+   <% end %>
+</li>

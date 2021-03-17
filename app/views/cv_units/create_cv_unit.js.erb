@@ -1,0 +1,8 @@
+var records_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>";
+var list_div = ".<%= @category %>_cv_unit_list_from_user_<%= @user.id %>";
+
+content = $("<%= escape_javascript( render "cv_units/cv_unit_li_item", cv_unit: @cv_unit ) %>")
+
+$( list_div ).each(function( index ) {
+  $( this ).append(content);
+});
