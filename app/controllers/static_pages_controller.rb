@@ -62,12 +62,15 @@ class StaticPagesController < ApplicationController
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
 
-      r.add_section("experience-section", user.cv_units.where(category: "experience")) do |s|
-        s.add_field(:cv_unit_name, :name)
-        s.add_field(:cv_unit_content, :content)
-        s.add_field(:cv_unit_start_date, :start_date)
-        s.add_field(:cv_unit_end_date, :end_date)
+      CvUnit.categories.each do |category|
+        r.add_section("#{category}-section", user.cv_units.where(category: category)) do |s|
+          s.add_field(:cv_unit_name, :name)
+          s.add_field(:cv_unit_content, :content)
+          s.add_field(:cv_unit_start_date, :start_date)
+          s.add_field(:cv_unit_end_date, :end_date)
+        end
       end
+
     end
 
   end
