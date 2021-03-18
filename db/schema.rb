@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_191011) do
+ActiveRecord::Schema.define(version: 2021_03_18_061649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,6 +268,9 @@ ActiveRecord::Schema.define(version: 2021_03_17_191011) do
     t.date "disposal_period_end"
     t.string "personal_number", default: ""
     t.string "unemployment_insurance_number", default: ""
+    t.string "job_title", default: ""
+    t.string "website", default: ""
+    t.text "short_description", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

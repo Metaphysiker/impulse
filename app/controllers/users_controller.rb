@@ -155,7 +155,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
-    :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number)
+    :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number,
+    :job_title, :website, :short_description)
   end
 
   def set_user
