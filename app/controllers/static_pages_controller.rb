@@ -45,6 +45,18 @@ class StaticPagesController < ApplicationController
 
   def cv_generator
     user = current_user #User.find(params[:id])
+    #cv = generate_single_cv(user, Rails.root.join("public/cv/substantial-cv.odt"))
+
+    #compressed_filestream.rewind
+    #send_data cv.generate, filename: "substantial.odt"
+    #send_data zippy.read, filename: "zippy.zip"
+    #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.odt"
+    #send_data stammblatt.generate, filename: "AMM-Bescheinigung_#{user.last_name}_#{current_month}_#{current_year}.ods"
+    #send_data zip
+  end
+
+  def cv_generator1
+    user = current_user #User.find(params[:id])
     cv = generate_single_cv(user, Rails.root.join("public/cv/substantial-cv.odt"))
 
     #compressed_filestream.rewind
@@ -55,9 +67,16 @@ class StaticPagesController < ApplicationController
     #send_data zip
   end
 
-  def generate_single_cv(user, file_path)
+  def generate_single_cv
     #attribute_array = ["last_name", "first_name"]
-    cv = ODFReport::Report.new(file_path) do |r|
+    user = current_user
+    if params[:file_name].present?
+      file_name = params[:file_name]
+    else
+      file_name = Rails.root.join("public/cv/substantial-cv.odt")
+    end
+
+    cv = ODFReport::Report.new(file_name) do |r|
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
@@ -68,13 +87,13 @@ class StaticPagesController < ApplicationController
           s.add_field(:cv_unit_content, :content)
           s.add_field(:cv_unit_start_date, :start_date)
           s.add_field(:cv_unit_end_date, :end_date)
-          s.add_field(:cv_unit_start_date_month_year, :start_date.strftime("%B %Y"))
-          s.add_field(:cv_unit_end_date_month_year, :end_date.today.strftime("%B %Y"))
+          s.add_field(:cv_unit_start_date_month_year, :start_date_month_year)
+          s.add_field(:cv_unit_end_date_month_year, :end_date_month_year)
         end
       end
 
     end
-
+    send_data cv.generate, filename: "substantial.odt"
   end
 
 end

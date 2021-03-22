@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 
   get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
+  get '/static_pages/generate_single_cv/(:file_name)', to: "static_pages#generate_single_cv", as: 'generate_single_cv'
 
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
   get '/static_pages/impressum', to: 'static_pages#impressum', as: 'impressum'

@@ -31,3 +31,9 @@
 
 de:
   hello: "Hello world"
+  date:
+    formats:
+      month_year: "%B %Y"
+  time:
+    formats:
+      month_year: "%B %Y"
