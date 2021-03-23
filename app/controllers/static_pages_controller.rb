@@ -73,7 +73,7 @@ class StaticPagesController < ApplicationController
     if params[:file_name].present?
       file_name = params[:file_name]
     else
-      file_name = Rails.root.join("public/cv/substantial-cv.odt")
+      file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
     end
 
     cv = ODFReport::Report.new(file_name) do |r|
