@@ -41,7 +41,11 @@ has_many :roles, :through => :user_roles
   end
 
   def localized_birth_day
+    if self.birth_day.blank?
+      ""
+    else
     "#{I18n.l(self.birth_day)}"
+    end
   end
 
    def admin?
