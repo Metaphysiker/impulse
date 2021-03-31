@@ -1,3 +1,5 @@
+<%= tinymce_assets %>
+<%= tinymce %>
 <div class="<%= category %>_cv_units_from_user_<%= user.id %>">
 <div class="<%= category %>_cv_unit_list_from_user_<%= user.id %>">
   <% user.cv_units.where(category: category).order(:start_date).each do |cv_unit| %>
@@ -6,10 +8,13 @@
 </div>
 <% if user == current_user %>
 <div class="my-4">
+
   <%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
   <p>
-    <%= f.input :name, label: false, placeholder: "Erfahrung" %>
-    <%= f.input :content, as: :text, label: false, placeholder: "Beschreibung", input_html: { rows: 3 } %>
+    <%= f.input :name, label: false, placeholder: "Mechaniker bei Firma Stoll" %>
+    <%= f.input :content, as: :text, label: false, input_html: { rows: 5, class: "tinymce"} %>
+
+    <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
     <% unless category == "skills" %>
       <%= f.input :start_date, as: :date, label: "Start", required: false %>
       <%= f.input :end_date, as: :date, label: "Ende", required: false %>

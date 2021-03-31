@@ -6,7 +6,9 @@
   <div class="form-inputs">
     <%= f.input :category %>
     <%= f.input :name %>
-    <%= f.input :content %>
+    <%#= f.input :content %>
+    <%#= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+    <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
   </div>
@@ -15,3 +17,6 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<%= tinymce_assets %>
+ <%= tinymce %>

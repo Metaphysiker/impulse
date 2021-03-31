@@ -6,7 +6,7 @@
     </p>
   <% end %>
   <p>
-    <%= cv_unit.content %>
+    <%= simple_format cv_unit.content %>
   </p>
   <% if cv_unit.user == current_user %>
     <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
