@@ -1,0 +1,48 @@
+<%= category = "education" %>
+<% text_area_id = Time.now.to_i.to_s %>
+
+
+<%= simple_form_for(cv_unit) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :category %>
+    <%= f.input :name %>
+    <%#= f.input :content %>
+    <%#= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+    <%= f.text_area :content, :id => text_area_id, :class => "tinymce", :rows => 40, :cols => 120 %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= tinymce_assets %>
+<%#= tinymce  %>
+
+<%#= text_area_tag :editor, "", :rows => 40, :cols => 120 %>
+
+<script type="text/javascript">
+  tinyMCE.init({
+    selector: 'textarea.editor'
+  });
+</script>
+
+<%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
+<p>
+  <%= f.input :name, label: false, placeholder: "Mechaniker bei Firma Stoll" %>
+  <%= f.input :content, as: :text, label: false, input_html: { rows: 5, class: "tinymce"} %>
+
+  <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
+  <% unless category == "skills" %>
+    <%= f.input :start_date, as: :date, label: "Start", required: false %>
+    <%= f.input :end_date, as: :date, label: "Ende", required: false %>
+  <% end %>
+  <%= f.hidden_field :category, value: category %>
+  <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
+</p>
+<% end %>
