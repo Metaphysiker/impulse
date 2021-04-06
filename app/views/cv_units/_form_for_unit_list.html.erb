@@ -1,41 +1,21 @@
-<%= category = "education" %>
-<% text_area_id = Time.now.to_i.to_s %>
-
-
-<%= simple_form_for(cv_unit) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :category %>
-    <%= f.input :name %>
-    <%#= f.input :content %>
-    <%#= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
-    <%= f.text_area :content, :id => text_area_id, :class => "tinymce", :rows => 40, :cols => 120 %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%# text_area_id = Time.now.to_f.to_s.gsub(".", "") %>
+<%#= "##{text_area_id}" %>
+<% if category == "experience" %>
+  <% name_placeholder = "Abteilungsleiterin - Zentrum für Bildung" %>
+  <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
+<% elsif category == "education" %>
+  <% name_placeholder = "MSC in Psychologie- Universität Frankfurt" %>
+  <% content_placeholder = "Thema der Masterarbeit: Neue Ansätze für spezialisierte Erwachsenenbildung und -training\nVorstand im Debattierclub" %>
+<% elsif category == "skills" %>
+  <% name_placeholder = "Sprachen" %>
+  <% content_placeholder = "Deutsch, Französisch, Englisch, Russisch" %>
 <% end %>
-
-<%= tinymce_assets %>
-<%#= tinymce  %>
-
-<%#= text_area_tag :editor, "", :rows => 40, :cols => 120 %>
-
-<script type="text/javascript">
-  tinyMCE.init({
-    selector: 'textarea.editor'
-  });
-</script>
 
 <%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
 <p>
-  <%= f.input :name, label: false, placeholder: "Mechaniker bei Firma Stoll" %>
-  <%= f.input :content, as: :text, label: false, input_html: { rows: 5, class: "tinymce"} %>
+  <%= f.input :name, label: false, placeholder: name_placeholder %>
+  <%#= f.input :content, label: false, placeholder: "" %>
+  <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5, class: "", id: ""} %>
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
   <% unless category == "skills" %>
@@ -46,3 +26,14 @@
   <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
 </p>
 <% end %>
+
+
+<%#= tinymce_assets %>
+<%#= tinymce :selector => "##{text_area_id}" %>
+
+<script type="text/javascript">
+//tinymce.init({
+//  selector: "<%= "##text_area_id" %>",
+//  menubar: false
+//});
+</script>

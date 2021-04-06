@@ -73,10 +73,14 @@ class StaticPagesController < ApplicationController
     if params[:file_name].present?
       file_name = params[:file_name]
     else
-      file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
+      file_name = "substantial"
+      #file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
+      #file_name = Rails.root.join("public/cv/bluey/bluey-cv.odt")
     end
 
-    cv = ODFReport::Report.new(file_name) do |r|
+    file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
+
+    cv = ODFReport::Report.new(file_path) do |r|
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
@@ -84,7 +88,7 @@ class StaticPagesController < ApplicationController
       CvUnit.categories.each do |category|
         r.add_section("#{category}-section", user.cv_units.where(category: category)) do |s|
           s.add_field(:cv_unit_name, :name)
-          s.add_field(:cv_unit_content, :content)
+          s.add_field(:cv_unit_content, :content_html_safe)
           s.add_field(:cv_unit_start_date, :start_date)
           s.add_field(:cv_unit_end_date, :end_date)
           s.add_field(:cv_unit_start_date_month_year, :start_date_month_year)
@@ -93,7 +97,7 @@ class StaticPagesController < ApplicationController
       end
 
     end
-    send_data cv.generate, filename: "substantial.odt"
+    send_data cv.generate, filename: "#{file_name}.odt"
   end
 
 end

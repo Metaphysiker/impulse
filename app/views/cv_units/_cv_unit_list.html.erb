@@ -7,7 +7,7 @@
 </div>
 <% if user == current_user %>
 <div class="my-4">
-  <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
+  <%= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new, category: category %>
   <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
 </div>
 <% end %>
