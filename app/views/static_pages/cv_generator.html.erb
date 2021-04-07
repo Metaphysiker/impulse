@@ -1,15 +1,32 @@
 <div class="container">
   <h1>CV-Generator</h1>
   <p>
-    CVs erstellen lassen
+    Trage unten deine Informationen ein und lass dir verschiedene CVs mit deinen Informationen generieren.
   </p>
   <hr />
-  <%= link_to "Bluey", generate_single_cv_path(file_name: "bluey") %>
+  <% ["bluey", "substantial"].each do |file_name| %>
+  <div class="row">
+      <div class="col-6">
+        <div class="embed-responsive" style="padding-bottom: 141.42%;">
+          <iframe  class="embed-responsive-item" src="<%= show_public_pdf_inline_path(file_name) %>"></iframe>
+        </div>
+      </div>
+      <div class="col-6">
+        <%= link_to file_name.capitalize, generate_single_cv_path(file_name: file_name) %>
+      </div>
+  </div>
+  <hr />
+  <% end %>
+
     <hr />
   <%= link_to "Substantial", generate_single_cv_path %>
   <hr />
-  <h1>PDF-Vorschau</h1>
+  <%= render 'users/form_for_user_cv', user: current_user %>
   <p>
-
+    <% CvUnit.categories.each do |category| %>
+    <h3 class="card-title spaced-letters text-center"><b><%= category %></b></h3>
+      <%= render 'cv_units/cv_unit_list', user: current_user, category: category %>
+    <hr />
+    <% end %>
   </p>
 </div>

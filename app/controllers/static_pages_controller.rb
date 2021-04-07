@@ -67,6 +67,21 @@ class StaticPagesController < ApplicationController
     #send_data zip
   end
 
+  def show_public_pdf_inline
+    user = current_user
+    if params[:file_name].present?
+      file_name = params[:file_name]
+    else
+      file_name = "substantial"
+      #file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
+      #file_name = Rails.root.join("public/cv/bluey/bluey-cv.odt")
+    end
+
+    file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-preview.pdf")
+
+    send_file(file_path, :filename => "#{file_name}.pdf", :disposition => 'inline', :type => "application/pdf")
+  end
+
   def generate_single_cv
     #attribute_array = ["last_name", "first_name"]
     user = current_user
