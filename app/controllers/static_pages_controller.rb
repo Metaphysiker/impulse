@@ -101,7 +101,7 @@ class StaticPagesController < ApplicationController
       end
 
       CvUnit.categories.each do |category|
-        r.add_section("#{category}-section", user.cv_units.where(category: category)) do |s|
+        r.add_section("#{category}-section", user.cv_units.where(category: category).order(:start_date).reverse_order) do |s|
           s.add_field(:cv_unit_name, :name)
           s.add_field(:cv_unit_content, :content_html_safe)
           #s.add_text(:cv_unit_content, :content)

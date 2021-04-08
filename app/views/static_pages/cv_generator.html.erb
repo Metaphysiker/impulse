@@ -17,10 +17,6 @@
   </div>
   <hr />
   <% end %>
-
-    <hr />
-  <%= link_to "Substantial", generate_single_cv_path %>
-  <hr />
   <%= render 'users/form_for_user_cv', user: current_user %>
   <p>
     <% CvUnit.categories.each do |category| %>
