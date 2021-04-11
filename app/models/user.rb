@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+validates :email, presence: true, uniqueness: true
+
       has_one_attached :cover
 has_many :user_messages
 has_many :messages, :through => :user_messages

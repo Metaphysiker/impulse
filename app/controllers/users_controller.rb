@@ -9,14 +9,28 @@ class UsersController < ApplicationController
     #@user = User.find()
   end
 
-  def create_user_as_user
+  def create_user_as_user1
     user = User.create(user_params)
     #byebug
     sign_in user
-
     flash[:notice] = "Account wurde erstellt!"
-
     redirect_back(fallback_location: exchange_path)
+  end
+
+  def create_user_as_user
+    @user = User.new(user_params)
+
+      if @user.save
+        sign_in @user
+        #flash[:notice] = "Account wurde erstellt!"
+        #redirect_back(fallback_location: exchange_path)
+        #format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+      else
+        #flash[:danger] = "Fehler!"
+        #render :file => "/users/create_user_as_user.js.erb", :formats => [:js]
+        #render :js => "/users/create_user_as_user.js.erb"
+        #format.html { render :new }
+      end
   end
 
   def create_user_as_admin

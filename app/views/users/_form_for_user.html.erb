@@ -1,6 +1,5 @@
-<div class="border rounded p-3 mb-2 form_for_user">
+<%= simple_form_for user, url: create_user_as_user_path, html: { class: "form_for_user"}, method: :post, remote: true do |f| %>
 <h5>Neues Profil erstellen</h5>
-<%= simple_form_for User.new, url: create_user_path, method: :post do |f| %>
 <p>
   Profilbild <br /><br />
   <%= f.file_field :cover %>
@@ -21,4 +20,3 @@
 </p>
   <%= f.submit "Anmelden", class: "btn btn-light border my-2" %>
 <% end %>
-</div>
