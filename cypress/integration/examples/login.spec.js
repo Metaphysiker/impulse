@@ -22,4 +22,13 @@ context('Actions', () => {
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.get('body').contains('Tauschbörse')
   })
+
+  it('visits mein Impulse', () => {
+    // https://on.cypress.io/type
+    //cy.get('body').should('have.value', 'Tauschbörse')
+    cy.contains('Mein Impulse').click()
+    cy.get('body').contains('Mein Impulse')
+    //cy.get('body').contains(first_name)
+  })
+
 })

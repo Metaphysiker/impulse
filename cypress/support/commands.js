@@ -30,7 +30,7 @@ Cypress.Commands.add('login', (email, first_name, last_name, password) => {
 
   //cy.get('body').contains('Account wurde erstellt!')
   })
-//  cy.wait(1000)
+  cy.wait(1000)
   cy.get('body').contains('Account wurde erstellt!')
 })
 //

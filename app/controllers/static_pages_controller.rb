@@ -32,6 +32,11 @@ class StaticPagesController < ApplicationController
   end
 
   def exchange
+
+    if params[:flash].present?
+      flash[:notice] = params[:flash]
+    end
+
     user_ids = User.includes(:skills).where.not(skills: {id: nil}).pluck(:id)
     user_ids.unshift(current_user.id) unless current_user.blank?
     user_ids.uniq!
