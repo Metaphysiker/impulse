@@ -1,26 +1,44 @@
 /// <reference types="cypress" />
+//const requiredExample = require('../../fixtures/user')
+//import user from '/cypress/fixtures/user.json'
+const some_name = "Tauschbörse"
 
-context('Actions', () => {
+context('Login', () => {
   beforeEach(() => {
-    var random_user
 
-    let url = 'https://randomuser.me/api/';
+    let wags = "Portsmouth";
+    cy.wrap(wags).as('wags')
+    cy.get('@wags').then(wags => {
+    expect(wags).to.contain("Portsmouth")
+    })
 
-    //cy.visit('localhost:3000')
-    var random_string = Date.now().toString()
-    var email = random_string + "@gmail.com"
-    var first_name = "John" //random_user["name"]["first"]
-    var last_name = "Dellwig" //random_user["name"]["last"]
-    var password = "password"
-    cy.login(email, first_name, last_name, password)
+    var myObj = {name: "John", age: 31, city: "New York"};
+    cy.wrap(myObj).as('myObj')
+    cy.get('@myObj').then(myObj => {
+    expect(myObj["name"]).to.contain("John")
+    })
+
+
+    let email = Date.now().toString() + "@gmail.com"
+    let first_name = "Manfred"
+    let last_name = "Müller"
+
+    // other test code here
+    cy.login(email, first_name, last_name, "password")
   })
 
   // https://on.cypress.io/interacting-with-elements
 
   it('visits the front page', () => {
+    cy.log(some_name)
+    cy.get('@wags').then(wags => {
+    expect(wags).to.contain("Portsmouth")
+    })
+
     // https://on.cypress.io/type
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.get('body').contains('Tauschbörse')
+    cy.get('body').contains(some_name)
   })
 
   it('visits mein Impulse', () => {
