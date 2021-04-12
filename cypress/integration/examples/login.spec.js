@@ -12,10 +12,10 @@ context('Login', () => {
     expect(wags).to.contain("Portsmouth")
     })
 
-    var myObj = {name: "John", age: 31, city: "New York"};
-    cy.wrap(myObj).as('myObj')
-    cy.get('@myObj').then(myObj => {
-    expect(myObj["name"]).to.contain("John")
+    var user = {email: Date.now().toString() + "@gmail.com", first_name: "Jonas", last_name: "Müller"};
+    cy.wrap(user).as('user')
+    cy.get('@user').then(user => {
+      expect(user["first_name"]).to.contain("Jonas")
     })
 
 
@@ -24,21 +24,20 @@ context('Login', () => {
     let last_name = "Müller"
 
     // other test code here
-    cy.login(email, first_name, last_name, "password")
+    cy.login(user["email"], user["first_name"], user["last_name"], "password")
   })
 
   // https://on.cypress.io/interacting-with-elements
 
   it('visits the front page', () => {
-    cy.log(some_name)
-    cy.get('@wags').then(wags => {
-    expect(wags).to.contain("Portsmouth")
-    })
 
     // https://on.cypress.io/type
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.get('body').contains('Tauschbörse')
-    cy.get('body').contains(some_name)
+
+    cy.get('@user').then(user => {
+      expect(user["first_name"]).to.contain("Jonas")
+    })
   })
 
   it('visits mein Impulse', () => {
@@ -46,6 +45,11 @@ context('Login', () => {
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.contains('Mein Impulse').click()
     cy.get('body').contains('Mein Impulse')
+    cy.get('@user').then(user => {
+      cy.get('body').contains(user["first_name"])
+      cy.get('body').contains(user["last_name"])
+      cy.get('body').contains(user["email"])
+    })
     //cy.get('body').contains(first_name)
   })
 
