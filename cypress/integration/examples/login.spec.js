@@ -5,26 +5,25 @@ const some_name = "Tauschbörse"
 
 context('Login', () => {
   beforeEach(() => {
+    let user;
+    //var user = {email: Date.now().toString() + "@gmail.com", first_name: "Jonas", last_name: "Müller"};
+    //cy.wrap(user).as('user')
+    //cy.get('@user').then(user => {
+    //  expect(user["first_name"]).to.contain("Jonas")
+    //})
 
-    let wags = "Portsmouth";
-    cy.wrap(wags).as('wags')
-    cy.get('@wags').then(wags => {
-    expect(wags).to.contain("Portsmouth")
-    })
+    cy.request('https://randomuser.me/api/?results=10').then(
+      (response) => {
+        cy.log(response.body["results"][0]["name"]["first"])
+        // response.body is automatically serialized into JSON
+        //expect(response.body).to.have.property('name', 'Jane') // true
+        user = {email: response.body["results"][0]["email"], first_name: response.body["results"][0]["name"]["first"], last_name: response.body["results"][0]["name"]["last"]};
+        cy.wrap(user).as('user')
+        // other test code here
+        cy.login(user["email"], user["first_name"], user["last_name"], "password")
+      }
+    )
 
-    var user = {email: Date.now().toString() + "@gmail.com", first_name: "Jonas", last_name: "Müller"};
-    cy.wrap(user).as('user')
-    cy.get('@user').then(user => {
-      expect(user["first_name"]).to.contain("Jonas")
-    })
-
-
-    let email = Date.now().toString() + "@gmail.com"
-    let first_name = "Manfred"
-    let last_name = "Müller"
-
-    // other test code here
-    cy.login(user["email"], user["first_name"], user["last_name"], "password")
   })
 
   // https://on.cypress.io/interacting-with-elements
@@ -35,9 +34,9 @@ context('Login', () => {
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.get('body').contains('Tauschbörse')
 
-    cy.get('@user').then(user => {
-      expect(user["first_name"]).to.contain("Jonas")
-    })
+    //cy.get('@user').then(user => {
+    //  expect(user["first_name"]).to.contain("Jonas")
+    //})
   })
 
   it('visits mein Impulse', () => {
