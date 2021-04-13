@@ -16,6 +16,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "cypress": "^7.0.1",
+    "cypress-file-upload": "^5.0.5",
     "webpack-dev-server": "^3.11.0"
   }
 }

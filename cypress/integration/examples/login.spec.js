@@ -43,11 +43,11 @@ context('Login', () => {
     // https://on.cypress.io/type
     //cy.get('body').should('have.value', 'Tauschbörse')
     cy.contains('Mein Impulse').click()
-    cy.get('body').contains('Mein Impulse')
+    cy.contains('Mein Impulse')
     cy.get('@user').then(user => {
-      cy.get('body').contains(user["first_name"])
-      cy.get('body').contains(user["last_name"])
-      cy.get('body').contains(user["email"])
+      cy.contains(user["first_name"])
+      cy.contains(user["last_name"])
+      cy.contains(user["email"])
     })
     //cy.get('body').contains(first_name)
   })
