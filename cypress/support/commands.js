@@ -25,7 +25,7 @@ Cypress.Commands.add('login', (email, first_name, last_name, password) => {
     cy.root().submit()
   })
 
-  cy.wait(1000)
+  //cy.wait(1000)
   cy.contains('Account wurde erstellt!')
 })
 //
