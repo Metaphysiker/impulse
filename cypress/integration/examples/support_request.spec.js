@@ -2,7 +2,7 @@
 //const requiredExample = require('../../fixtures/user')
 //import user from '/cypress/fixtures/user.json'
 const model_name_singular_german = "Call for Help"
-const model_name_plural_german = "Calls for Help"
+const model_name_plural_german = "Call for Help"
 const model_name = "support_request"
 
 const lorem_ipsum_title = "Lorem Ipsum"
@@ -76,27 +76,6 @@ context('basic test with login', () => {
     cy.contains(lorem_ipsum_title_updated).should('not.exist')
     cy.contains(lorem_ipsum_content_updated).should('not.exist')
 
-
-    // https://on.cypress.io/type
-    //cy.get('body').should('have.value', 'Tauschbörse')
-    //cy.get('body').contains('Tauschbörse')
-
-    //cy.get('@user').then(user => {
-    //  expect(user["first_name"]).to.contain("Jonas")
-    //})
-  })
-
-  it('visits mein Impulse', () => {
-    // https://on.cypress.io/type
-    //cy.get('body').should('have.value', 'Tauschbörse')
-    cy.contains('Mein Impulse').click()
-    cy.contains('Mein Impulse')
-    cy.get('@user').then(user => {
-      cy.contains(user["first_name"])
-      cy.contains(user["last_name"])
-      cy.contains(user["email"])
-    })
-    //cy.get('body').contains(first_name)
   })
 
 })

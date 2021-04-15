@@ -7,6 +7,9 @@ de:
       post:
         one: "Beitrag"
         other: "Beiträge"
+      support_request:
+        one: "Call for Help"
+        other: "Call for Help"
     attributes:
       user:
         name: "Name"
@@ -18,3 +21,6 @@ de:
         title: "Titel"
         author: "Autor"
         description: "Beschreibung"
+      support_request:
+        title: "Titel"
+        content: "Inhalt"
