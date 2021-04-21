@@ -25,7 +25,7 @@ class SupportRequestsController < ApplicationController
 
     respond_to do |format|
       if @support_request.save
-        format.html { redirect_to @support_request, notice: "Support request was successfully created." }
+        format.html { redirect_to @support_request, notice: "Call for Help wurde erstellt!" }
         format.json { render :show, status: :created, location: @support_request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class SupportRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @support_request.update(support_request_params)
-        format.html { redirect_to @support_request, notice: "Support request was successfully updated." }
+        format.html { redirect_to @support_request, notice: "Call for Help wurde aktualisiert!" }
         format.json { render :show, status: :ok, location: @support_request }
       else
         format.html { render :edit, status: :unprocessable_entity }

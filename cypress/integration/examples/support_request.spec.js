@@ -4,6 +4,7 @@
 const model_name_singular_german = "Call for Help"
 const model_name_plural_german = "Call for Help"
 const model_name = "support_request"
+const model_name_plural = "support_requests"
 
 const lorem_ipsum_title = "Lorem Ipsum"
 const lorem_ipsum_content = "Lorem Ipsum Content"
@@ -37,12 +38,12 @@ context('basic test with login', () => {
     cy.visit('localhost:3000')
     //cy.contains(model_name).click()
 
-    cy.get("[data-cy=" + model_name + "_index]").click()
+    cy.get("[data-cy=" + model_name_plural + "]").click()
     cy.get('h1').contains(model_name_singular_german)
 
     //create
-    cy.get("[data-cy=create-" + model_name + "]").click()
-    cy.get("[data-cy=form-" + model_name + "]").within(($form) => {
+    cy.get("[data-cy=create_" + model_name + "]").click()
+    cy.get("[data-cy=form_" + model_name + "]").within(($form) => {
       cy.get('#' + model_name + '_title').type(lorem_ipsum_title)
       cy.get('#' + model_name + '_content').type(lorem_ipsum_content)
       //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
