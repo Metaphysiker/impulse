@@ -71,7 +71,7 @@ context('basic test with login', () => {
         //edit
         cy.get("[data-cy=edit-" + model_name + "-" + support_request_id + "]").click()
         cy.get("[data-cy=form_" + model_name + "]").within(($form) => {
-          cy.get('#' + model_name + '_title').clear().type(lorem_ipsum_title_updated)
+          cy.get('#' + model_name + '_title').clear().type(lorem_ipsum_title_updated.toUpperCase())
           cy.get('#' + model_name + '_content').clear().type(lorem_ipsum_content_updated)
           //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
           cy.root().submit()
