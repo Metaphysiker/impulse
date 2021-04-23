@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :expertises
   resources :support_requests
   resources :cv_units
   #resources :users

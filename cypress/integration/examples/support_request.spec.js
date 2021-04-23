@@ -59,7 +59,6 @@ context('basic test with login', () => {
     cy.get("[data-cy=" + model_name + "_id]")
       .invoke('attr', 'data-cy')
 
-
     //cy.get("[data-cy=" + model_name + "_id]")
     //  .invoke('attr', 'data-cy-support_request-id').should('eq', 'yolo')
       cy.get("[data-cy=" + model_name + "_id]")
@@ -90,8 +89,6 @@ context('basic test with login', () => {
       });
 
     //cy.get("[data-cy=" + model_name + "_id]").its('data-cy').should('eq', 'yolo')
-
-
 
   })
 

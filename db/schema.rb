@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_053422) do
+ActiveRecord::Schema.define(version: 2021_04_23_202113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,14 @@ ActiveRecord::Schema.define(version: 2021_04_15_053422) do
     t.string "feed_origin", default: ""
     t.string "published", default: "yes"
     t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "expertises", force: :cascade do |t|
+    t.string "title", default: ""
+    t.text "description", default: ""
+    t.text "content", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -221,6 +229,15 @@ ActiveRecord::Schema.define(version: 2021_04_15_053422) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "show_suggestion", default: "yes"
     t.string "starting_slide", default: "no"
+  end
+
+  create_table "support_request_expertises", force: :cascade do |t|
+    t.bigint "support_request_id"
+    t.bigint "expertise_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expertise_id"], name: "index_support_request_expertises_on_expertise_id"
+    t.index ["support_request_id"], name: "index_support_request_expertises_on_support_request_id"
   end
 
   create_table "support_requests", force: :cascade do |t|

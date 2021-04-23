@@ -1,0 +1,33 @@
+<% # rails g erb:scaffold Expertise title:string description:text content:text %>
+
+<% url_cover = expertise.cover.attached? ? rails_blob_url(expertise.cover) : image_url("pigs.jpg") %>
+<% height_of_cover = expertise.cover.attached? ? ActiveStorage::Analyzer::ImageAnalyzer.new(expertise.cover).metadata[:height] : 500 %>
+
+
+
+
+<div class="container pt-3">
+
+  
+    <% if expertise.cover.attached? %>
+      <div class="text-center">
+        <%= image_tag expertise.cover, class: "img-fluid" %>
+      </div>
+    <% end %>
+  
+
+  <h3 class="text-h-color spaced-letters font-weight-light text-uppercase"><%= expertise.title %></h3>
+  <p class="font-weight-bold text-muted pt-3">
+    <%= expertise.description %>
+  </p>
+  <p>
+  <%= simple_format(expertise.content) %>
+  </p>
+  <% if is_current_user_admin? %>
+    <div class="text-center m-2">
+      <hr />
+      <%= link_to 'Eintrag bearbeiten', edit_expertise_path(expertise), class: "btn btn-primary m-2" %>
+      <%= link_to 'Eintrag löschen', expertise_path(expertise), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2" %>
+    </div>
+  <% end %>
+</div>

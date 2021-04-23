@@ -13,3 +13,7 @@ end
 Tag.tags.each do |tag|
   Tag.create(title: tag)
 end
+
+Expertise.expertises.each do |expertise|
+  Expertise.create(title: expertise)
+end
