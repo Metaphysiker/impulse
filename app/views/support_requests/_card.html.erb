@@ -1,4 +1,4 @@
-<div class="card b-color mb-2 support_request_card">
+<div class="card b-color mb-2 support_request_card" data-cy="support_request_id" data-cy-support_request-id="<%=support_request.id%>">
   <% if false #if support_request.cover.attached? %>
     <%= image_tag support_request.cover, class: "card-img" %>
   <% end %>
