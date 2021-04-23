@@ -51,7 +51,7 @@ class SupportRequestsController < ApplicationController
   def destroy
     @support_request.destroy
     respond_to do |format|
-      format.html { redirect_to support_requests_url, notice: "Support request was successfully destroyed." }
+      format.html { redirect_to support_requests_url, notice: "Call for Help wurde entfernt!" }
       format.json { head :no_content }
     end
   end

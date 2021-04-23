@@ -18,8 +18,8 @@
   <% if true # is_current_user_admin? %>
     <div class="text-center m-2">
       <hr />
-      <%= link_to 'Eintrag bearbeiten', edit_support_request_path(support_request), class: "btn btn-primary m-2", data: { cy: "edit_support_request" } %>
-      <%= link_to 'Eintrag löschen', support_request_path(support_request), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2", data: { cy: "delete_support_request" } %>
+      <%= link_to 'Eintrag bearbeiten', edit_support_request_path(support_request), class: "btn btn-primary m-2", data: { cy: "edit-support_request-#{support_request.id}" } %>
+      <%= link_to 'Eintrag löschen', support_request_path(support_request), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2", data: { cy: "delete_support_request-#{support_request.id}" } %>
     </div>
   <% end %>
 </div>
