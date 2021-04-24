@@ -2,7 +2,7 @@
 <% parent_type = parent.class.to_s %>
 <% placeholder = placeholder || "" %>
 
-<%= simple_form_for Comment.new, {url: create_comment_path, method: :post, remote: true} do |f| %>
+<%= simple_form_for Comment.new, {url: create_comment_for_support_request_path, method: :post, remote: true} do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 

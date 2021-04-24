@@ -1,0 +1,7 @@
+comment_field = ".comment_field_<%= dom_id(@comment.commentable) %>";
+content = "<%= raw @comment.content %>"
+response = "<div class=\"alert alert-success\" role=\"alert\">Vielen Dank! Wir melden uns!</div>"
+
+VEGANCHAT.animateCSS(comment_field, 'fadeIn');
+$( comment_field ).empty();
+$( comment_field ).append( response );

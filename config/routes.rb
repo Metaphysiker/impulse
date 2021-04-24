@@ -67,6 +67,8 @@ Rails.application.routes.draw do
   post '/debate_a_vegan/load_starting_slide/:starting_slide', to: 'debate_a_vegan#load_starting_slide', as: 'debate_a_vegan_load_starting_slide'
 
   post '/comments/create_comment', to: 'comments#create_comment', as: 'create_comment'
+  post '/comments/create_comment_for_support_request', to: 'comments#create_comment_for_support_request', as: 'create_comment_for_support_request'
+
   get '/comments/comment_function/:id', to: 'comments#comment_function', as: 'comment_function'
 
   get '/exchange', to: "static_pages#exchange", as: "exchange"
