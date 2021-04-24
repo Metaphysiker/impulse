@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 //const requiredExample = require('../../fixtures/user')
 //import user from '/cypress/fixtures/user.json'
+
+// useful: https://www.cypress.io/blog/2020/03/20/working-with-select-elements-and-select2-widgets-in-cypress/
+
 const model_name_singular_german = "Call for Help"
 const model_name_plural_german = "Call for Help"
 const model_name = "support_request"
@@ -46,6 +49,9 @@ context('basic test with login', () => {
     cy.get("[data-cy=form_" + model_name + "]").within(($form) => {
       cy.get('#' + model_name + '_title').type(lorem_ipsum_title)
       cy.get('#' + model_name + '_content').type(lorem_ipsum_content)
+      //cy.get('#' + model_name + '_expertise_ids').select('Lebenslauf', { force: true })
+      cy.get('#' + model_name + '_expertise_ids').select(["Lebenslauf", "Bewerbungstraining"], { force: true })
+      //cy.get('#favorite-state').select('MA', { force: true })
       //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
       cy.root().submit()
     })
@@ -53,11 +59,13 @@ context('basic test with login', () => {
     cy.contains(model_name_singular_german + " wurde erstellt!")
     cy.get("." + model_name + "_card").contains(lorem_ipsum_title)
     cy.get("." + model_name + "_card").contains(lorem_ipsum_content)
-
+    cy.get("." + model_name + "_card").contains("Lebenslauf")
+    cy.get("." + model_name + "_card").contains("Bewerbungstraining")
+    //cy.get("." + model_name + "_card").contains("Networking")
     //get id
 
-    cy.get("[data-cy=" + model_name + "_id]")
-      .invoke('attr', 'data-cy')
+    //cy.get("[data-cy=" + model_name + "_id]")
+    //  .invoke('attr', 'data-cy')
 
     //cy.get("[data-cy=" + model_name + "_id]")
     //  .invoke('attr', 'data-cy-support_request-id').should('eq', 'yolo')
@@ -72,6 +80,7 @@ context('basic test with login', () => {
         cy.get("[data-cy=form_" + model_name + "]").within(($form) => {
           cy.get('#' + model_name + '_title').clear().type(lorem_ipsum_title_updated.toUpperCase())
           cy.get('#' + model_name + '_content').clear().type(lorem_ipsum_content_updated)
+          cy.get('#' + model_name + '_expertise_ids').select(["Networking"], { force: true })
           //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
           cy.root().submit()
         })
@@ -79,7 +88,8 @@ context('basic test with login', () => {
         cy.contains(model_name_singular_german + " wurde aktualisiert!")
         cy.get("." + model_name + "_card").contains(lorem_ipsum_title_updated.toUpperCase())
         cy.get("." + model_name + "_card").contains(lorem_ipsum_content_updated)
-
+        cy.get("." + model_name + "_card").contains("Networking")
+        cy.contains("Lebenslauf").should('not.exist')
         //delete
         cy.get("[data-cy=delete_" + model_name + "-" + support_request_id + "]").click()
         cy.contains(model_name_singular_german + " wurde entfernt!")

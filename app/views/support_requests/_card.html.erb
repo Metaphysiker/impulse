@@ -9,6 +9,15 @@
     </p>
     <h5 class="card-title spaced-letters"><%= support_request.title.upcase %></h5>
     <p class="card-text"><%= support_request.content %></p>
+    <% unless support_request.expertises.blank? %>
+    <ul>
+      <% support_request.expertises.each do |expertise| %>
+        <li>
+          <%= expertise.title %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
     <p>
       <%= link_to support_request_path(support_request) do %>
         <button type="button" class="btn btn-e-color btn-sm spaced-letters text-nowrap rounded-0">MEHR ERFAHREN <%= fa_icon "chevron-right", class: "ml-2" %></button>
