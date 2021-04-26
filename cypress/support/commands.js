@@ -23,8 +23,6 @@ const lorem_ipsum_content_updated = "Lorem Ipsum Content Updated"
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, first_name, last_name, password) => {
   cy.visit('localhost:3000')
-  //cy.get('body').contains('Tauschbörse')
-
   cy.get('.form_for_user').within(($form) => {
     cy.get('#user_email').type(email)
     cy.get('#user_first_name').type(first_name)
@@ -34,8 +32,20 @@ Cypress.Commands.add('login', (email, first_name, last_name, password) => {
     cy.get('#user_cover').attachFile(fixtureFile);
     cy.root().submit()
   })
+  cy.contains('Account wurde erstellt!')
+})
 
-  //cy.wait(1000)
+Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_name, password) => {
+  cy.visit('localhost:3000')
+  cy.get('.form_for_user').within(($form) => {
+    cy.get('#user_email').type(email)
+    cy.get('#user_first_name').type(first_name)
+    cy.get('#user_last_name').type(last_name)
+    cy.get('#user_password').type(password)
+    const fixtureFile = 'images/stalin_portrait.jpg';
+    cy.get('#user_cover').attachFile(fixtureFile);
+    cy.root().submit()
+  })
   cy.contains('Account wurde erstellt!')
 })
 
