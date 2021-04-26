@@ -17,6 +17,9 @@ const lorem_ipsum_content_updated = "Lorem Ipsum Content Updated"
 
 const area_of_expertise = "Lebenslauf-Gestaltung"
 
+const comment1 = "Mein Name ist Fritz Müller und ich möchte helfen!"
+const comment2 = "Hier ist mein neuer Kommentar"
+
 context('basic test with login', () => {
   beforeEach(() => {
     let user;
@@ -101,5 +104,23 @@ context('basic test with login', () => {
     //cy.get("[data-cy=" + model_name + "_id]").its('data-cy').should('eq', 'yolo')
 
   })
+
+  it('writes a comment to a support request and expects a thank you message', () => {
+      cy.create_support_request()
+      cy.get('.support_request_card').first()
+
+      cy.get("[data-cy=comment_form_for_support_request]").within(($form) => {
+        cy.get('#comment_content').type("Mein Name ist Fritz Frohan")
+        //cy.get('#' + model_name + '_expertise_ids').select('Lebenslauf', { force: true })
+        //cy.get('#' + model_name + '_expertise_ids').select(["Lebenslauf", "Bewerbungstraining"], { force: true })
+        //cy.get('#favorite-state').select('MA', { force: true })
+        //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
+        cy.root().submit()
+      })
+
+      cy.contains("Vielen Dank! Wir melden uns!")
+
+  })
+
 
 })
