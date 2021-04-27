@@ -8,6 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <% if is_current_user_admin? %>
+        <li class="nav-item">
+          <%= link_to "Dashboard", dashboard_path, class:"nav-link"  %>
+        </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Tauschbörse", exchange_path, class:"nav-link"  %>
       </li>
@@ -19,14 +24,10 @@
           <%= link_to "CV-Generator", cv_generator_path, class:"nav-link"  %>
         </li>
       <% end %>
-      <% if is_current_user_admin? %>
-        <li class="nav-item">
-          <%= link_to "Dashboard", dashboard_path, class:"nav-link"  %>
-        </li>
-      <% end %>
       <li class="nav-item">
         <%= link_to "Call for Help", support_requests_path, class:"nav-link", data: { cy: "support_requests" }  %>
       </li>
+
     </ul>
   </div>
 </nav>

@@ -18,3 +18,8 @@ end
 Expertise.expertises.each do |expertise|
   Expertise.create(title: expertise)
 end
+
+admin = User.create(email: "admin@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Admin", last_name: "Admin")
+admin.roles << Role.find_by_name("admin") unless admin.roles.where(name: "admin").exists?
+
+testuser = User.create(email: "test@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Test", last_name: "User")
