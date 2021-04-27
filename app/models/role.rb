@@ -3,6 +3,6 @@ has_many :user_roles
 has_many :users, :through => :user_roles
 
   def self.roles
-    ["admin","volunteer"]
+    ["mentor", "admin"]
   end
 end

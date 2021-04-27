@@ -20,7 +20,7 @@ context('Login', () => {
         user = {email: response.body["results"][0]["email"], first_name: response.body["results"][0]["name"]["first"], last_name: response.body["results"][0]["name"]["last"]};
         cy.wrap(user).as('user')
         // other test code here
-        cy.login(user["email"], user["first_name"], user["last_name"], "password")
+        cy.create_regular_user_and_login(user["email"], user["first_name"], user["last_name"], "password")
       }
     )
 

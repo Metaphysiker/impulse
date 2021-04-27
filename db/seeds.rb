@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# user.roles << Role.find_by_name("admin") unless user.roles.where(name: "admin").exists?
 Role.roles.each do |role|
   Role.create(name: role)
 end
