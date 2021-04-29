@@ -7,7 +7,7 @@
     <p class="card-text">
       <%= l(support_request.created_at, format: "%d.%m.%Y") %> <span class="badge e-color rounded-0 text-white"><%= "Call for Help".upcase %></span>
     </p>
-    <h5 class="card-title spaced-letters"><%= support_request.title.upcase %></h5>
+    <h3 class="text-h-color spaced-letters font-weight-light text-uppercase"><%= support_request.title.upcase %></h3>
     <p class="card-text"><%= support_request.content %></p>
     <% unless support_request.expertises.blank? %>
     <hr />
@@ -24,6 +24,7 @@
   <% if true # is_current_user_admin? %>
     <div class="text-center m-2">
       <hr />
+      <%= link_to 'Eintrag anschauen', support_request_path(support_request), class: "h-color btn btn-info m-2", data: { cy: "show-support_request-#{support_request.id}" } %>
       <%= link_to 'Eintrag bearbeiten', edit_support_request_path(support_request), class: "btn btn-primary m-2", data: { cy: "edit-support_request-#{support_request.id}" } %>
       <%= link_to 'Eintrag löschen', support_request_path(support_request), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2", data: { cy: "delete_support_request-#{support_request.id}" } %>
     </div>
@@ -38,4 +39,7 @@
       <%= render 'comments/comments_fields_only', parent: support_request %>
       <%= render 'comments/form_for_support_request', parent: support_request, placeholder: "Mein Name ist Max Mustermann und ich biete meine Hilfe an.\n\nBitte schreiben Sie mir eine Mail auf max.mustermann@gmail.com oder rufen sie mich unter der Woche zwischen 19:00 und 21:00 Uhr auf 079 123 456 78 90 an." %>
     </div>
+    <% if local_assigns[:show_comments] && show_comments == "true" %>
+      <%= render partial: "comments/show", collection: support_request.comments, as: :comment %>
+    <% end %>
 </div>

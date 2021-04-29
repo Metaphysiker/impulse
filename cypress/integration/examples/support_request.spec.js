@@ -20,21 +20,24 @@ const area_of_expertise = "Lebenslauf-Gestaltung"
 const comment1 = "Mein Name ist Fritz Müller und ich möchte helfen!"
 const comment2 = "Hier ist mein neuer Kommentar"
 
+const admin_email = "test@gmail.com"
+const admin_password = "abcdef"
+
+const generic_password = "abcdef"
+
 context('basic test with login', () => {
   beforeEach(() => {
-    let user;
-    cy.request('https://randomuser.me/api/?results=10').then(
-      (response) => {
-        cy.log(response.body["results"][0]["name"]["first"])
+    //let user;
+    //cy.request('https://randomuser.me/api/?results=10').then(
+    //  (response) => {
+    //    cy.log(response.body["results"][0]["name"]["first"])
         // response.body is automatically serialized into JSON
         //expect(response.body).to.have.property('name', 'Jane') // true
-        user = {email: response.body["results"][0]["email"], first_name: response.body["results"][0]["name"]["first"], last_name: response.body["results"][0]["name"]["last"]};
-        cy.wrap(user).as('user')
+      //  user = {email: response.body["results"][0]["email"], first_name: response.body["results"][0]["name"]["first"], last_name: response.body["results"][0]["name"]["last"]};
+      //  cy.wrap(user).as('user')
         // other test code here
-        cy.create_regular_user_and_login(user["email"], user["first_name"], user["last_name"], "password")
-      }
-    )
-
+      //  cy.create_regular_user_and_login(user["email"], user["first_name"], user["last_name"], "password")
+      cy.login("mentor@gmail.com", generic_password)
   })
 
   // https://on.cypress.io/interacting-with-elements
@@ -107,20 +110,22 @@ context('basic test with login', () => {
 
   it('writes a comment to a support request and expects a thank you message', () => {
       cy.create_support_request()
-      cy.get('.support_request_card').first()
+      cy.logout()
+      cy.get("[data-cy=" + model_name_plural + "]").click()
 
-      cy.get("[data-cy=comment_form_for_support_request]").within(($form) => {
-        cy.get('#comment_content').type("Mein Name ist Fritz Frohan")
-        //cy.get('#' + model_name + '_expertise_ids').select('Lebenslauf', { force: true })
-        //cy.get('#' + model_name + '_expertise_ids').select(["Lebenslauf", "Bewerbungstraining"], { force: true })
-        //cy.get('#favorite-state').select('MA', { force: true })
-        //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
-        cy.root().submit()
+      cy.get('.support_request_card').first().within(($element) => {
+
+        cy.get("[data-cy=comment_form_for_support_request]").within(($form) => {
+          cy.get('#comment_content').type("Mein Name ist Fritz Frohan")
+          //cy.get('#' + model_name + '_expertise_ids').select('Lebenslauf', { force: true })
+          //cy.get('#' + model_name + '_expertise_ids').select(["Lebenslauf", "Bewerbungstraining"], { force: true })
+          //cy.get('#favorite-state').select('MA', { force: true })
+          //cy.get('#' + model_name + '_area_of_expertise').select(area_of_expertise)
+          cy.root().submit()
+        })
       })
 
       cy.contains("Vielen Dank! Wir melden uns!")
-
   })
 
-
-})
+  })

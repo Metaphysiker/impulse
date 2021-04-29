@@ -7,7 +7,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :content, label: "Kommentar", placeholder: placeholder, input_html: { rows: 5}  %>
+    <p>
+      <strong>Kommentar</strong>
+    </p>
+    <%= f.input :content, label: false, placeholder: placeholder, input_html: { rows: 5}  %>
     <%= f.hidden_field :commentable_id, value: parent_id %>
     <%= f.hidden_field :commentable_type, value: parent_type %>
   </div>

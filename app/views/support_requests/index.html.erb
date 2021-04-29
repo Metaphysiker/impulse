@@ -4,11 +4,11 @@
 
       <h1 class="my-4">Call for Help</h1>
     </div>
-    <% if true # is_current_user_admin? %>
+    <% if is_current_user_mentor? %>
       <div class="text-center">
         <%= link_to 'Neuer Eintrag', new_support_request_path, class: "btn btn-primary my-2", data: { cy: "create_support_request" }  %>
       </div><hr />
     <% end %>
-    <%= render partial: "support_requests/card", collection: @support_requests, as: :support_request %>
+    <%= render partial: "support_requests/card", collection: @support_requests, as: :support_request, locals: {show_comments: "true"} %>
   </div>
 </div>

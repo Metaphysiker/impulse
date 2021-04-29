@@ -51,8 +51,4 @@ has_many :roles, :through => :user_roles
     end
   end
 
-   def admin?
-     roles.where(name: "admin").exists?
-   end
-
 end

@@ -21,5 +21,12 @@ end
 
 admin = User.create(email: "admin@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Admin", last_name: "Admin")
 admin.roles << Role.find_by_name("admin") unless admin.roles.where(name: "admin").exists?
+admin.roles << Role.find_by_name("mentor") unless admin.roles.where(name: "mentor").exists?
+
+mentor = User.create(email: "mentor@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Mentor", last_name: "Mentor")
+mentor.roles << Role.find_by_name("mentor") unless mentor.roles.where(name: "mentor").exists?
+
+regular = User.create(email: "regular@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Regular", last_name: "Regular")
+
 
 testuser = User.create(email: "test@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Test", last_name: "User")

@@ -31,6 +31,21 @@ Cypress.Commands.add('login', (email, password) => {
   cy.contains('Erfolgreich angemeldet.')
 })
 
+Cypress.Commands.add('login', (email, password) => {
+  cy.visit('localhost:3000')
+  cy.get("[data-cy=form_for_login]").within(($form) => {
+    cy.get('#user_email').type(email)
+    cy.get('#user_password').type(password)
+    cy.root().submit()
+  })
+  cy.contains('Erfolgreich angemeldet.')
+})
+
+Cypress.Commands.add('logout', () => {
+  cy.get("[data-cy=logout]").click()
+  cy.contains('Erfolgreich abgemeldet.')
+})
+
 Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_name, password) => {
   cy.visit('localhost:3000')
   cy.get('.form_for_user').within(($form) => {
