@@ -47,18 +47,18 @@
         <%= render partial: "comments/show", collection: support_request.comments.order(:created_at).reverse_order, as: :comment %>
       <% end %>
     <% end %>
-</div>
 
-<% if user_signed_in? %>
-  <% if is_current_user_admin? || current_user.support_requests.where(id: support_request.id).exists? %>
-    <h3>Matches</h3>
-    <% users_that_have_same_expertises = [] %>
-    <% support_request.expertises.each do |expertise| %>
-    <%= expertise.title %>
-      <% users_with_expertise = User.includes(:expertises).where(expertises: {title: expertise.title}).pluck(:id) %>
-      <% users_that_have_same_expertises = users_that_have_same_expertises + users_with_expertise %>
-      <%#= users_with_expertise %>
+    <% if user_signed_in? %>
+      <% if is_current_user_admin? || current_user.support_requests.where(id: support_request.id).exists? %>
+      <% users_that_match_with_expertise = User.includes(:expertises).where(expertises: {id: support_request.expertises.pluck(:id)}).pluck(:id) %>
+        <% unless users_that_match_with_expertise.empty? %>
+        <hr />
+        <div class="container">
+        <h3>Matches</h3>
+
+        <%= render partial: "users/mentor_card", collection: User.where(id: users_that_match_with_expertise).order(:created_at).reverse_order, as: :user %>
+        </div>
+        <% end %>
+      <% end %>
     <% end %>
-    <%= render partial: "users/mentor_card", collection: User.where(id: users_that_have_same_expertises.uniq).order(:created_at).reverse_order, as: :user %>
-  <% end %>
-<% end %>
+</div>

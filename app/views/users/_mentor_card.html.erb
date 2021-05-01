@@ -1,4 +1,4 @@
-<div class="card b-color my-4 h-100">
+<div class="card my-4 h-100">
   <% if user == current_user %>
   <div class="text-center mt-2">
     <h3>Dein Profil</h3>
@@ -60,9 +60,9 @@
         <hr />
         <h5 class="card-title spaced-letters">Expertisen</h5>
         <ul>
-          <% user.expertises.each do |expertise| %>
+          <% user.expertises.each do |user_expertise| %>
             <li>
-              <%= expertise.title %>
+              <%= user_expertise.title %>
             </li>
           <% end %>
         </ul>
