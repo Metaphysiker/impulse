@@ -9,6 +9,6 @@
         <%= link_to 'Neuer Eintrag', new_support_request_path, class: "btn btn-primary my-2", data: { cy: "create_support_request" }  %>
       </div><hr />
     <% end %>
-    <%= render partial: "support_requests/card", collection: @support_requests, as: :support_request, locals: {show_comments: "true"} %>
+    <%= render partial: "support_requests/card", collection: @support_requests, as: :support_request %>
   </div>
 </div>

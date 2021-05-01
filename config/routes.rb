@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   root 'static_pages#exchange'
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 
+  get '/static_pages/mentoring', to: "static_pages#mentoring", as: 'mentoring'
+
   get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
   get '/static_pages/generate_single_cv/(:file_name)', to: "static_pages#generate_single_cv", as: 'generate_single_cv'
 
@@ -82,6 +84,9 @@ Rails.application.routes.draw do
   post '/user_controller/create_user_as_user', to: "users#create_user_as_user", as: "create_user_as_user"
   #post '/user_controller/create_user_as_admin', to: "users#create_user_as_admin", as: "create_user_as_admin"
   #patch '/user_controller/update_user/:id', to: "users#update_user", as: "update_user"
+  post '/user_controller/create_new_mentor', to: "users#create_new_mentor", as: "create_new_mentor"
+
+
 
   post '/user_controller/create_files_for_impulse/:id', to: "users#create_files_for_impulse", as: "create_files_for_impulse"
 

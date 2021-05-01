@@ -1,0 +1,18 @@
+var record_id = ".form_for_user";
+var errors = <%= raw @user.errors.full_messages %>;
+console.log(errors);
+
+if (jQuery.isEmptyObject(errors)) {
+  console.log("keine Fehler");
+  window.location = "<%= mentoring_path(flash: 'Account wurde erstellt!') %>";
+
+} else {
+  console.log("Fehler vorhanden");
+
+    content = $("<%= escape_javascript( render 'users/form_for_mentor', user: @user ) %>");
+
+    $(record_id).replaceWith(function(){
+      return $(content).hide().fadeIn("slow");
+    });
+
+}

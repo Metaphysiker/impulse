@@ -1,0 +1,37 @@
+<%= simple_form_for user, url: create_new_mentor_path, html: { class: "form_for_user"}, method: :post, remote: true do |f| %>
+<h5>Neues Profil für Mentor erstellen</h5>
+<p>
+  Profilbild <br /><br />
+  <%= f.file_field :cover %>
+</p>
+<p>
+  <%= f.input :email%>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <%= f.input :first_name %>
+    </div>
+    <div class="col-6">
+      <%= f.input :last_name %>
+    </div>
+  </div>
+  <%= f.association :expertises, as: :select, collection: Expertise.all, label_method: :title, value_method: :id, :data => {:placeholder => 'User Name'}, input_html: {class: 'chosen-select', :data => {:placeholder => "Expertisen auswählen"}, multiple: true} %>
+  <br />
+  <%= f.input :password %>
+</p>
+  <%= f.submit "Anmelden", class: "btn btn-light border my-2" %>
+<% end %>
+
+<script>
+  $( document ).ready(function() {
+
+    $('.chosen-select').chosen({
+      allow_single_deselect: true,
+      no_results_text: 'Nichts gefunden',
+      inherit_select_classes: false,
+      search_contains: true,
+      width: '100%'
+    });
+
+  });
+</script>

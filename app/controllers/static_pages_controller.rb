@@ -25,7 +25,8 @@ class StaticPagesController < ApplicationController
 
   def dashboard
     authorize :static_page, :dashboard?
-    @support_request = SupportRequest.all 
+    @support_request = SupportRequest.all
+
   end
 
   def impressum
@@ -47,6 +48,10 @@ class StaticPagesController < ApplicationController
 
   def cv_generator1
     current_user
+  end
+
+  def mentoring
+    
   end
 
   def cv_generator

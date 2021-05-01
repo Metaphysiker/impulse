@@ -1,7 +1,20 @@
 comment_field = ".comment_field_<%= dom_id(@comment.commentable) %>";
-content = "<%= raw @comment.content %>"
+content = "<strong>Kommentar hinzugefügt!</strong><br><%= raw @comment.content %>"
 response = "<div class=\"alert alert-success\" role=\"alert\">Vielen Dank! Wir melden uns!</div>"
 
-VEGANCHAT.animateCSS(comment_field, 'fadeIn');
-$( comment_field ).empty();
-$( comment_field ).append( response );
+
+
+$( comment_field ).each(function( index ) {
+  console.log( index + ": " + $( this ).text() );
+
+  $( this ).fadeOut( "slow", function() {
+
+      content = $("<%= escape_javascript( render "comments/show", comment: @comment ) %>")
+
+      $( this ).hide().html(content).fadeIn("slow").append(response);
+    //  $( this ).replaceWith(function(){
+    //    return $(content).hide().fadeIn("slow").append(response);
+    //    });
+
+  });
+});

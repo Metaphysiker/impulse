@@ -25,6 +25,7 @@ class SupportRequestsController < ApplicationController
 
     respond_to do |format|
       if @support_request.save
+        current_user.support_requests << @support_request
         format.html { redirect_to @support_request, notice: "Call for Help wurde erstellt!" }
         format.json { render :show, status: :created, location: @support_request }
       else

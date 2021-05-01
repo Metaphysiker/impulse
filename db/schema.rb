@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_202113) do
+ActiveRecord::Schema.define(version: 2021_05_01_230336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,6 +240,15 @@ ActiveRecord::Schema.define(version: 2021_04_23_202113) do
     t.index ["support_request_id"], name: "index_support_request_expertises_on_support_request_id"
   end
 
+  create_table "support_request_users", force: :cascade do |t|
+    t.bigint "support_request_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["support_request_id"], name: "index_support_request_users_on_support_request_id"
+    t.index ["user_id"], name: "index_support_request_users_on_user_id"
+  end
+
   create_table "support_requests", force: :cascade do |t|
     t.string "title", default: ""
     t.text "content", default: ""
@@ -251,6 +260,15 @@ ActiveRecord::Schema.define(version: 2021_04_23_202113) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_expertises", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expertise_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expertise_id"], name: "index_user_expertises_on_expertise_id"
+    t.index ["user_id"], name: "index_user_expertises_on_user_id"
   end
 
   create_table "user_messages", force: :cascade do |t|

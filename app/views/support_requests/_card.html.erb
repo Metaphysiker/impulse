@@ -21,13 +21,15 @@
     </ul>
     <% end %>
   </div>
-  <% if true # is_current_user_admin? %>
-    <div class="text-center m-2">
-      <hr />
-      <%= link_to 'Eintrag anschauen', support_request_path(support_request), class: "h-color btn btn-info m-2", data: { cy: "show-support_request-#{support_request.id}" } %>
-      <%= link_to 'Eintrag bearbeiten', edit_support_request_path(support_request), class: "btn btn-primary m-2", data: { cy: "edit-support_request-#{support_request.id}" } %>
-      <%= link_to 'Eintrag löschen', support_request_path(support_request), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2", data: { cy: "delete_support_request-#{support_request.id}" } %>
-    </div>
+  <% if user_signed_in? %>
+    <% if is_current_user_admin? || current_user.support_requests.where(id: support_request.id).exists? %>
+      <div class="text-center m-2">
+        <hr />
+        <%= link_to 'Eintrag anschauen', support_request_path(support_request), class: "h-color btn btn-info m-2", data: { cy: "show-support_request-#{support_request.id}" } %>
+        <%= link_to 'Eintrag bearbeiten', edit_support_request_path(support_request), class: "btn btn-primary m-2", data: { cy: "edit-support_request-#{support_request.id}" } %>
+        <%= link_to 'Eintrag löschen', support_request_path(support_request), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2", data: { cy: "delete_support_request-#{support_request.id}" } %>
+      </div>
+    <% end %>
   <% end %>
 
     <div class="p-3">
@@ -39,7 +41,24 @@
       <%= render 'comments/comments_fields_only', parent: support_request %>
       <%= render 'comments/form_for_support_request', parent: support_request, placeholder: "Mein Name ist Max Mustermann und ich biete meine Hilfe an.\n\nBitte schreiben Sie mir eine Mail auf max.mustermann@gmail.com oder rufen sie mich unter der Woche zwischen 19:00 und 21:00 Uhr auf 079 123 456 78 90 an." %>
     </div>
-    <% if local_assigns[:show_comments] && show_comments == "true" %>
-      <%= render partial: "comments/show", collection: support_request.comments, as: :comment %>
+
+    <% if user_signed_in? %>
+      <% if is_current_user_admin? || current_user.support_requests.where(id: support_request.id).exists? %>
+        <%= render partial: "comments/show", collection: support_request.comments.order(:created_at).reverse_order, as: :comment %>
+      <% end %>
     <% end %>
 </div>
+
+<% if user_signed_in? %>
+  <% if is_current_user_admin? || current_user.support_requests.where(id: support_request.id).exists? %>
+    <h3>Matches</h3>
+    <% users_that_have_same_expertises = [] %>
+    <% support_request.expertises.each do |expertise| %>
+    <%= expertise.title %>
+      <% users_with_expertise = User.includes(:expertises).where(expertises: {title: expertise.title}).pluck(:id) %>
+      <% users_that_have_same_expertises = users_that_have_same_expertises + users_with_expertise %>
+      <%#= users_with_expertise %>
+    <% end %>
+    <%= render partial: "users/mentor_card", collection: User.where(id: users_that_have_same_expertises.uniq).order(:created_at).reverse_order, as: :user %>
+  <% end %>
+<% end %>

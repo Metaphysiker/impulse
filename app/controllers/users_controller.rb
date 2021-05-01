@@ -43,6 +43,23 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def create_new_mentor
+    @user = User.new(user_params)
+      if @user.save
+        sign_in @user
+        @user.roles << Role.find_by_name("mentor") unless @user.roles.where(name: "mentor").exists?
+      else
+      end
+  end
+
+  def update_new_mentor
+    @user = User.new(user_params)
+      if @user.save
+        #@user.roles << Role.find_by_name("mentor") unless @user.roles.where(name: "mentor").exists?
+      else
+      end
+  end
+
   def update_user
     user = User.find(params[:id])
     user.update(user_params)
@@ -170,7 +187,7 @@ class UsersController < ApplicationController
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
     :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number,
-    :job_title, :website, :short_description)
+    :job_title, :website, :short_description, :expertise_ids => [])
   end
 
   def set_user

@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+has_many :user_expertises
+has_many :expertises, :through => :user_expertises
+has_many :support_request_users
+has_many :support_requests, :through => :support_request_users
+has_many :user_supportrequests
+has_many :supportrequests, :through => :user_supportrequests
 
 validates :email, presence: true, uniqueness: true
 

@@ -1,6 +1,6 @@
 <div class="comment_field_<%= dom_id(parent) %>">
 
-  <% parent.comments.each do |comment| %>
+  <% parent.comments.order(:created_at).reverse_order.each do |comment| %>
     <%= comment.content %>
     <hr />
   <% end %>

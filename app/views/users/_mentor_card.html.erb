@@ -1,0 +1,73 @@
+<div class="card b-color my-4 h-100">
+  <% if user == current_user %>
+  <div class="text-center mt-2">
+    <h3>Dein Profil</h3>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Profil bearbeiten
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <h5>Profil bearbeiten</h5>
+      <hr />
+      <%= simple_form_for current_user do |f| %>
+      <p>
+        Profilbild <br /><br />
+        <%= f.file_field :cover %>
+      </p>
+      <p>
+        <%#= f.input :email%>
+        <br />
+        <div class="row">
+          <div class="col-12">
+            <%= f.input :first_name %>
+          </div>
+          <div class="col-12">
+            <%= f.input :last_name %>
+          </div>
+        </div>
+      </p>
+        <%= f.submit "Aktualisieren", class: "btn btn-light border my-2" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  <hr />
+  <% end %>
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <% if user.cover.attached? %>
+          <%= image_tag user.cover, class: "card-img mx-auto" %>
+      <% else %>
+          <%= image_tag "portrait_placeholder.png", class: "card-img mx-auto" %>
+      <% end %>
+      <div class="text-center mt-2">
+        <%= "#{user.first_name} #{user.last_name}" %>
+        <br />
+        <%= mail_to user.email %>
+        <br />
+        <% if user == current_user %>
+          <%#= link_to('Logout', destroy_user_session_path, method: :delete, class: "text-white") %>
+          <%#= link_to 'Profil bearbeiten', edit_user_registration_path, class: "" %>
+          <p>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <% unless user.expertises.blank? %>
+        <hr />
+        <h5 class="card-title spaced-letters">Expertisen</h5>
+        <ul>
+          <% user.expertises.each do |expertise| %>
+            <li>
+              <%= expertise.title %>
+            </li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <h1 class="text-center my-4">Möchtest du Mentor werden?</h1>
+</div>
+<div class="container">
+  <% unless user_signed_in? %>
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <div class="border rounded p-3 mb-2">
+          <%= render 'users/form_for_mentor', user: User.new %>
+        </div>
+      </div>
+    </div>
+
+  <% else %>
+    <%= render partial: "support_requests/card", collection: current_user.support_requests, as: :support_request, locals: {show_comments: "true"} %>
+  <% end %>
+
+</div>
+
+<div class="m-5">
+
+</div>
