@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   get '/post_search/search', to: 'post_search#search', as: 'search_posts'
   resources :posts
   devise_for :users
-  root 'static_pages#exchange'
+
+  root 'static_pages#welcome'
+  #root 'static_pages#exchange'
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 
   get '/static_pages/mentoring', to: "static_pages#mentoring", as: 'mentoring'
@@ -86,6 +88,8 @@ Rails.application.routes.draw do
   #patch '/user_controller/update_user/:id', to: "users#update_user", as: "update_user"
   post '/user_controller/create_new_mentor', to: "users#create_new_mentor", as: "create_new_mentor"
 
+  get 'mentee/overview', to: "users#mentee_overview", as: "mentee_overview"
+  get 'mentee/cv_generator', to: "users#cv_generator", as: "cv_generator"
 
 
   post '/user_controller/create_files_for_impulse/:id', to: "users#create_files_for_impulse", as: "create_files_for_impulse"

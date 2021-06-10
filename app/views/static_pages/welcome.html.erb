@@ -1,66 +1,13 @@
-<% url_cover = image_url("elephants.jpg") %>
-
-
-  <section class="d-none d-lg-block page-cover-bg b-color" style="background-image: url('<%= url_cover %>'); height: 500px;">
-      <div class="container d-flex align-items-start justify-content-center h-100 pt-2">
-
-          <%#= image_tag("logo_stinah_ws_vektor.png", class: "img-fluid mb-4 rounded overlay-darker", style: "height: 180px;") %>
-
-      </div>
-  </section>
-
-  <section class="d-sm-block d-lg-none page-cover-bg b-color" style="background-image: url('<%= url_cover %>'); height: 500px; background-position: left center !important;">
-      <div class="container d-flex align-items-start justify-content-center h-100 pt-2">
-
-          <%#= image_tag("logo_stinah_ws_vektor.png", class: "img-fluid mb-4 rounded overlay-darker", style: "height: 180px;") %>
-
-      </div>
-  </section>
-
-
-
-<div class="container mb-3">
-  <div class="row">
-    <div class="col-md-4 col-sm-12">
-      <div class="card text-white a-color mb-7 mt-n6 pb-5 p-2 pb-5 rounded-0">
-        <div class="card-body">
-          <p class="spaced-letters text-light">
-            <strong>HERZLICH WILLKOMMEN</strong>
-            <hr align="left" width="10%" class="bg-light">
-          </p>
-          <p class="card-text text-light"><strong>Kennsch Ethik?</strong> ist ein Portal für Tierethik und Tierschutz-Aktivismus.</p>
-          <p class="card-text text-light">
-            Hier findest du <strong>Texte</strong>, <strong>Werkzeuge</strong> und <strong>Informationen</strong>
-             und du kannst allerlei Fragen stellen, die wir dir gerne beantworten.
-          </p>
-        </div>
-      </div>
-      <%#= image_tag("pig_cute.png", class: "img-fluid mt-n3") %>
-    </div>
-
-    <div class="col-md-8 col-sm-12 d-flex ">
-      <div class="row">
-      <div class="col-12 mb-5">
-      </div>
-        <div class="align-self-end">
-          <div class="col-12">
-              <%#= render "posts/card.html.erb", post: Post.last if Post.last.present? %>
-              <% spotlight_post = Post.where(slug: "was-ist-tierethik").first %>
-              <% spotlight_post = Post.last unless spotlight_post.present? %>
-              <%= render "posts/card.html.erb", post: spotlight_post if spotlight_post.present? %>
-          </div>
-        </div>
-      </div>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Herzlich Willkommen</h1>
+      <p class="lead text-muted"> Wie können wir Ihnen helfen?</p>
+      <p>
+        <%= link_to "Ich bin ein Mentee", mentee_overview_path, class: "btn btn-lg btn-primary my-2" %>
+        <br />
+        <%= link_to "Ich bin ein Mentor", workspace_path, class: "btn btn-lg btn-success my-2" %>
+      </p>
     </div>
   </div>
-</div>
-
-  <%#= render "events/newest_events_list" %>
-
-  <%#= render "event_calendar/event_calendar", events: Event.incoming.published.first(5) %>
-  <%#= render partial: "events/horizontal_card", collection: Event.incoming.published.order(:created_at).first(5), as: :event %>
-  <%= render "posts/latest_posts" %>
-  <%#= render "shared/patenschaft" %>
-  <%#= render "posts/cards_in_group_of_3", posts: Post.last(3) %>
-  <%= render "shared/info_cards_in_group_of_3" %>
-  <%#= render "event_calendar/action_map", events: Event.incoming.published.first(10) %>
+</section>
