@@ -1,0 +1,7 @@
+<p>
+  <% CvUnit.categories.each do |category| %>
+  <h3 class="card-title spaced-letters text-center"><b><%= category %></b></h3>
+    <%= render 'cv_units/cv_unit_list', user: user, category: category %>
+  <hr />
+  <% end %>
+</p>

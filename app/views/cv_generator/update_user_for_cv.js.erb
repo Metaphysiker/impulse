@@ -4,7 +4,7 @@ console.log(errors);
 
 if (jQuery.isEmptyObject(errors)) {
   console.log("keine Fehler");
-  window.location = "<%= exchange_path(flash: 'Account wurde erstellt!') %>";
+  window.location = "<%= cv_generator_update_cv_units_for_user_page_path %>";
 
 } else {
   console.log("Fehler vorhanden");

@@ -1,0 +1,25 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="mx-auto">
+      <h1 class="fw-light">Lebenslauf erstellen</h1>
+      <div class="">
+        <p class="">
+          <ol class="fs-5" style="display: inline-block; text-align: left;">
+            <li class="">
+                Tragen Sie unten Ihre Berufserfahrungen, Ausbildungen und Fähigkeiten ein.
+              </li>
+              <li>
+                Wenn Sie fertig sind, drücken Sie auf "Weiter".
+              </li>
+          </ol>
+
+        </p>
+        <hr />
+      </div>
+      <%= render "cv_units/cv_units", user: current_user %>
+      <p>
+        <%= link_to "Weiter", cv_generator_my_cvs_path, class: "btn btn-lg btn-primary" %>
+      </p>
+    </div>
+  </div>
+</section>

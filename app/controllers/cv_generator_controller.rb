@@ -15,19 +15,35 @@ class CvGeneratorController < ApplicationController
     #send_data zip
   end
 
+  def update_user_for_cv_page
+
+  end
+
+  def update_cv_units_for_user_page
+
+  end
+
   def update_user_for_cv
 
-    if User.find_by_email(params[:email]).present?
-      user = User.find_by_email(params[:email])
-    else
-      user = User.new
-    end
+    #if User.find_by_email(params[:email]).present?
+    #  user = User.find_by_email(params[:email])
+    #else
+    #  user = User.new
+    #end
 
-    user.update(user_params)
+    current_user.update(user_params)
 
-    @user = user
+    @user = current_user
     #byebug
     #redirect_back(fallback_location: exchange_path)
+  end
+
+  def update_cv_units_for_user
+
+  end
+
+  def my_cvs
+
   end
 
   def cv_generator1
