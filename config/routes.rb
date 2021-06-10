@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get '/static_pages/mentoring', to: "static_pages#mentoring", as: 'mentoring'
 
   get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
-  get '/static_pages/generate_single_cv/(:file_name)', to: "static_pages#generate_single_cv", as: 'generate_single_cv'
+  get '/cv_generator/generate_single_cv/(:file_name)', to: "cv_generator#generate_single_cv", as: 'generate_single_cv'
 
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
   get '/static_pages/impressum', to: 'static_pages#impressum', as: 'impressum'
@@ -119,5 +119,5 @@ Rails.application.routes.draw do
   post '/cv_units/create_cv_unit/', to: "cv_units#create_cv_unit", as: "create_cv_unit"
   post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"
 
-  get '/show_public_pdf_inline/(:file_name)', to: "static_pages#show_public_pdf_inline", as: "show_public_pdf_inline"
+  get '/show_public_pdf_inline/(:file_name)', to: "cv_generator#show_public_pdf_inline", as: "show_public_pdf_inline"
 end
