@@ -22,6 +22,10 @@ has_many :roles, :through => :user_roles
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def admin?
+   roles.where(name: "admin").exists?
+ end
+
   def self.showable_attribute_names
     ["email", "name", "address", "phone", "localized_birth_day",
        "recruitment_consultant", "disposal_period", "personal_number", "unemployment_insurance_number",

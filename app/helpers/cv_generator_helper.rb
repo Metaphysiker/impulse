@@ -1,0 +1,2 @@
+module CvGeneratorHelper
+end

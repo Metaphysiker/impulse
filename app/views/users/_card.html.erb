@@ -29,9 +29,12 @@
         <% end %>
       </p>
 
-      <p>
-        <%= link_to "Impulse Ordner erstellen", create_files_for_impulse_path(user), method: :post %>
-      </p>
+      <% if current_user.admin? %>
+        <p>
+          <%= link_to "Impulse Ordner erstellen", create_files_for_impulse_path(user), method: :post %>
+        </p>
+      <% end %>
+
       </div>
     </div>
     <div class="col-md-4">

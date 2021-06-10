@@ -1,5 +1,6 @@
 <div class="border rounded p-3 mb-2">
-<%= simple_form_for user do |f| %>
+<%= simple_form_for user, url: update_user_for_cv_path, html: { class: "form_update_user_for_cv"}, method: :post, remote: true do |f| %>
+<%#= simple_form_for user do |f| %>
 <p>
   <%= f.input :email%>
   <br />
@@ -12,16 +13,22 @@
     </div>
   </div>
   <br />
-  <%= f.input :location %>
   <br />
-  <%= f.input :plz %>
+  <div class="row">
+    <div class="col-6">
+        <%= f.input :location %>
+    </div>
+    <div class="col-6">
+      <%= f.input :plz %>
+    </div>
+  </div>
   <br />
   <%= f.input :street %>
   <br />
   <%= f.input :phone %>
   <br />
   <%= f.input :birth_day, start_year: Date.today.year - 100,
-                              end_year: Date.today.year %>
+                              end_year: Date.today.year - 18 %>
   <br />
   <%= f.input :job_title %>
   <br />
@@ -31,6 +38,6 @@
   <br />
   <%#= f.input :password %>
 </p>
-  <%= f.submit class: "btn btn-light border my-2" %>
+  <%= f.submit "Weiter", class: "btn btn-lg btn-primary border my-2" %>
 <% end %>
 </div>

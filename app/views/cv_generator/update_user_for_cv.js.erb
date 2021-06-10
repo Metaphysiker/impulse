@@ -1,0 +1,18 @@
+var record_id = ".form_update_user_for_cv";
+var errors = <%= raw @user.errors.full_messages %>;
+console.log(errors);
+
+if (jQuery.isEmptyObject(errors)) {
+  console.log("keine Fehler");
+  window.location = "<%= exchange_path(flash: 'Account wurde erstellt!') %>";
+
+} else {
+  console.log("Fehler vorhanden");
+
+    content = $("<%= escape_javascript( render 'users/form_update_user_for_cv', user: @user ) %>");
+
+    $(record_id).replaceWith(function(){
+      return $(content).hide().fadeIn("slow");
+    });
+
+}

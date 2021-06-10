@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'cv_generator/overview', to: "cv_generator#overview", as: "cv_generator_overview"
+  post 'cv_generator/update_user_for_cv', to: "cv_generator#update_user_for_cv", as: "update_user_for_cv"
+
+
   resources :expertises
   resources :support_requests
   resources :cv_units
@@ -89,7 +93,7 @@ Rails.application.routes.draw do
   post '/user_controller/create_new_mentor', to: "users#create_new_mentor", as: "create_new_mentor"
 
   get 'mentee/overview', to: "users#mentee_overview", as: "mentee_overview"
-  get 'mentee/cv_generator', to: "users#cv_generator", as: "cv_generator"
+  #get 'mentee/cv_generator', to: "users#cv_generator", as: "cv_generator"
 
 
   post '/user_controller/create_files_for_impulse/:id', to: "users#create_files_for_impulse", as: "create_files_for_impulse"
