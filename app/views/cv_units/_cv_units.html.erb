@@ -1,7 +1,8 @@
 <p>
-  <% CvUnit.categories.each do |category| %>
-  <h3 class="card-title spaced-letters text-center"><b><%= category %></b></h3>
+  <% CvUnit.categories.each_with_index do |category, index| %>
+  <h2 class="card-title spaced-letters text-center"><b><%= category %></b></h2>
     <%= render 'cv_units/cv_unit_list', user: user, category: category %>
   <hr />
+  <br />
   <% end %>
 </p>

@@ -8,7 +8,9 @@ has_many :supportrequests, :through => :user_supportrequests
 
 validates :email, presence: true, uniqueness: true
 
-      has_one_attached :cover
+has_one_attached :cover
+has_many_attached :cvs
+
 has_many :user_messages
 has_many :messages, :through => :user_messages
 

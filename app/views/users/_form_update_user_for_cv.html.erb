@@ -4,6 +4,10 @@
 <p>
   <%= f.input :email%>
   <br />
+  <% unless user_signed_in? %>
+    <%= f.input :password %>
+  <% end %>
+  <br />
   <div class="row">
     <div class="col-6">
       <%= f.input :first_name %>
@@ -12,6 +16,8 @@
       <%= f.input :last_name %>
     </div>
   </div>
+  <br />
+  <%= f.input :street %>
   <br />
   <br />
   <div class="row">

@@ -25,15 +25,22 @@ class CvGeneratorController < ApplicationController
 
   def update_user_for_cv
 
+    if user_signed_in?
+      user = current_user
+      user.update(user_params)
+    else
+      user = User.new
+      user.update(user_params)
+      sign_in user
+    end
     #if User.find_by_email(params[:email]).present?
     #  user = User.find_by_email(params[:email])
     #else
     #  user = User.new
     #end
 
-    current_user.update(user_params)
 
-    @user = current_user
+    @user = user
     #byebug
     #redirect_back(fallback_location: exchange_path)
   end
@@ -43,7 +50,9 @@ class CvGeneratorController < ApplicationController
   end
 
   def my_cvs
-
+    @user = current_user
+    #generate_single_cv_and_save
+    generate_single_cv_and_save
   end
 
   def cv_generator1
@@ -71,6 +80,42 @@ class CvGeneratorController < ApplicationController
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-preview.pdf")
 
     send_file(file_path, :filename => "#{file_name}.pdf", :disposition => 'inline', :type => "application/pdf")
+  end
+
+  def generate_single_cv_and_save
+    #attribute_array = ["last_name", "first_name"]
+    user = current_user
+    if params[:file_name].present?
+      file_name = params[:file_name]
+    else
+      file_name = "substantial"
+      #file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
+      #file_name = Rails.root.join("public/cv/bluey/bluey-cv.odt")
+    end
+
+    file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
+
+    cv = ODFReport::Report.new(file_path) do |r|
+      User.showable_attribute_names_for_cv.each do |attribute|
+        r.add_field attribute.to_sym, user.public_send(attribute)
+      end
+
+      CvUnit.categories.each do |category|
+        r.add_section("#{category}-section", user.cv_units.where(category: category).order(:start_date).reverse_order) do |s|
+          s.add_field(:cv_unit_name, :name)
+          s.add_field(:cv_unit_content, :content_html_safe)
+          #s.add_text(:cv_unit_content, :content)
+          s.add_field(:cv_unit_start_date, :start_date)
+          s.add_field(:cv_unit_end_date, :end_date)
+          s.add_field(:cv_unit_start_date_month_year, :start_date_month_year)
+          s.add_field(:cv_unit_end_date_month_year, :end_date_month_year)
+        end
+      end
+    end
+
+    file_to_store = cv.generate
+    user.cvs.attach(io: file_to_store, filename: "#{file_name}.odt")
+    #send_data file_to_store, filename: "#{file_name}.odt"
   end
 
   def generate_single_cv
