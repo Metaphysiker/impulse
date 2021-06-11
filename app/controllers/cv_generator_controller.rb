@@ -82,6 +82,12 @@ class CvGeneratorController < ApplicationController
     send_file(file_path, :filename => "#{file_name}.pdf", :disposition => 'inline', :type => "application/pdf")
   end
 
+  def generate_all_cvs
+    user = current_user
+    user.cvs.purge
+    redirect_to my_cvs_path
+  end
+
   def generate_single_cv_and_save
     #attribute_array = ["last_name", "first_name"]
     user = current_user
@@ -113,8 +119,12 @@ class CvGeneratorController < ApplicationController
       end
     end
 
-    file_to_store = cv.generate
-    user.cvs.attach(io: file_to_store, filename: "#{file_name}.odt")
+    tempfile = Tempfile.new("test.odt", encoding: 'ascii-8bit')
+    #tempfile << cv.generate
+    tempfile.write(cv.generate)
+    tempfile.rewind
+    user.cvs.attach(io: tempfile, filename: "#{file_name}.odt")
+    tempfile.close
     #send_data file_to_store, filename: "#{file_name}.odt"
   end
 
