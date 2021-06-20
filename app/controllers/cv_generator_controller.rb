@@ -1,4 +1,10 @@
+require 'libreconv'
+
 class CvGeneratorController < ApplicationController
+
+  include Rails.application.routes.url_helpers
+
+
   def overview
 
   end
@@ -126,6 +132,11 @@ class CvGeneratorController < ApplicationController
     user.cvs.attach(io: tempfile, filename: "#{file_name}.odt")
     tempfile.close
     #send_data file_to_store, filename: "#{file_name}.odt"
+
+    
+
+    Libreconv.convert(rails_blob_url(user.cvs.last), '/zusers/ricn/pdf_documents/my_document_as.pdf')
+
   end
 
   def generate_single_cv
