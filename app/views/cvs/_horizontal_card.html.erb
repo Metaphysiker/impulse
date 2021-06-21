@@ -1,0 +1,23 @@
+<div class="card b-color">
+  <div class="row no-gutters">
+    <div class="col-md-8">
+      <% if cv.cover.attached? %>
+        <%= image_tag cv.cover, class: "card-img" %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <p class="card-text">
+          <%= l(cv.created_at, format: "%d.%m.%Y") %> <span class="badge e-color rounded-0 text-white">MITTEILUNGEN</span>
+        </p>
+        <h5 class="card-title spaced-letters"><%= cv.title.upcase %></h5>
+        <p class="card-text"><%= cv.content.truncate(150) %></p>
+        <p>
+          <%= link_to cv_path(cv) do %>
+            <button type="button" class="btn btn-e-color btn-sm spaced-letters text-nowrap rounded-0">MEHR ERFAHREN <%= fa_icon "chevron-right", class: "ml-2" %></button>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

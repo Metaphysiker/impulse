@@ -1,0 +1,25 @@
+<div class="card b-color mb-2">
+  <% if cv.cover.attached? %>
+    <%= image_tag cv.cover, class: "card-img" %>
+  <% end %>
+
+  <div class="card-body">
+    <p class="card-text">
+      <%= l(cv.created_at, format: "%d.%m.%Y") %> <span class="badge e-color rounded-0 text-white"><%= "Mitteilungen".upcase %></span>
+    </p>
+    <h5 class="card-title spaced-letters"><%= cv.title.upcase %></h5>
+    <p class="card-text"><%= cv.description %></p>
+    <p>
+      <%= link_to cv_path(cv) do %>
+        <button type="button" class="btn btn-e-color btn-sm spaced-letters text-nowrap rounded-0">MEHR ERFAHREN <%= fa_icon "chevron-right", class: "ml-2" %></button>
+      <% end %>
+    </p>
+  </div>
+  <% if is_current_user_admin? %>
+    <div class="text-center m-2">
+      <hr />
+      <%= link_to 'Eintrag bearbeiten', edit_cv_path(cv), class: "btn btn-primary m-2" %>
+      <%= link_to 'Eintrag löschen', cv_path(cv), method: :delete, data: {confirm: 'Bist du sicher?'}, class: "btn btn-danger m-2" %>
+    </div>
+  <% end %>
+</div>

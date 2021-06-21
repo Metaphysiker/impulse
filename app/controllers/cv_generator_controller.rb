@@ -107,7 +107,7 @@ class CvGeneratorController < ApplicationController
 
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
 
-    cv = ODFReport::Report.new(file_path) do |r|
+    odf = ODFReport::Report.new(file_path) do |r|
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
@@ -125,19 +125,26 @@ class CvGeneratorController < ApplicationController
       end
     end
 
+    cvs_with_same_name = user.cvs.where(name: file_name)
+    cvs_with_same_name.delete_all
+    cv = Cv.create(name: file_name)
+    user.cvs << cv
+    #byebug
     tempfile = Tempfile.new("test.odt", encoding: 'ascii-8bit')
     #tempfile << cv.generate
-    tempfile.write(cv.generate)
+    tempfile.write(odf.generate)
     tempfile.rewind
-    user.cvs.attach(io: tempfile, filename: "#{file_name}.odt")
+    cv.odt.attach(io: tempfile, filename: "#{file_name}.odt")
     tempfile.close
     #send_data file_to_store, filename: "#{file_name}.odt"
 
     #puts Rails.root.join('odf-templates','testicus.odt')
     #Libreconv.convert(rails_blob_url(user.cvs.last, disposition: "attachment"), '/zusers/ricn/pdf_documents/my_document_as.pdf')
     #Libreconv.convert(Rails.root.join('odf-templates','testicus.odt').to_s, Rails.root.join('odf-templates','testicus.pdf'))
-    Libreconv.convert(Rails.root.join('odf-templates','testicus.odt'), Rails.root.join('odf-templates','testicus.pdf'))
 
+    Libreconv.convert(rails_blob_url(cv.odt), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+
+    cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
   end
 
   def generate_single_cv

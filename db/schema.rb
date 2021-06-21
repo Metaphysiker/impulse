@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_230336) do
+ActiveRecord::Schema.define(version: 2021_06_21_042957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(version: 2021_05_01_230336) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_cv_units_on_user_id"
+  end
+
+  create_table "cvs", force: :cascade do |t|
+    t.string "name", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -260,6 +266,15 @@ ActiveRecord::Schema.define(version: 2021_05_01_230336) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_cvs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cv_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cv_id"], name: "index_user_cvs_on_cv_id"
+    t.index ["user_id"], name: "index_user_cvs_on_user_id"
   end
 
   create_table "user_expertises", force: :cascade do |t|

@@ -5,11 +5,13 @@ has_many :support_request_users
 has_many :support_requests, :through => :support_request_users
 has_many :user_supportrequests
 has_many :supportrequests, :through => :user_supportrequests
+has_many :user_cvs
+has_many :cvs, :through => :user_cvs
 
 validates :email, presence: true, uniqueness: true
 
 has_one_attached :cover
-has_many_attached :cvs
+#has_many_attached :cvs
 
 has_many :user_messages
 has_many :messages, :through => :user_messages
