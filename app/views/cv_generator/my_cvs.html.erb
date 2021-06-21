@@ -10,6 +10,9 @@
               </li>
           </ol>
         </p>
+        <p>
+          <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path %>
+        </p>
       </div>
     </div>
   </div>
@@ -26,13 +29,13 @@
       </div>
       <div class="col-6">
         <h1><%= cv.name.capitalize %></h1>
-        <h3>ODT:
+        <p>OCV-GeneratorDT:
           <% if cv.odt.attached? %>
             <%= link_to cv.odt.filename, rails_blob_path(cv.odt, disposition: "attachment") %>
           <% else %>
             Fehler - odt-Datei konnte nicht erstellt werden
           <% end %>
-        </h3>
+        </p>
         <p>
           <%#= rails_blob_url(cv.pdf)%>
         </p>
