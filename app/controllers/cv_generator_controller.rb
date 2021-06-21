@@ -58,7 +58,17 @@ class CvGeneratorController < ApplicationController
   def my_cvs
     @user = current_user
     #generate_single_cv_and_save
-    generate_single_cv_and_save
+    #generate_single_cv_and_save
+  end
+
+  def generate_cvs
+    @user = current_user
+    #generate_single_cv_and_save
+    generate_single_cv_and_save("substantial")
+    generate_single_cv_and_save("bluey")
+    generate_single_cv_and_save("lefty")
+
+    redirect_to cv_generator_my_cvs_path
   end
 
   def cv_generator1
@@ -94,16 +104,16 @@ class CvGeneratorController < ApplicationController
     redirect_to my_cvs_path
   end
 
-  def generate_single_cv_and_save
+  def generate_single_cv_and_save(file_name)
     #attribute_array = ["last_name", "first_name"]
     user = current_user
-    if params[:file_name].present?
-      file_name = params[:file_name]
-    else
-      file_name = "substantial"
+    #if params[:file_name].present?
+    #  file_name = params[:file_name]
+    #else
+    #  file_name = "substantial"
       #file_name = Rails.root.join("public/cv/substantial/substantial-cv.odt")
       #file_name = Rails.root.join("public/cv/bluey/bluey-cv.odt")
-    end
+    #end
 
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
 
@@ -130,19 +140,33 @@ class CvGeneratorController < ApplicationController
     cv = Cv.create(name: file_name)
     user.cvs << cv
     #byebug
-    tempfile = Tempfile.new("test.odt", encoding: 'ascii-8bit')
+    #tempfile = Tempfile.new("test.odt", encoding: 'ascii-8bit')
+    #tempfile.write(odf.generate)
+    #tempfile.rewind
+    #cv.odt.attach(io: tempfile, filename: "#{file_name}.odt")
+    #Libreconv.convert(tempfile, Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+    #tempfile.close    tempfile = Tempfile.new("test.odt", encoding: 'ascii-8bit')
+    #tempfile.write(odf.generate)
+    #tempfile.rewind
+    #cv.odt.attach(io: tempfile, filename: "#{file_name}.odt")
+    #Libreconv.convert(tempfile, Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+    #tempfile.close
+
+    file = File.new(Rails.root.join('odf-templates', 'rendered', "#{file_name}.odt"), "w+", encoding: 'ascii-8bit')
     #tempfile << cv.generate
-    tempfile.write(odf.generate)
-    tempfile.rewind
-    cv.odt.attach(io: tempfile, filename: "#{file_name}.odt")
-    tempfile.close
+    file.write(odf.generate)
+    file.rewind
+    cv.odt.attach(io: file, filename: "#{file_name}.odt")
+    file.close
     #send_data file_to_store, filename: "#{file_name}.odt"
 
     #puts Rails.root.join('odf-templates','testicus.odt')
     #Libreconv.convert(rails_blob_url(user.cvs.last, disposition: "attachment"), '/zusers/ricn/pdf_documents/my_document_as.pdf')
     #Libreconv.convert(Rails.root.join('odf-templates','testicus.odt').to_s, Rails.root.join('odf-templates','testicus.pdf'))
 
-    Libreconv.convert(rails_blob_url(cv.odt), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+    #Libreconv.convert(Rails.root.join('odf-templates','testicus.odt'), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+    #Libreconv.convert(rails_blob_url(cv.odt), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
+    Libreconv.convert(Rails.root.join('odf-templates', 'rendered', "#{file_name}.odt"), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
 
     cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
   end

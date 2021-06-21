@@ -21,35 +21,25 @@
   <div class="row">
       <div class="col-6">
         <div class="ratio" style="padding-bottom: 141.42%;">
-          <iframe  class="embed-responsive-item" src="<%= rails_blob_path(cv.pdf) if cv.pdf.attached? %>"></iframe>
+          <iframe  class="embed-responsive-item" src="<%= rails_blob_path(cv.pdf) %>"></iframe>
         </div>
       </div>
       <div class="col-6">
-        <h3>Download:
+        <h1><%= cv.name.capitalize %></h1>
+        <h3>ODT:
           <% if cv.odt.attached? %>
             <%= link_to cv.odt.filename, rails_blob_path(cv.odt, disposition: "attachment") %>
           <% else %>
             Fehler - odt-Datei konnte nicht erstellt werden
           <% end %>
         </h3>
+        <p>
+          <%#= rails_blob_url(cv.pdf)%>
+        </p>
         <%#= link_to cv.odt.filename, rails_blob_path(cv.odt, disposition: "attachment") %></h3>
-        <h3>Vorlage: <%#= link_to file_name.capitalize, generate_single_cv_path(file_name: file_name) %></h3>
       </div>
   </div>
   <hr />
   <% end %>
   <hr />
-  <% ["bluey", "substantial"].each do |file_name| %>
-  <div class="row">
-      <div class="col-6">
-        <div class="ratio" style="padding-bottom: 141.42%;">
-          <iframe  class="embed-responsive-item" src="<%= show_public_pdf_inline_path(file_name) %>"></iframe>
-        </div>
-      </div>
-      <div class="col-6">
-        <h3>Vorlage: <%= link_to file_name.capitalize, generate_single_cv_path(file_name: file_name) %></h3>
-      </div>
-  </div>
-  <hr />
-  <% end %>
 </section>
