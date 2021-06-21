@@ -133,9 +133,10 @@ class CvGeneratorController < ApplicationController
     tempfile.close
     #send_data file_to_store, filename: "#{file_name}.odt"
 
-    
-
-    Libreconv.convert(rails_blob_url(user.cvs.last), '/zusers/ricn/pdf_documents/my_document_as.pdf')
+    #puts Rails.root.join('odf-templates','testicus.odt')
+    #Libreconv.convert(rails_blob_url(user.cvs.last, disposition: "attachment"), '/zusers/ricn/pdf_documents/my_document_as.pdf')
+    #Libreconv.convert(Rails.root.join('odf-templates','testicus.odt').to_s, Rails.root.join('odf-templates','testicus.pdf'))
+    Libreconv.convert(Rails.root.join('odf-templates','testicus.odt'), Rails.root.join('odf-templates','testicus.pdf'))
 
   end
 
