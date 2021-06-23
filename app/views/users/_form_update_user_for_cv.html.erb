@@ -17,9 +17,7 @@
     </div>
   </div>
   <br />
-  <%= f.input :street %>
-  <br />
-  <br />
+  <hr />
   <div class="row">
     <div class="col-6">
         <%= f.input :location %>
@@ -31,11 +29,13 @@
   <br />
   <%= f.input :street %>
   <br />
+  <hr />
   <%= f.input :phone %>
   <br />
   <%= f.input :birth_day, start_year: Date.today.year - 100,
                               end_year: Date.today.year - 18 %>
   <br />
+  <hr />
   <%= f.input :job_title %>
   <br />
   <%= f.input :website %>

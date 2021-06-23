@@ -64,9 +64,10 @@ class CvGeneratorController < ApplicationController
   def generate_cvs
     @user = current_user
     #generate_single_cv_and_save
-    generate_single_cv_and_save("substantial")
-    generate_single_cv_and_save("bluey")
-    generate_single_cv_and_save("lefty")
+    @user.cvs.delete_all
+    ["substantial", "bluey", "simple"].each do |name|
+      generate_single_cv_and_save(name)
+    end
 
     redirect_to cv_generator_my_cvs_path
   end
@@ -115,14 +116,38 @@ class CvGeneratorController < ApplicationController
       #file_name = Rails.root.join("public/cv/bluey/bluey-cv.odt")
     #end
 
+    cover_filename  = ""
+    if user.cover.attached?
+      cover_filename = "#{user.cover.filename}"
+      file = File.new(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"), "w+", encoding: 'ascii-8bit')
+      #tempfile << cv.generate
+      file.write(user.cover.download)
+      file.rewind
+      file.close
+    else
+      cover_filename = "professional.jpg"
+    end
+
+
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
 
     odf = ODFReport::Report.new(file_path) do |r|
+
+      #r.add_image :cover, rails_blob_url(user.cover, disposition: "attachment")
+      #r.add_image :cover, rails_blob_url(ActiveStorage::Blob.service.path_for(user.cover), disposition: "attachment")
+      #r.add_image :cover, ActiveStorage::Blob.service.path_for(user.cover)
+      #r.add_image :cover, ActiveStorage::Blob.service.send(:path_for, user.cover)
+      r.add_image :cover, "public/cv/images/temporary/#{cover_filename}"
+      #r.add_image :cover1, "public/cv/images/temporary/#{cover_filename}"
+
+      #r.add_image :cover1, Rails.root.join("app", "assets", "images", "compass.jpg").to_s
+
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
 
       CvUnit.categories.each do |category|
+
         r.add_section("#{category}-section", user.cv_units.where(category: category).order(:start_date).reverse_order) do |s|
           s.add_field(:cv_unit_name, :name)
           s.add_field(:cv_unit_content, :content_html_safe)

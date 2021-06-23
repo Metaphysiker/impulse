@@ -4,6 +4,10 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+#these folders contains files that are stored temporarily
+/public/cv/images/temporary/*
+/odf-templates/rendered/*
+
 # Ignore bundler config.
 /.bundle
 
