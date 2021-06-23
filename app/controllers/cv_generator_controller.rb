@@ -124,6 +124,7 @@ class CvGeneratorController < ApplicationController
       file.write(user.cover.download)
       file.rewind
       file.close
+      cover_filename = "temporary/#{user.cover.filename}"
     else
       cover_filename = "professional.jpg"
     end
@@ -137,7 +138,7 @@ class CvGeneratorController < ApplicationController
       #r.add_image :cover, rails_blob_url(ActiveStorage::Blob.service.path_for(user.cover), disposition: "attachment")
       #r.add_image :cover, ActiveStorage::Blob.service.path_for(user.cover)
       #r.add_image :cover, ActiveStorage::Blob.service.send(:path_for, user.cover)
-      r.add_image :cover, "public/cv/images/temporary/#{cover_filename}"
+      r.add_image :cover, "public/cv/images/#{cover_filename}"
       #r.add_image :cover1, "public/cv/images/temporary/#{cover_filename}"
 
       #r.add_image :cover1, Rails.root.join("app", "assets", "images", "compass.jpg").to_s
