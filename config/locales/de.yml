@@ -34,6 +34,8 @@ de:
   date:
     formats:
       month_year: "%B %Y"
+      year: "%Y"
   time:
     formats:
       month_year: "%B %Y"
+      year: "%Y"

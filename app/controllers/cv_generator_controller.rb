@@ -155,6 +155,8 @@ class CvGeneratorController < ApplicationController
           #s.add_text(:cv_unit_content, :content)
           s.add_field(:cv_unit_start_date, :start_date)
           s.add_field(:cv_unit_end_date, :end_date)
+          s.add_field(:cv_unit_start_date_year, :start_date_year)
+          s.add_field(:cv_unit_end_date_year, :end_date_year)
           s.add_field(:cv_unit_start_date_month_year, :start_date_month_year)
           s.add_field(:cv_unit_end_date_month_year, :end_date_month_year)
         end
