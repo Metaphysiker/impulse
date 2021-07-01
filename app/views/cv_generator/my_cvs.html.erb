@@ -22,12 +22,12 @@
 <hr />
   <% @user.cvs.each do |cv| %>
   <div class="row">
-      <div class="col-6">
+      <div class="col-9">
         <div class="ratio" style="padding-bottom: 141.42%;">
           <iframe  class="embed-responsive-item" src="<%= rails_blob_path(cv.pdf) %>"></iframe>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-3">
         <h1><%= cv.name.capitalize %></h1>
         <p>ODT:
           <% if cv.odt.attached? %>
@@ -37,7 +37,7 @@
           <% end %>
         </p>
         <p>
-          <%= Rails.root.join("app", "assets", "images", "compass.jpg").to_s.class %>
+          <%#= Rails.root.join("app", "assets", "images", "compass.jpg").to_s.class %>
           <%#= rails_blob_url(cv.pdf)%>
         </p>
         <%#= link_to cv.odt.filename, rails_blob_path(cv.odt, disposition: "attachment") %></h3>

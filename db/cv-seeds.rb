@@ -1,12 +1,13 @@
-testuser = User.create(email: "test@gmail.com", password: "abcdef",
-  password_confirmation: "abcdef", first_name: "Karla", last_name: "Dellwig",
-  location: "Basel", plz: "8400", street: "Hauptstrasse 4", birth_day: Date.today - 50.years,
-  phone: "1234567890", recruitment_consultant: "Paul Müller",
-  disposal_period_start: Date.today, disposal_period_end: Date.today + 3.months,
-  personal_number: "4626262555", unemployment_insurance_number: "12",
-  job_title: "Ausbildungsberaterin", website: "www.my-website.com",
-  short_description: "Ich bin ausgebildete Lehrerin und arbeite als Bildungsberaterin. Ich suche eine Stelle mit der Möglichkeit, Einfluss auf kleine und grössere Bildungssysteme zu nehmen.")
+#testuser = User.create(email: "test@gmail.com", password: "abcdef",
+#  password_confirmation: "abcdef", first_name: "Karla", last_name: "Dellwig",
+#  location: "Basel", plz: "8400", street: "Hauptstrasse 4", birth_day: Date.today - 50.years,
+#  phone: "1234567890", recruitment_consultant: "Paul Müller",
+#  disposal_period_start: Date.today, disposal_period_end: Date.today + 3.months,
+#  personal_number: "4626262555", unemployment_insurance_number: "12",
+#  job_title: "Ausbildungsberaterin", website: "www.my-website.com",
+#  short_description: "Ich bin ausgebildete Lehrerin und arbeite als Bildungsberaterin. Ich suche eine Stelle mit der Möglichkeit, Einfluss auf kleine und grössere Bildungssysteme zu nehmen.")
 
+testuser = User.find_by_email("test@gmail.com")
 
 testuser.cv_units << CvUnit.create(
   category: "experience", name: "Abteilungsleiterin - Zentrum für Bildung",
