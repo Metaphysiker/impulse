@@ -39,11 +39,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
     <%= render "layouts/navigation" %>
-    <div class="container">
-      <%= flash_messages %>
-    </div>
+    <%= render "layouts/flash_messages" if flash %>
 
     <%= yield %>
 

@@ -123,4 +123,5 @@ Rails.application.routes.draw do
   post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"
 
   get '/show_public_pdf_inline/(:file_name)', to: "cv_generator#show_public_pdf_inline", as: "show_public_pdf_inline"
+
 end
