@@ -29,7 +29,7 @@
         <% end %>
       </p>
 
-      <% if current_user.admin? %>
+      <% if true #current_user.admin? %>
         <p>
           <%= link_to "Impulse Ordner erstellen", create_files_for_impulse_path(user), method: :post %>
         </p>
