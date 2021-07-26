@@ -7,6 +7,7 @@
 #these folders contains files that are stored temporarily
 /public/cv/images/temporary/*
 /odf-templates/rendered/*
+odf-templates/rendered/*
 
 # Ignore bundler config.
 /.bundle
