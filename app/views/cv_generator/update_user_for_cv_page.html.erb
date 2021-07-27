@@ -1,8 +1,8 @@
-<section class="py-5 text-center container">
+<section class="py-5 container">
   <div class="row py-lg-5">
     <div class="mx-auto">
+      <div class="text-center">
       <h1 class="fw-light">Lebenslauf erstellen</h1>
-      <div class="">
         <p class="">
           <ol class="fs-5" style="display: inline-block; text-align: left;">
             <li class="">
@@ -21,6 +21,7 @@
           </p>
         <% end %>
       </div>
+      <div class="text-left">
       <%= render 'users/form_update_user_for_cv', user: current_user unless current_user.blank? %>
       <%= render 'users/form_update_user_for_cv', user: User.new if current_user.blank? %>
       <%#= render 'users/card', user: current_user if current_user.present? %>

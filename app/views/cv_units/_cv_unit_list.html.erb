@@ -3,10 +3,12 @@
 <div class="<%= category %>_cv_unit_list_from_user_<%= user.id %>">
   <% user.cv_units.where(category: category).order(:start_date).reverse_order.each do |cv_unit| %>
     <%= render 'cv_units/cv_unit_li_item', cv_unit: cv_unit %>
+    <hr>
   <% end %>
 </div>
 <% if user == current_user %>
 <div class="my-4">
+  <h3>Neuer Eintrag</h3>
   <%= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new, category: category %>
   <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
 </div>

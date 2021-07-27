@@ -227,6 +227,9 @@ class CvGeneratorController < ApplicationController
           s.add_field(:cv_unit_end_date, :end_date)
           s.add_field(:cv_unit_start_date_month_year, :start_date_month_year)
           s.add_field(:cv_unit_end_date_month_year, :end_date_month_year)
+          s.add_field(:cv_unit_location, :location)
+          s.add_field(:cv_unit_company, :company)
+          s.add_field(:cv_unit_job)
         end
       end
 

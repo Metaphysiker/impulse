@@ -1,21 +1,38 @@
 <%# text_area_id = Time.now.to_f.to_s.gsub(".", "") %>
 <%#= "##{text_area_id}" %>
 <% if category == "experience" %>
-  <% name_placeholder = "Abteilungsleiterin - Zentrum für Bildung" %>
+  <% name_label = "Berufsbezeichnung" %>
+  <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
   <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
+  <% location_placeholder = "Frankfurt" %>
+  <% company_placeholder = "Novartis, Zentrum für Bildung, Raiffeisen" %>
+  <% location_label = "Ort" %>
+  <% company_label = "Name der Firma oder Institution" %>
 <% elsif category == "education" %>
-  <% name_placeholder = "MSC in Psychologie- Universität Frankfurt" %>
+  <% name_label = "Ausbildung" %>
+  <% name_placeholder = "Master in Psychologie" %>
   <% content_placeholder = "Thema der Masterarbeit: Neue Ansätze für spezialisierte Erwachsenenbildung und -training\nVorstand im Debattierclub" %>
+  <% location_placeholder = "Frankfurt" %>
+  <% company_placeholder = "Goethe-Universität, Fachhochschule Graubünden" %>
+  <% location_label = "Ort" %>
+  <% company_label = "Name der Institution" %>
 <% elsif category == "skills" %>
+  <% name_label = "Fähigkeiten, Kompetenzen, Kenntnisse, Interessen" %>
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch, Französisch, Englisch, Russisch" %>
 <% end %>
 
 <%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
 <p>
-  <%= f.input :name, label: false, placeholder: name_placeholder %>
+  <%= f.input :name, label: name_label, placeholder: name_placeholder %>
   <%#= f.input :content, label: false, placeholder: "" %>
   <br />
+  <% unless category == "skills" %>
+    <%= f.input :company, label: company_label, placeholder: company_placeholder, required: false %>
+    <br>
+    <%= f.input :location, label: location_label, placeholder: location_placeholder, required: false %>
+  <% end %>
+  <br>
   <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5, class: "", id: ""} %>
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>

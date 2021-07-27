@@ -90,6 +90,6 @@ class CvUnitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cv_unit_params
-      params.require(:cv_unit).permit(:category, :name, :content, :start_date, :end_date)
+      params.require(:cv_unit).permit(:category, :name, :content, :start_date, :end_date, :location, :company, :job)
     end
 end
