@@ -181,7 +181,7 @@ class UsersController < ApplicationController
   end
 
   def mentee_overview
-    
+
   end
 
   private
@@ -191,7 +191,7 @@ class UsersController < ApplicationController
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
     :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number,
-    :job_title, :website, :short_description, :expertise_ids => [])
+    :job_title, :website, :short_description, :nationality, :marital_status, :expertise_ids => [])
   end
 
   def set_user

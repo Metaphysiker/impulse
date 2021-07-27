@@ -65,7 +65,7 @@ class CvGeneratorController < ApplicationController
     @user = current_user
     #generate_single_cv_and_save
     @user.cvs.delete_all
-    ["substantial", "bluey", "simple"].each do |name|
+    ["substantial", "bluey", "simple", "classical"].each do |name|
       generate_single_cv_and_save(name)
     end
 
@@ -134,6 +134,7 @@ class CvGeneratorController < ApplicationController
 
     odf = ODFReport::Report.new(file_path) do |r|
 
+      r.add_field(:current_date, "#{I18n.l(Date.today)}")
       #r.add_image :cover, rails_blob_url(user.cover, disposition: "attachment")
       #r.add_image :cover, rails_blob_url(ActiveStorage::Blob.service.path_for(user.cover), disposition: "attachment")
       #r.add_image :cover, ActiveStorage::Blob.service.path_for(user.cover)
@@ -239,7 +240,7 @@ class CvGeneratorController < ApplicationController
     params.require(:user).permit(
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day,
-    :job_title, :website, :short_description, :expertise_ids => [])
+    :job_title, :website, :short_description, :marital_status, :nationality, :expertise_ids => [])
   end
 
   def set_user
