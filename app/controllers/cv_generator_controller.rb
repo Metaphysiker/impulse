@@ -153,6 +153,11 @@ class CvGeneratorController < ApplicationController
         r.add_section("#{category}-section", user.cv_units.where(category: category).order(:start_date).reverse_order) do |s|
           s.add_field(:cv_unit_name, :name)
           s.add_field(:cv_unit_content, :content_html_safe)
+          puts s.inspect
+          s.add_section("#{category}-list-section", :content_split_by_new_line) do |l|
+            l.add_field(:cv_unit_list_item) { |n| n}
+          end
+
           #s.add_text(:cv_unit_content, :content)
           s.add_field(:cv_unit_start_date, :start_date)
           s.add_field(:cv_unit_end_date, :end_date)
