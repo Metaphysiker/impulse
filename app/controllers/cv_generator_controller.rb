@@ -65,7 +65,7 @@ class CvGeneratorController < ApplicationController
     @user = current_user
     #generate_single_cv_and_save
     @user.cvs.delete_all
-    ["substantial", "bluey", "simple", "classical", "red"].each do |name|
+    ["greenleft", "substantial", "bluey", "simple", "classical", "red"].each do |name|
       generate_single_cv_and_save(name)
     end
 
