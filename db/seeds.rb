@@ -30,7 +30,7 @@ regular = User.create(email: "regular@gmail.com", password: "abcdef", password_c
 
 
 testuser = User.create(email: "test@gmail.com", password: "abcdef",
-  password_confirmation: "abcdef", first_name: "Karla", last_name: "Dellwig",
+  password_confirmation: "abcdef", first_name: "Isabella", last_name: "Merlin",
   location: "Basel", plz: "8400", street: "Hauptstrasse 4", birth_day: Date.today - 50.years,
   phone: "1234567890", recruitment_consultant: "Paul Müller",
   disposal_period_start: Date.today, disposal_period_end: Date.today + 3.months,
@@ -38,19 +38,24 @@ testuser = User.create(email: "test@gmail.com", password: "abcdef",
   job_title: "Ausbildungsberaterin", website: "www.my-website.com",
   nationality: "Schweiz",
   marital_status: "ledig",
-  short_description: "Ich bin ausgebildete Lehrerin und arbeite als Bildungsberaterin. Ich suche eine Stelle mit der Möglichkeit, Einfluss auf kleine und grössere Bildungssysteme zu nehmen.")
+  short_description: "Ich bin ausgebildete Lehrerin und arbeite als Bildungsberaterin. Ich suche eine Stelle mit der Möglichkeit, Einfluss auf kleine und grössere Bildungssysteme zu nehmen.",
+  long_description: "Selbstständig und lege Wert darauf, Termine einzuhalten. Richte mich nach festgelegten Strukturen und Verfahren und halte diese ein.\n\nLege Wert darauf, dass die Dinge durchdacht und in Ordnung sind und bin in der Lage, sie bis zu Ende durchzuführen.\n\nBekannt als hilfsbereiter und guter Kollege mit positiver Einstellung zu den Dingen und zum Alltag, auch wenn es hektisch wird.",
+  power_word1: "Flexibel",
+  power_word2: "Belastbar",
+  power_word3: "Kreativ"
+  )
 
 #testuser = User.find_by_email("test@gmail.com")
 
 testuser.cv_units << CvUnit.create(
   category: "experience", name: "Abteilungsleiterin",
   company: "Zentrum für Bildung", location: "Bern",
-  content: "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte", start_date: Date.today - 1.year, end_date: Date.today)
+  content: "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung\nBeurteilung und Einstellung von Personal\nGenehmigung von Budgets für spezielle Bildungsprojekte", start_date: Date.today - 1.year, end_date: Date.today)
 
 testuser.cv_units << CvUnit.create(
   category: "experience", name: "Abteilungsspezialistin",
   company: "Forschungszentrum", location: "Biel",
-  content: "Leitung von Workshops für Erwachsenenbildung und Lerntheorien \nErstellung und Einführung von neuen Lernstrategien für Erwachsene \nMentoring neuer Lehrpersonen", start_date: Date.today - 2.year, end_date: Date.today - 1.year)
+  content: "Leitung von Workshops für Erwachsenenbildung und Lerntheorien\nErstellung und Einführung von neuen Lernstrategien für Erwachsene\nMentoring neuer Lehrpersonen", start_date: Date.today - 2.year, end_date: Date.today - 1.year)
 
 testuser.cv_units << CvUnit.create(
   category: "education", name: "MSC in Psychologie",
@@ -64,12 +69,12 @@ testuser.cv_units << CvUnit.create(
 
 testuser.cv_units << CvUnit.create(
   category: "skills", name: "Sprachen",
-  content: "Deutsch, Französisch, Englisch, Russisch")
+  content: "Deutsch: Muttersprache\nFranzösisch: Schriftlich & Mündlich\nItalienisch: Grundkenntnisse")
 
 testuser.cv_units << CvUnit.create(
   category: "skills", name: "EDV",
   content: "Word, Excel, Photoshop, Linux, Outlook")
 
 testuser.cv_units << CvUnit.create(
-  category: "skills", name: "Erziehungswissen",
-  content: "Analysen erstellen von Sozialisation, Erziehung und Bildung, Erstellen von Lernstrategien, Erkennen von Lernschwächen")
+  category: "skills", name: "Erziehung",
+  content: "Analysen erstellen von Sozialisation, Erziehung und Bildung\nErstellen von Lernstrategien\nErkennen von Lernschwächen")

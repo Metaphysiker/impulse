@@ -250,7 +250,7 @@ class CvGeneratorController < ApplicationController
     params.require(:user).permit(
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day,
-    :job_title, :website, :short_description, :marital_status, :nationality, :expertise_ids => [])
+    :job_title, :website, :short_description, :marital_status, :nationality, :long_description, :power_word1, :power_word2, :power_word3, :expertise_ids => [])
   end
 
   def set_user
