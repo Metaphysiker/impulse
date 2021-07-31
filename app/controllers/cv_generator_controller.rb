@@ -65,7 +65,7 @@ class CvGeneratorController < ApplicationController
     @user = current_user
     #generate_single_cv_and_save
     @user.cvs.delete_all
-    ["dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"].each do |name|
+    ["bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"].each do |name|
       generate_single_cv_and_save(name)
     end
 
@@ -250,7 +250,9 @@ class CvGeneratorController < ApplicationController
     params.require(:user).permit(
       :first_name, :last_name, :email, :password, :cover,
       :location, :plz, :street, :phone, :birth_day,
-    :job_title, :website, :short_description, :marital_status, :nationality, :long_description, :power_word1, :power_word2, :power_word3, :expertise_ids => [])
+    :job_title, :website, :short_description, :marital_status,
+    :nationality, :long_description, :power_word1, :power_word2, :power_word3,
+    :quote, :expertise_ids => [])
   end
 
   def set_user

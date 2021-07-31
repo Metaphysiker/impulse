@@ -42,7 +42,8 @@ testuser = User.create(email: "test@gmail.com", password: "abcdef",
   long_description: "Selbstständig und lege Wert darauf, Termine einzuhalten. Richte mich nach festgelegten Strukturen und Verfahren und halte diese ein.\n\nLege Wert darauf, dass die Dinge durchdacht und in Ordnung sind und bin in der Lage, sie bis zu Ende durchzuführen.\n\nBekannt als hilfsbereiter und guter Kollege mit positiver Einstellung zu den Dingen und zum Alltag, auch wenn es hektisch wird.",
   power_word1: "Flexibel",
   power_word2: "Belastbar",
-  power_word3: "Kreativ"
+  power_word3: "Kreativ",
+  quote: "Wege entstehen dadurch, dass wir sie gehen"
   )
 
 #testuser = User.find_by_email("test@gmail.com")

@@ -38,7 +38,7 @@ has_many :roles, :through => :user_roles
   end
 
   def self.showable_attribute_names_for_cv
-    ["email", "first_name", "last_name", "name", "address", "phone", "localized_birth_day", "job_title", "website", "short_description", "long_description", "power_word1", "power_word2", "power_word3", "street", "location", "plz_with_location", "marital_status", "nationality"]
+    ["email", "first_name", "last_name", "name", "address", "phone", "localized_birth_day", "job_title", "website", "short_description", "long_description", "power_word1", "power_word2", "power_word3", "street", "location", "plz_with_location", "marital_status", "nationality", "quote"]
   end
 
   def name
