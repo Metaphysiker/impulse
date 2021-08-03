@@ -1,14 +1,27 @@
-<div class="my-4">
-  <h3><%= cv_unit.name %></h3>
-  <% unless cv_unit.start_date.blank? %>
-    <p class="small">
-      <%= cv_unit.start_date unless cv_unit.start_date.blank? %> <%= " - #{cv_unit.end_date}" unless cv_unit.end_date.blank? %>
-    </p>
-  <% end %>
+<div class="my-2">
+  <table class="table table-striped table-bordered">
+      <tr>
+          <td>Name</td>
+          <td><%= cv_unit.name %></td>
+      </tr>
+      <% unless cv_unit.category == "skills" %>
+      <tr>
+        <td>Company</td>
+        <td><%= cv_unit.company %>, <%= cv_unit.location %></td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td> <%= l(cv_unit.start_date) unless cv_unit.start_date.blank? %> <%= " - #{l(cv_unit.end_date)}" unless cv_unit.end_date.blank? %></td>
+      </tr>
+      <% end %>
+      <tr>
+          <td>Content</td>
+          <td><%= simple_format cv_unit.content %></td>
+      </tr>
+  </table>
   <p>
-    <%= simple_format cv_unit.content %>
+    <% if cv_unit.user == current_user %>
+      <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
+     <% end %>
   </p>
-  <% if cv_unit.user == current_user %>
-    <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
-   <% end %>
 </div>
