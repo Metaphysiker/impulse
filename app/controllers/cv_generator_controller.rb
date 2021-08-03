@@ -66,6 +66,22 @@ class CvGeneratorController < ApplicationController
     #generate_single_cv_and_save
   end
 
+  def my_cvs_in_production
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+
+    #generate_single_cv_and_save
+    @user.cvs.delete_all
+
+    #cvs will be generated in the File
+    
+    #generate_single_cv_and_save
+    #generate_single_cv_and_save
+  end
+
   def generate_cvs
     @user = current_user
     #generate_single_cv_and_save
@@ -108,6 +124,11 @@ class CvGeneratorController < ApplicationController
     user = current_user
     user.cvs.purge
     redirect_to my_cvs_path
+  end
+
+  def generate_and_get_single_cv
+    name = params[:name]
+    @cv = generate_single_cv_and_save(name)
   end
 
   def generate_single_cv_and_save(file_name)
@@ -210,6 +231,9 @@ class CvGeneratorController < ApplicationController
     Libreconv.convert(Rails.root.join('odf-templates', 'rendered', "#{file_name}.odt"), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
 
     cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
+
+    cv
+
   end
 
   def generate_single_cv

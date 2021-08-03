@@ -1,0 +1,7 @@
+var div = ".cvs";
+
+content = $("<%= escape_javascript( render "cvs/single_cv", cv: @cv ) %>")
+
+$( div ).each(function( index ) {
+  $( this ).append(content);
+});

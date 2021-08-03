@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 
   get 'cv_generator/my_cvs/(:user_id)', to: "cv_generator#my_cvs", as: "cv_generator_my_cvs"
+  get 'cv_generator/my_cvs_in_production/(:user_id)', to: "cv_generator#my_cvs_in_production", as: "cv_generator_my_cvs_in_production"
   get 'cv_generator/generate_cvs', to: "cv_generator#generate_cvs", as: "cv_generator_generate_cvs"
 
 
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
 
   get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
   get '/cv_generator/generate_single_cv/(:file_name)', to: "cv_generator#generate_single_cv", as: 'generate_single_cv'
+  get '/cv_generator/generate_and_get_single_cv/(:name)', to: "cv_generator#generate_and_get_single_cv", as: 'generate_and_get_single_cv'
 
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
   get '/static_pages/impressum', to: 'static_pages#impressum', as: 'impressum'
