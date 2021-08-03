@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'cv_generator/update_cv_units_for_user_page', to: "cv_generator#update_cv_units_for_user_page", as: "cv_generator_update_cv_units_for_user_page"
 
 
-  get 'cv_generator/my_cvs', to: "cv_generator#my_cvs", as: "cv_generator_my_cvs"
+  get 'cv_generator/my_cvs/(:user_id)', to: "cv_generator#my_cvs", as: "cv_generator_my_cvs"
   get 'cv_generator/generate_cvs', to: "cv_generator#generate_cvs", as: "cv_generator_generate_cvs"
 
 

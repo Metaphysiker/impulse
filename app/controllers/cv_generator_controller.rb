@@ -56,7 +56,12 @@ class CvGeneratorController < ApplicationController
   end
 
   def my_cvs
-    @user = current_user
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+
     #generate_single_cv_and_save
     #generate_single_cv_and_save
   end
