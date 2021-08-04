@@ -143,7 +143,7 @@ class CvGeneratorController < ApplicationController
     #end
 
     cover_filename  = ""
-    if user.cover.attached?
+    if false #user.cover.attached?
       cover_filename = "#{user.cover.filename}"
       file = File.new(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"), "w+", encoding: 'ascii-8bit')
       #tempfile << cv.generate
@@ -239,7 +239,7 @@ class CvGeneratorController < ApplicationController
 
     cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
 
-    File.delete(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}")) if File.exist?(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"))
+    #File.delete(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}")) if File.exist?(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"))
 
 
     cv
