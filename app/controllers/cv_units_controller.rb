@@ -82,6 +82,25 @@ class CvUnitsController < ApplicationController
     @cv_unit.delete
   end
 
+  def update_cv_unit
+    @cv_unit = CvUnit.find(params[:id])
+    @cv_unit.user_id = current_user.id
+    @user = current_user
+    @category = params[:cv_unit][:category]
+
+    respond_to do |format|
+      if @cv_unit.update
+        format.html { redirect_to @cv_unit, notice: 'cv_unit was successfully created.' }
+        format.json { render :show, status: :created, location: @cv_unit }
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @cv_unit.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cv_unit

@@ -2,7 +2,7 @@
 <%= simple_form_for user, url: cv_generator_update_user_for_cv_path, html: { class: "form_update_user_for_cv"}, method: :post, remote: true do |f| %>
 <%#= simple_form_for user do |f| %>
 <p>
-  <%= f.input :email%>
+  <%= f.input :email, placeholder: "max.muster@gmail.com"%>
   <br />
   <% unless user_signed_in? %>
     <%= f.input :password %>
@@ -10,10 +10,10 @@
   <br />
   <div class="row">
     <div class="col-6">
-      <%= f.input :first_name %>
+      <%= f.input :first_name, placeholder: "Max" %>
     </div>
     <div class="col-6">
-      <%= f.input :last_name %>
+      <%= f.input :last_name, placeholder: "Muster" %>
     </div>
   </div>
   <br />
@@ -25,41 +25,41 @@
   <hr />
   <div class="row">
     <div class="col-6">
-        <%= f.input :location %>
+        <%= f.input :location, placeholder: "Basel" %>
     </div>
     <div class="col-6">
-      <%= f.input :plz %>
+      <%= f.input :plz, placeholder: "4000" %>
     </div>
   </div>
   <br />
-  <%= f.input :street %>
+  <%= f.input :street, placeholder: "Hauptstrasse 5" %>
   <br />
   <hr />
-  <%= f.input :phone %>
+  <%= f.input :phone, placeholder: "079 123 45 67" %>
   <br />
   <%= f.input :birth_day, start_year: Date.today.year - 100,
                               end_year: Date.today.year - 18 %>
   <br />
   <hr />
-  <%= f.input :job_title %>
+  <%= f.input :job_title, placeholder: "Automechaniker" %>
   <br />
-  <%= f.input :website %>
+  <%= f.input :website, placeholder: "www.meine-webseite.ch" %>
   <br />
-  <%= f.input :short_description %>
+  <%= f.input :short_description, placeholder: "Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \n" %>
   <br />
-  <%= f.input :long_description %>
+  <%= f.input :long_description, placeholder: "Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \nIch möchte...\nDas ist wichtig für mich...", :input_html => {:rows => 6} %>
   <br />
-  <%= f.input :power_word1 %>
+  <%= f.input :power_word1, placeholder: "Flexibel" %>
   <br />
-  <%= f.input :power_word2 %>
+  <%= f.input :power_word2, placeholder: "Belastbar" %>
   <br />
-  <%= f.input :power_word3 %>
+  <%= f.input :power_word3, placeholder: "Kreativ" %>
   <br />
-  <%= f.input :quote %>
+  <%= f.input :quote, placeholder:"Alle Träume können wahr werden, wenn wir den Mut haben, ihnen zu folgen." %>
   <br />
-  <%= f.input :nationality %>
+  <%= f.input :nationality, placeholder: "Schweiz" %>
   <br />
-  <%= f.input :marital_status %>
+  <%= f.input :marital_status, placeholder: "ledig" %>
   <br />
   <%#= f.input :password %>
 </p>

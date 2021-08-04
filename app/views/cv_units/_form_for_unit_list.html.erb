@@ -5,7 +5,7 @@
   <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
   <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
   <% location_placeholder = "Frankfurt" %>
-  <% company_placeholder = "Novartis, Zentrum für Bildung, Raiffeisen" %>
+  <% company_placeholder = "Novartis, Raiffeisen, Post" %>
   <% location_label = "Ort" %>
   <% company_label = "Name der Firma oder Institution" %>
 <% elsif category == "education" %>
@@ -19,7 +19,7 @@
 <% elsif category == "skills" %>
   <% name_label = "Fähigkeiten, Kompetenzen, Kenntnisse, Interessen" %>
   <% name_placeholder = "Sprachen" %>
-  <% content_placeholder = "Deutsch, Französisch, Englisch, Russisch" %>
+  <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
 <% end %>
 
 <%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
@@ -41,7 +41,7 @@
     <%= f.input :end_date, as: :date, label: "Ende", required: false, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
   <% end %>
   <%= f.hidden_field :category, value: category %>
-  <%= f.submit "Hinzufügen", class: "btn btn-light border my-1" %>
+  <%= f.submit class: "btn btn-light border my-1" %>
 </p>
 <% end %>
 

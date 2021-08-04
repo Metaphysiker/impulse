@@ -3,6 +3,15 @@
       <tr>
           <td>Name</td>
           <td><%= cv_unit.name %></td>
+          <td rowspan="4">
+            <% if cv_unit.user == current_user %>
+              <%= link_to "Bearbeiten", update_cv_unit_path(cv_unit), method: :put, remote: true %>
+             <% end %>
+             <br>
+              <% if cv_unit.user == current_user %>
+                <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
+               <% end %>
+            </td>
       </tr>
       <% unless cv_unit.category == "skills" %>
       <tr>
@@ -18,10 +27,22 @@
           <td>Content</td>
           <td><%= simple_format cv_unit.content %></td>
       </tr>
+      <tr>
+        <% if cv_unit.user == current_user %>
+        <div class="my-4">
+          <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edit_cv_unit_in_list_<%cv_unit.id%>" aria-expanded="false" aria-controls="edit_cv_unit_in_list_<%cv_unit.id%>">
+            Eintrag bearbeiten
+          </button>
+        </p>
+        <div class="collapse" id="#edit_cv_unit_in_list_<%cv_unit.id%>">
+          <div class="card card-body">
+            <%= render 'cv_units/form_for_unit_list', cv_unit: cv_unit, category: cv_unit.category %>
+          </div>
+        </div>
+          <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
+        </div>
+        <% end %>
+      </tr>
   </table>
-  <p>
-    <% if cv_unit.user == current_user %>
-      <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
-     <% end %>
-  </p>
 </div>

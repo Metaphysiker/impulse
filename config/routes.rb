@@ -123,6 +123,7 @@ Rails.application.routes.draw do
 
   post '/cv_units/create_cv_unit/', to: "cv_units#create_cv_unit", as: "create_cv_unit"
   post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"
+  put  '/cv_units/update_cv_unit/:id', to: "cv_units#update_cv_unit", as: "update_cv_unit"
 
   get '/show_public_pdf_inline/(:file_name)', to: "cv_generator#show_public_pdf_inline", as: "show_public_pdf_inline"
 
