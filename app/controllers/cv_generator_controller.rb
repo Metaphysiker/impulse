@@ -239,6 +239,9 @@ class CvGeneratorController < ApplicationController
 
     cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
 
+    File.delete(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}")) if File.exist?(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"))
+
+
     cv
 
   end
