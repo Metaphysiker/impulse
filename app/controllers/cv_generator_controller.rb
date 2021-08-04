@@ -151,13 +151,14 @@ class CvGeneratorController < ApplicationController
       file.rewind
       file.close
       cover_filename = "temporary/#{user.cover.filename}"
+
     else
       cover_filename = "professional.jpg"
     end
 
-    unless File.exist?("public/cv/images/#{cover_filename}")
-      cover_filename = "professional.jpg"
-    end
+    #unless File.file?("public/cv/images/#{cover_filename}")
+    #  cover_filename = "professional.jpg"
+    #end
 
 
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
@@ -170,6 +171,8 @@ class CvGeneratorController < ApplicationController
       #r.add_image :cover, ActiveStorage::Blob.service.path_for(user.cover)
       #r.add_image :cover, ActiveStorage::Blob.service.send(:path_for, user.cover)
       r.add_image :cover, "public/cv/images/#{cover_filename}"
+      #r.add_image :cover, user.cover
+
       #r.add_image :cover1, "public/cv/images/temporary/#{cover_filename}"
 
       #r.add_image :cover1, Rails.root.join("app", "assets", "images", "compass.jpg").to_s
