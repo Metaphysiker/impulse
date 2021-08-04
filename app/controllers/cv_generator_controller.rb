@@ -77,7 +77,7 @@ class CvGeneratorController < ApplicationController
     @user.cvs.delete_all
 
     #cvs will be generated in the File
-    
+
     #generate_single_cv_and_save
     #generate_single_cv_and_save
   end
@@ -143,7 +143,7 @@ class CvGeneratorController < ApplicationController
     #end
 
     cover_filename  = ""
-    if user.cover.attached?
+    if false #user.cover.attached?
       cover_filename = "#{user.cover.filename}"
       file = File.new(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"), "w+", encoding: 'ascii-8bit')
       #tempfile << cv.generate
@@ -151,9 +151,14 @@ class CvGeneratorController < ApplicationController
       file.rewind
       file.close
       cover_filename = "temporary/#{user.cover.filename}"
+
     else
       cover_filename = "professional.jpg"
     end
+
+    #unless File.file?("public/cv/images/#{cover_filename}")
+    #  cover_filename = "professional.jpg"
+    #end
 
 
     file_path = Rails.root.join("public/cv/#{file_name}/#{file_name}-cv.odt")
@@ -166,6 +171,8 @@ class CvGeneratorController < ApplicationController
       #r.add_image :cover, ActiveStorage::Blob.service.path_for(user.cover)
       #r.add_image :cover, ActiveStorage::Blob.service.send(:path_for, user.cover)
       r.add_image :cover, "public/cv/images/#{cover_filename}"
+      #r.add_image :cover, user.cover
+
       #r.add_image :cover1, "public/cv/images/temporary/#{cover_filename}"
 
       #r.add_image :cover1, Rails.root.join("app", "assets", "images", "compass.jpg").to_s
@@ -231,6 +238,9 @@ class CvGeneratorController < ApplicationController
     Libreconv.convert(Rails.root.join('odf-templates', 'rendered', "#{file_name}.odt"), Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf"))
 
     cv.pdf.attach(io: File.open(Rails.root.join('odf-templates', 'rendered', "#{file_name}.pdf")), filename: "#{file_name}.pdf", content_type: 'application/pdf')
+
+    #File.delete(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}")) if File.exist?(Rails.root.join('public', 'cv', 'images', 'temporary', "#{user.cover.filename}"))
+
 
     cv
 
