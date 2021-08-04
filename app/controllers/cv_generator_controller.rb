@@ -77,7 +77,7 @@ class CvGeneratorController < ApplicationController
     @user.cvs.delete_all
 
     #cvs will be generated in the File
-    
+
     #generate_single_cv_and_save
     #generate_single_cv_and_save
   end
@@ -152,6 +152,10 @@ class CvGeneratorController < ApplicationController
       file.close
       cover_filename = "temporary/#{user.cover.filename}"
     else
+      cover_filename = "professional.jpg"
+    end
+
+    unless File.exist?("public/cv/images/#{cover_filename}")
       cover_filename = "professional.jpg"
     end
 
