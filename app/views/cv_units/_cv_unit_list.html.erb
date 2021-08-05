@@ -7,9 +7,17 @@
 </div>
 <% if user == current_user %>
 <div class="my-4">
-  <h3>Neuer Eintrag</h3>
-  <%= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new, category: category %>
-  <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
+  <hr>
+  <p>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#<%= category %>_new_cv_unit_collapse_button" aria-expanded="false" aria-controls="collapseExample">
+    Neuer Eintrag in <%= category %>
+  </button>
+</p>
+<div class="collapse" id="<%= category %>_new_cv_unit_collapse_button">
+  <div class="card card-body">
+    <%= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new, category: category %>
+  </div>
+</div>
 </div>
 <% end %>
 </div>
