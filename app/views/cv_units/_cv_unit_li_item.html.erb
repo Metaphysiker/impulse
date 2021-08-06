@@ -4,12 +4,39 @@
           <td>Name</td>
           <td><%= cv_unit.name %></td>
           <td rowspan="4">
-            <% if cv_unit.user == current_user %>
-              <%= link_to "Bearbeiten", update_cv_unit_path(cv_unit), method: :put, remote: true %>
-             <% end %>
-             <br>
               <% if cv_unit.user == current_user %>
-                <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
+                <p>
+                  <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
+                </p>
+                <hr>
+                <p>
+                  <%= link_to "Eintrag bearbeiten", edit_cv_unit_path(cv_unit) %>
+                </p>
+                <p>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <%= render 'cv_units/form_for_unit_list_update', cv_unit: cv_unit, category: cv_unit.category %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </p>
                <% end %>
             </td>
       </tr>
@@ -27,22 +54,6 @@
           <td>Content</td>
           <td><%= simple_format cv_unit.content %></td>
       </tr>
-      <tr>
-        <% if cv_unit.user == current_user %>
-        <div class="my-4">
-          <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edit_cv_unit_in_list_<%cv_unit.id%>" aria-expanded="false" aria-controls="edit_cv_unit_in_list_<%cv_unit.id%>">
-            Eintrag bearbeiten
-          </button>
-        </p>
-        <div class="collapse" id="#edit_cv_unit_in_list_<%cv_unit.id%>">
-          <div class="card card-body">
-            <%= render 'cv_units/form_for_unit_list', cv_unit: cv_unit, category: cv_unit.category %>
-          </div>
-        </div>
-          <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
-        </div>
-        <% end %>
-      </tr>
+
   </table>
 </div>

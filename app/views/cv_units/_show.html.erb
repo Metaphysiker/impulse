@@ -1,22 +1,11 @@
 <% # rails g erb:scaffold Cv_unit title:string description:text content:text %>
 
-<% url_cover = cv_unit.cover.attached? ? rails_blob_url(cv_unit.cover) : image_url("pigs.jpg") %>
-<% height_of_cover = cv_unit.cover.attached? ? ActiveStorage::Analyzer::ImageAnalyzer.new(cv_unit.cover).metadata[:height] : 500 %>
-
-
-  <section class="page-cover-bg bg b-color" style="background-image: url('<%= url_cover %>'); height: <%= height_of_cover %>px;">
-      <div class="container d-flex align-items-start justify-content-center h-100 pt-2">
-
-          <%#= image_tag("logo_stinah_ws_vektor.png", class: "img-fluid mb-4 rounded overlay-darker", style: "height: 180px;") %>
-
-      </div>
-  </section>
 
 
 
 <div class="container pt-3">
 
-  
+
 
   <h3 class="text-h-color spaced-letters font-weight-light text-uppercase"><%= cv_unit.title %></h3>
   <p class="font-weight-bold text-muted pt-3">

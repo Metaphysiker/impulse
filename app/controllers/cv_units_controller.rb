@@ -84,12 +84,10 @@ class CvUnitsController < ApplicationController
 
   def update_cv_unit
     @cv_unit = CvUnit.find(params[:id])
-    @cv_unit.user_id = current_user.id
-    @user = current_user
-    @category = params[:cv_unit][:category]
+    @category = @cv_unit.category
 
     respond_to do |format|
-      if @cv_unit.update
+      if @cv_unit.update(cv_unit_params)
         format.html { redirect_to @cv_unit, notice: 'cv_unit was successfully created.' }
         format.json { render :show, status: :created, location: @cv_unit }
         format.js

@@ -1,7 +1,5 @@
 <%# text_area_id = Time.now.to_f.to_s.gsub(".", "") %>
 <%#= "##{text_area_id}" %>
-<% category = cv_unit.category unless cv_unit.blank? %>
-
 <% if category == "experience" %>
   <% name_label = "Berufsbezeichnung" %>
   <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
@@ -23,15 +21,15 @@
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
 <% end %>
-<%= simple_form_for cv_unit do |f| %>
+<%= simple_form_for(cv_unit, url: update_cv_unit_path(cv_unit), method: :put, remote: true) do |f| %>
 <p>
-  <%= f.input :name, label: name_label, placeholder: name_placeholder %>
+  <%= f.input :name, label: name_label %>
   <%#= f.input :content, label: false, placeholder: "" %>
   <br />
   <% unless category == "skills" %>
-    <%= f.input :company, label: company_label, placeholder: company_placeholder, required: false %>
+    <%= f.input :company, label: company_label, required: false %>
     <br>
-    <%= f.input :location, label: location_label, placeholder: location_placeholder, required: false %>
+    <%= f.input :location, label: location_label, required: false %>
   <% end %>
   <br>
   <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5, class: "", id: ""} %>
