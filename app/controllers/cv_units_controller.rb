@@ -38,7 +38,7 @@ class CvUnitsController < ApplicationController
   def update
     respond_to do |format|
       if @cv_unit.update(cv_unit_params)
-        format.html { redirect_to @cv_unit, notice: "Cv unit was successfully updated." }
+        format.html { redirect_to cv_generator_update_cv_units_for_user_page_path, notice: "Cv unit was successfully updated." }
         format.json { render :show, status: :ok, location: @cv_unit }
       else
         format.html { render :edit, status: :unprocessable_entity }
