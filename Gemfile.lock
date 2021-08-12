@@ -357,6 +357,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n
   rspec-rails (~> 4.0.2)
+  rubyzip
   sanitize (>= 5.2.1)
   sass-rails (>= 6)
   seed_dump

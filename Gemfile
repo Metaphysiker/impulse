@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+gem 'rubyzip'
 gem 'libreconv'
 #gem "capybara-webkit"
 #gem 'chromedriver-helper'
