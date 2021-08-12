@@ -15,6 +15,7 @@ class CvsController < ApplicationController
       user.cvs.each do |cv|
         zos.put_next_entry "#{cv.name}".parameterize + ".pdf"
         zos.write cv.pdf.download
+
       end
     end
 
