@@ -20,7 +20,23 @@ class CvsController < ApplicationController
     end
 
     compressed_filestream.rewind
-    send_data compressed_filestream.read, filename: "#{user.name.parameterize}-cvs.zip"
+    send_data compressed_filestream.read, filename: "#{user.name.parameterize}-cvs-pdfs.zip"
+
+  end
+
+  def download_all_odts
+    user = User.find(params[:id])
+
+    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+      user.cvs.each do |cv|
+        zos.put_next_entry "#{cv.name}".parameterize + ".odt"
+        zos.write cv.odt.download
+
+      end
+    end
+
+    compressed_filestream.rewind
+    send_data compressed_filestream.read, filename: "#{user.name.parameterize}-cvs-odts.zip"
 
   end
 

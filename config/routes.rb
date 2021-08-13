@@ -130,5 +130,6 @@ Rails.application.routes.draw do
   get '/show_public_pdf_inline/(:file_name)', to: "cv_generator#show_public_pdf_inline", as: "show_public_pdf_inline"
 
   get '/cv_controller/download_all_pdfs/:id', to: "cvs#download_all_pdfs", as: "cv_controller_download_all_pdfs"
+  get '/cv_controller/download_all_odts/:id', to: "cvs#download_all_odts", as: "cv_controller_download_all_odts"
 
 end
