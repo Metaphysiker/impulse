@@ -36,16 +36,46 @@
       console.log( "CV-Generator ready!" );
 
       var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"]
+      var iteration_value = 0;
+
 
       var progress_bar_value = 0;
       var progress_bar_steps = Math.round(100 / cv_names.length);
       var completed_cvs_value = 0;
 
-      cv_names.forEach(function(name, index, array) {
-        generate_cv_and_add_it_to_div(name)
-      });
+      //cv_names.forEach(function(name, index, array) {
+      //  generate_cv_and_add_it_to_div(name)
+      //});
 
-      function generate_cv_and_add_it_to_div(cv_name) {
+      generate_cv_and_add_it_to_div(iteration_value);
+
+      function generate_cv_and_add_it_to_div(step) {
+
+        cv_name = cv_names[step];
+        console.log(cv_name);
+
+        $.ajax({
+          url: "<%= generate_and_get_single_cv_path %>/" + cv_name,
+          method: 'GET',
+          headers: {
+            'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+          }
+        }).done(function() {
+          progress_bar_value = progress_bar_value + progress_bar_steps;
+          completed_cvs_value = completed_cvs_value + 1;
+          $("#progress-bar-loading-screen").width(progress_bar_value + "%");
+          $("#completed_cvs_count").text(completed_cvs_value);
+
+          if(completed_cvs_value === cv_names.length){
+               window.location.href = "<%= cv_generator_my_cvs_path %>";
+          } else {
+            generate_cv_and_add_it_to_div(step + 1)
+          }
+
+        });
+      }
+
+      function xgenerate_cv_and_add_it_to_div(cv_name) {
 
         $.ajax({
           url: "<%= generate_and_get_single_cv_path %>/" + cv_name,
