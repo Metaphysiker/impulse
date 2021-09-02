@@ -35,7 +35,8 @@
         <p class="text-white">
           <% if user_signed_in? %>
             <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "text-white", data: { cy: "logout" }) %> |
-            <%= link_to 'Account bearbeiten', edit_user_registration_path, class: "text-white" %>
+            <%= link_to 'Account bearbeiten', edit_user_registration_path, class: "text-white" %> |
+            <%= link_to "Account löschen", registration_path(current_user), class: "text-white", data: { confirm: "Sind Sie sicher?", cy: "destroy_user_account" }, method: :delete %>
           <% else %>
 
             <%= link_to('Login', new_user_session_path, class: "text-white", data: { cy: "login" }) %> |

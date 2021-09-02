@@ -4,7 +4,7 @@
       <h1 class="fw-light">Herzlich Willkommen</h1>
       <p class="lead text-muted"> Wie können wir Ihnen helfen?</p>
       <p>
-        <%= link_to "Ich bin ein Mentee", mentee_overview_path, class: "btn btn-lg btn-primary my-2" %>
+        <%= link_to "Ich bin ein Mentee", mentee_overview_path, class: "btn btn-lg btn-primary my-2", data: {cy: "i_am_mentee"} %>
         <br />
         <%= link_to "Ich bin ein Mentor", workspace_path, class: "btn btn-lg btn-success my-2" %>
       </p>

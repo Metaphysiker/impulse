@@ -2,5 +2,22 @@
   "first_name": "Jonas",
   "last_name": "Müller",
   "password": "password",
-  "email": "jm@gmail.com"
+  "email": "jm@gmail.com",
+  "location": "Basel",
+  "plz": "4057",
+  "street": "Buchhalterstrasse",
+  "phone": "1452809275",
+  "birth_day_3i": "10",
+  "birth_day_2i": "12",
+  "birth_day_1i": "1989",
+  "job_title": "Mechaniker",
+  "website": "www.my-website.ch",
+  "short_description": "Ich bin Mechaniker",
+  "long_description": "Ich bin ein langer Mechaniker",
+  "power_word1": "Stark",
+  "power_word2": "Flexibel",
+  "power_word3": "Belastbar",
+  "quote": "Ich bin besser als der Rest",
+  "nationality": "Schweiz",
+  "marital_status": "ledig"
 }

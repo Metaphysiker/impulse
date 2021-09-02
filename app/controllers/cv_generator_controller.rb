@@ -22,7 +22,13 @@ class CvGeneratorController < ApplicationController
   end
 
   def update_user_for_cv_page
-    @user = User.find(params[:user_id])
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    elsif user_signed_in?
+      @user = current_user
+    else
+      @user = User.new
+    end
   end
 
   def update_cv_units_for_user_page

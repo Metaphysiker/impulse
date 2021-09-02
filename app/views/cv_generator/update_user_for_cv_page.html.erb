@@ -22,8 +22,9 @@
         <% end %>
       </div>
       <div class="text-left">
+        <%#= @user.inspect %>
       <%= render 'users/form_update_user_for_cv', user: @user %>
-      <%= render 'users/form_update_user_for_cv', user: User.new if @user.blank? %>
+      <%#= render 'users/form_update_user_for_cv', user: User.new if @user.blank? %>
       <%#= render 'users/card', user: current_user if current_user.present? %>
     </div>
   </div>
