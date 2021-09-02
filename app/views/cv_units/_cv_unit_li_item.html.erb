@@ -4,7 +4,7 @@
           <td>Name</td>
           <td><%= cv_unit.name %></td>
           <td rowspan="4">
-              <% if cv_unit.user == current_user %>
+              <% if (cv_unit.user == current_user) || (current_user.admin?) %>
                 <p>
                   <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
                 </p>

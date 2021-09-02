@@ -5,7 +5,8 @@
     <%= render 'cv_units/cv_unit_li_item', cv_unit: cv_unit %>
   <% end %>
 </div>
-<% if user == current_user %>
+<% if (user == current_user) || (current_user.admin?) %>
+
 <div class="my-4">
   <hr>
   <p>
