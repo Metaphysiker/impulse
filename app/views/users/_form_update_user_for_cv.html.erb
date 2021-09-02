@@ -1,5 +1,5 @@
 <div class="border rounded p-3 mb-2">
-<%= simple_form_for user, url: cv_generator_update_user_for_cv_path, html: { class: "form_update_user_for_cv"}, method: :post, remote: true do |f| %>
+<%= simple_form_for user, url: cv_generator_update_user_for_cv_path(user), html: { class: "form_update_user_for_cv"}, method: :post, remote: true do |f| %>
 <%#= simple_form_for user do |f| %>
 <p>
   <%= f.input :email, placeholder: "max.muster@gmail.com"%>

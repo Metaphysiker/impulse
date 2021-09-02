@@ -11,7 +11,7 @@
           </ol>
         </p>
         <p>
-          <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path %>
+          <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path(@user) %>
         </p>
         <p>
           <%= link_to "Alle PDFs herunterladen", cv_controller_download_all_pdfs_path(@user) %>

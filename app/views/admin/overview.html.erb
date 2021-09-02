@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Admin-Bereich</h1>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Lebensläufe erstellen</th>
+        <th scope="col">User bearbeiten</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+        <td><%= link_to "Lebensläufe generieren", cv_generator_update_user_for_cv_page_path(user) %></td>
+        <td><%= link_to "User bearbeiten", edit_user_path(user) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

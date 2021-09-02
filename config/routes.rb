@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :admin do
+    collection do
+      get 'overview'
+    end
+  end
+
   resources :cvs
   get 'cv_generator/overview', to: "cv_generator#overview", as: "cv_generator_overview"
-  get 'cv_generator/update_user_for_cv_page', to: "cv_generator#update_user_for_cv_page", as: "cv_generator_update_user_for_cv_page"
+  get 'cv_generator/update_user_for_cv_page/(:user_id)', to: "cv_generator#update_user_for_cv_page", as: "cv_generator_update_user_for_cv_page"
 
-  post 'cv_generator/update_user_for_cv', to: "cv_generator#update_user_for_cv", as: "cv_generator_update_user_for_cv"
+  post 'cv_generator/update_user_for_cv/(:user_id)', to: "cv_generator#update_user_for_cv", as: "cv_generator_update_user_for_cv"
 
-  get 'cv_generator/update_cv_units_for_user_page', to: "cv_generator#update_cv_units_for_user_page", as: "cv_generator_update_cv_units_for_user_page"
+  get 'cv_generator/update_cv_units_for_user_page/(:user_id)', to: "cv_generator#update_cv_units_for_user_page", as: "cv_generator_update_cv_units_for_user_page"
 
 
   get 'cv_generator/my_cvs/(:user_id)', to: "cv_generator#my_cvs", as: "cv_generator_my_cvs"

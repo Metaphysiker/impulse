@@ -10,7 +10,7 @@ class CvGeneratorController < ApplicationController
   end
 
   def cv_generator
-    user = current_user #User.find(params[:id])
+    @user = current_user #User.find(params[:id])
     #cv = generate_single_cv(user, Rails.root.join("public/cv/substantial-cv.odt"))
 
     #compressed_filestream.rewind
@@ -22,22 +22,24 @@ class CvGeneratorController < ApplicationController
   end
 
   def update_user_for_cv_page
-
+    @user = User.find(params[:user_id])
   end
 
   def update_cv_units_for_user_page
-
+    @user = User.find(params[:user_id])
   end
 
   def update_user_for_cv
 
     if user_signed_in?
-      user = current_user
-      user.update(user_params)
+      #user = current_user
+      #user.update(user_params)
+      @user = User.find(params[:user_id])
+      @user.update(user_params)
     else
-      user = User.new
-      user.update(user_params)
-      sign_in user
+      @user = User.new
+      @user.update(user_params)
+      sign_in @user
     end
     #if User.find_by_email(params[:email]).present?
     #  user = User.find_by_email(params[:email])
@@ -46,13 +48,13 @@ class CvGeneratorController < ApplicationController
     #end
 
 
-    @user = user
+    #@user = user
     #byebug
     #redirect_back(fallback_location: exchange_path)
   end
 
   def update_cv_units_for_user
-
+    @user = User.find(params[:user_id])
   end
 
   def my_cvs
