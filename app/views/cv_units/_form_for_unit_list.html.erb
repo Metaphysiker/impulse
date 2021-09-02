@@ -21,7 +21,7 @@
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
 <% end %>
-<%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true do |f| %>
+<%= simple_form_for :cv_unit, url: create_cv_unit_path, method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"} do |f| %>
 <p>
   <%= f.input :name, label: name_label, placeholder: name_placeholder %>
   <%#= f.input :content, label: false, placeholder: "" %>
