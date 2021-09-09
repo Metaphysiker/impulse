@@ -1,5 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
+  include ApplicationHelper
 
   def initialize(user, record)
     @user = user

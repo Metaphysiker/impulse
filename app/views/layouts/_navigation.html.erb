@@ -9,10 +9,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto">
-          <% if is_current_user_admin? %>
+          <% if policy(:admin).overview? %>
             <li class="nav-item">
               <%= link_to "Admin-Bereich", overview_admin_index_path, class:"nav-link"  %>
-            </li>
+            </li>         
           <% end %>
           <li class="nav-item">
             <%= link_to "Tauschbörse", exchange_path, class:"nav-link"  %>

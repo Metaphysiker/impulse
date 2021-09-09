@@ -17,6 +17,16 @@ module ApplicationHelper
     !current_user.nil? && current_user.roles.where(name: "admin").exists?
   end
 
+  def is_user_admin?(user)
+    return false if user.nil?
+    user.admin?
+  end
+
+  def does_user_have_role?(user, role)
+    return false if user.nil?
+    user.roles.where(name: "admin").exists?
+  end
+
   def is_current_user_mentor?
     !current_user.nil? && current_user.roles.where(name: "mentor").exists?
   end
