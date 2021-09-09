@@ -20,8 +20,8 @@ Expertise.expertises.each do |expertise|
 end
 
 nicole = User.create(email: "nicole.bertherin@impulse.swiss", password: "abcdef", password_confirmation: "abcdef", first_name: "Nicole", last_name: "Bertherin")
-admin.roles << Role.find_by_name("admin") unless admin.roles.where(name: "admin").exists?
-admin.roles << Role.find_by_name("mentor") unless admin.roles.where(name: "mentor").exists?
+nicole.roles << Role.find_by_name("admin") unless nicole.roles.where(name: "admin").exists?
+nicole.roles << Role.find_by_name("mentor") unless nicole.roles.where(name: "mentor").exists?
 
 
 admin = User.create(email: "admin@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Admin", last_name: "Admin")
