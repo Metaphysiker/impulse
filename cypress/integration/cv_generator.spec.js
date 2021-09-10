@@ -55,6 +55,29 @@ describe('CV Generator', () => {
       cy.root().submit()
     })
 
+    //update_cv_units_for_user_path
+    //cy-new-entry-in-<%= category%>
+    cy.get('[data-cy=new-entry-in-experience]').click()
+
+    cy.get('[data-cy=form_for_cv_unit_category_experience]').within(($form) => {
+      // you have access to the found form via
+      // the jQuery object $form if you need it
+
+      // cy.get() will only search for elements within form,
+      // not within the entire document
+      cy.fixture('cv_unit.json').then((cv_unit) => {
+        cy.get('#cv_unit_name').type(cv_unit.name)
+        cy.get('#cv_unit_company').type(cv_unit.company)
+        cy.get('#cv_unit_location').type(cv_unit.location)
+        cy.get('#cv_unit_start_date_2i').select(cv_unit.start_date_2i)
+        cy.get('#cv_unit_start_date_1i').select(cv_unit.start_date_1i)
+        cy.get('#cv_unit_end_date_2i').select(cv_unit.end_date_2i)
+        cy.get('#cv_unit_end_date_1i').select(cv_unit.end_date_1i)
+      })
+
+      cy.root().submit()
+    })
+
   })
 
 
