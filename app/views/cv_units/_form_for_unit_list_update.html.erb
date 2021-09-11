@@ -32,7 +32,7 @@
     <%= f.input :location, label: location_label, required: false %>
   <% end %>
   <br>
-  <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5, class: "", id: ""} %>
+  <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5} %>
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
   <% unless category == "skills" %>
