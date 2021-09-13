@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'cv_generator/my_cvs/(:user_id)', to: "cv_generator#my_cvs", as: "cv_generator_my_cvs"
   get 'cv_generator/my_cvs_in_production/(:user_id)', to: "cv_generator#my_cvs_in_production", as: "cv_generator_my_cvs_in_production"
   get 'cv_generator/generate_cvs', to: "cv_generator#generate_cvs", as: "cv_generator_generate_cvs"
-  get 'cv_generator/loading_screen', to: "cv_generator#loading_screen", as: "cv_generator_loading_screen"
+  get 'cv_generator/loading_screen/(:user_id)', to: "cv_generator#loading_screen", as: "cv_generator_loading_screen"
 
 
 

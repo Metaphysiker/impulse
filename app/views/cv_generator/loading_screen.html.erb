@@ -67,7 +67,7 @@
           $("#completed_cvs_count").text(completed_cvs_value);
 
           if(completed_cvs_value === cv_names.length){
-               window.location.href = "<%= cv_generator_my_cvs_path %>";
+               window.location.href = "<%= cv_generator_my_cvs_path(@user) %>";
           } else {
             generate_cv_and_add_it_to_div(step + 1)
           }
@@ -90,7 +90,7 @@
           $("#completed_cvs_count").text(completed_cvs_value);
 
           if(completed_cvs_value === cv_names.length){
-            	 window.location.href = "<%= cv_generator_my_cvs_path %>";
+            	 window.location.href = "<%= cv_generator_my_cvs_path(@user) %>";
           }
 
         });
