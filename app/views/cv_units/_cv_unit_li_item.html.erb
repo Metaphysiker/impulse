@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td>Time</td>
-        <td> <%= l(cv_unit.start_date) unless cv_unit.start_date.blank? %> <%= " - #{l(cv_unit.end_date)}" unless cv_unit.end_date.blank? %></td>
+        <td> <%= l(cv_unit.start_date, format: :month_year) unless cv_unit.start_date.blank? %> <%= " - #{l(cv_unit.end_date, format: :month_year)}" unless cv_unit.end_date.blank? %></td>
       </tr>
       <% end %>
       <tr>

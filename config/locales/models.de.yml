@@ -10,6 +10,9 @@ de:
       support_request:
         one: "Call for Help"
         other: "Call for Help"
+      cv_unit:
+        one: "Eintrag"
+        other: "Einträge"
     attributes:
       user:
         name: "Name"
