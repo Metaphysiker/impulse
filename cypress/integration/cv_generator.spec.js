@@ -112,6 +112,7 @@ describe('CV Generator', () => {
     cy.contains("Erstellt: 7");
     cy.contains("Erstellt: 9");
     cy.contains("Erstellt: 11");
+    cy.contains("Erstellt: 13");
 
     //cy.waitUntil(() => cy.contains("Lebenslauf auswählen"));
     cy.contains("Lebenslauf auswählen");

@@ -35,7 +35,7 @@
   $( document ).ready(function() {
       console.log( "CV-Generator ready!" );
 
-      var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"]
+      var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"]
       var iteration_value = 0;
 
 
@@ -52,7 +52,7 @@
       function generate_cv_and_add_it_to_div(step) {
 
         cv_name = cv_names[step];
-        console.log(cv_name);
+        console.log("Done: " + cv_name);
 
         $.ajax({
           url: "<%= generate_and_get_single_cv_path %>/" + cv_name,

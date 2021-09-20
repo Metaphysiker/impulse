@@ -104,7 +104,7 @@ class CvGeneratorController < ApplicationController
     @user = current_user
     #generate_single_cv_and_save
     @user.cvs.delete_all
-    ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"].each do |name|
+    ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"].each do |name|
       generate_single_cv_and_save(name)
     end
 
@@ -198,6 +198,8 @@ class CvGeneratorController < ApplicationController
       User.showable_attribute_names_for_cv.each do |attribute|
         r.add_field attribute.to_sym, user.public_send(attribute)
       end
+
+      r.add_field :ini, "#{user.first_name[0]}#{user.last_name[0]}"
 
       CvUnit.categories.each do |category|
 
