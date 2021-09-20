@@ -33,7 +33,7 @@ has_many :roles, :through => :user_roles
   def self.showable_attribute_names
     ["email", "name", "address", "phone", "localized_birth_day",
        "recruitment_consultant", "disposal_period", "personal_number", "unemployment_insurance_number",
-       "job_title", "website", "short_description"
+       "job_title", "website", "short_description", "long_description"
      ]
   end
 

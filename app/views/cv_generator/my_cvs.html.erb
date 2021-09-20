@@ -1,7 +1,7 @@
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="mx-auto">
-      <h1 class="fw-light">Lebenslauf erstellen</h1>
+      <h1 class="fw-light">Lebenslauf auswählen</h1>
       <div class="">
         <p class="">
           <ol class="fs-5" style="display: inline-block; text-align: left;">
@@ -52,4 +52,8 @@
   <hr />
   <% end %>
   <hr />
+</section>
+
+<section class="py-1 text-center container">
+  <%= render 'users/cv_card', user: @user %>
 </section>

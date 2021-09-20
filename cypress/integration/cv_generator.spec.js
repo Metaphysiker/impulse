@@ -26,9 +26,13 @@ describe('CV Generator', () => {
       // cy.get() will only search for elements within form,
       // not within the entire document
       cy.fixture('user.json').then((user) => {
-  // "this" is still the test context object
-        cy.get('#user_email').type(user.email)
-        cy.get('#user_password').type(user.password)
+        const uuid = () => Cypress._.random(0, 1e6)
+        const id = uuid()
+        const unique_email = `${user.email} ${id}`
+
+        //cy.get('#user_email').type(user.email)
+        cy.get('#user_email').type(unique_email)
+        cy.get('#user_password').type("password")
         cy.get('#user_first_name').type(user.first_name)
         cy.get('#user_last_name').type(user.last_name)
         cy.get('#user_location').type(user.location)
@@ -48,9 +52,7 @@ describe('CV Generator', () => {
         cy.get('#user_quote').type(user.quote)
         cy.get('#user_nationality').type(user.nationality)
         cy.get('#user_marital_status').type(user.marital_status)
-
-
-      })
+      });
 
       cy.root().submit()
     })
@@ -68,7 +70,7 @@ describe('CV Generator', () => {
         cy.get('#cv_unit_start_date_1i').select(cv_unit.start_date_1i)
         cy.get('#cv_unit_end_date_2i').select(cv_unit.end_date_2i)
         cy.get('#cv_unit_end_date_1i').select(cv_unit.end_date_1i)
-      })
+      });
       cy.root().submit()
     })
 
@@ -98,6 +100,47 @@ describe('CV Generator', () => {
       cy.root().submit()
     })
 
+    //cy.contains("cv_generator_loading_screen_button").first().click();
+    cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
+
+    cy.contains("Erstellt: 1");
+    cy.contains("Erstellt: 2");
+    cy.contains("Erstellt: 3");
+    cy.contains("Erstellt: 4");
+    cy.contains("Erstellt: 5");
+    cy.contains("Erstellt: 6");
+    cy.contains("Erstellt: 7");
+    cy.contains("Erstellt: 9");
+    cy.contains("Erstellt: 11");
+
+    //cy.waitUntil(() => cy.contains("Lebenslauf auswählen"));
+    cy.contains("Lebenslauf auswählen");
+
+    cy.fixture('user.json').then((user) => {
+      for (var attribute in user) {
+        cy.contains(user[attribute])
+      }
+    });
+
+    cy.fixture('cv_unit_education.json').then((user) => {
+      for (var attribute in user) {
+        cy.contains(user[attribute])
+      }
+    });
+
+    cy.fixture('cv_unit_experience.json').then((user) => {
+      for (var attribute in user) {
+        cy.contains(user[attribute])
+      }
+    });
+
+    cy.fixture('cv_unit_skills.json').then((user) => {
+      for (var attribute in user) {
+        cy.contains(user[attribute])
+      }
+    });
+
+    //cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
   //  var genArr = Array.from({length:250},(v,k)=>k+1)
   //  cy.wrap(genArr).each((index) => {
   //      cy.get("#button-" + index).click()

@@ -11,7 +11,7 @@
       <div class="card-body">
         <table class="table">
         <tbody>
-          <% User.showable_attribute_names.each do |name| %>
+          <% User.showable_attribute_names_for_cv.each do |name| %>
             <tr>
               <td>
                 <strong><%= User.human_attribute_name(name) %>: </strong>
@@ -36,7 +36,7 @@
         <% end %>
       </p>
 
-      <% if true #current_user.admin? %>
+      <% if false #current_user.admin? %>
         <p>
           <%= link_to "Impulse Ordner erstellen", create_files_for_impulse_path(user), method: :post %>
         </p>

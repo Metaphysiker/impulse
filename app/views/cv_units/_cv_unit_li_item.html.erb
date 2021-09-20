@@ -1,9 +1,9 @@
 <div class="my-2">
   <table class="table table-striped table-bordered">
       <tr>
-          <td>Name</td>
-          <td><%= cv_unit.name %></td>
-          <td rowspan="4">
+          <td style="width:25%">Name</td>
+          <td style="width:50%"><%= cv_unit.name %></td>
+          <td  style="width:25%" rowspan="4">
               <% if (cv_unit.user == current_user) || (current_user.admin?) %>
                 <p>
                   <%= link_to "Löschen", remove_cv_unit_path(cv_unit), method: :post, remote: true %>
