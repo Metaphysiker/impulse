@@ -131,6 +131,10 @@ Rails.application.routes.draw do
   #  sessions: 'users/sessions'
   #}
 
+  if Rails.env.development?
+    get '/cv_units_controller/destroy_all_cv_units', to: "cv_units#destroy_all_cv_units"
+  end
+
   post '/cv_units/create_cv_unit/', to: "cv_units#create_cv_unit", as: "create_cv_unit"
   post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"
   put  '/cv_units/update_cv_unit/:id', to: "cv_units#update_cv_unit", as: "update_cv_unit"

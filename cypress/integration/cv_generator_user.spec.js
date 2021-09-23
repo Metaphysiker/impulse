@@ -2,6 +2,10 @@ describe('CvGenerator User', () => {
 
   beforeEach(function () {
 
+    cy.request('http://localhost:3000/cv_units_controller/destroy_all_cv_units')
+    
+    cy.visit('http://localhost:3000')
+
     cy.fixture('user.json').then((user) => {
       const uuid = () => Cypress._.random(0, 1e6)
       const id = uuid()
