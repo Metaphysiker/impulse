@@ -90,6 +90,10 @@ class CvsController < ApplicationController
     end
   end
 
+  def available_templates
+    render json: Cv.available_templates
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cv

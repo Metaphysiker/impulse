@@ -20,6 +20,8 @@
       <%= render "cv_units/cv_units", user: @user %>
       <p>
         <%#= link_to "Weiter", cv_generator_generate_cvs_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Zurück", cv_generator_update_user_for_cv_page_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
+
         <%= link_to "Weiter", cv_generator_loading_screen_path(@user), class: "btn btn-lg btn-primary", data: {cy: "cv_generator_loading_screen_button"} %>
       </p>
       </div>

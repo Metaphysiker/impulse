@@ -1,8 +1,18 @@
 var records_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>";
 var list_div = ".<%= @category %>_cv_unit_list_from_user_<%= @user.id %>";
+var cv_units_from_user_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>"
 
-content = $("<%= escape_javascript( render "cv_units/cv_unit_li_item", cv_unit: @cv_unit ) %>")
+var cv_unit = ".<%= dom_id(cv_unit) %>"
 
-$( list_div ).each(function( index ) {
-  $( this ).append(content);
+content = $("<%= escape_javascript( render "cv_units/cv_unit_list", user: @user, category: @category ) %>")
+
+$( cv_units_from_user_div ).each(function( index ) {
+
+  $( this ).fadeOut( "slow", function() {
+
+      $( this ).replaceWith(function(){
+        return $(content).hide().fadeIn("slow");
+      });
+
+  });
 });

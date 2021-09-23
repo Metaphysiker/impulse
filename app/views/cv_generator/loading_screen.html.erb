@@ -35,7 +35,8 @@
   $( document ).ready(function() {
       console.log( "CV-Generator ready!" );
 
-      var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"]
+      //var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"]
+      var cv_names = <%= raw Cv.available_templates %>;
       var iteration_value = 0;
 
 

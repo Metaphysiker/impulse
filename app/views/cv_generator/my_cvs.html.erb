@@ -54,6 +54,8 @@
   <hr />
 </section>
 
+<% if Rails.env.development? %>
 <section class="py-1 text-center container">
   <%= render 'users/cv_card', user: @user %>
 </section>
+<% end %>

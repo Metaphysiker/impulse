@@ -21,25 +21,53 @@ const lorem_ipsum_title_updated = "Lorem Ipsum Updated"
 const lorem_ipsum_content_updated = "Lorem Ipsum Content Updated"
 //
 // -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => {
-  cy.visit('localhost:3000')
+Cypress.Commands.add('login', (email) => {
+  cy.visit('http://localhost:3000/users/sign_in')
   cy.get("[data-cy=form_for_login]").within(($form) => {
     cy.get('#user_email').type(email)
-    cy.get('#user_password').type(password)
+    cy.get('#user_password').type("password")
     cy.root().submit()
   })
   cy.contains('Erfolgreich angemeldet.')
 })
 
-Cypress.Commands.add('login', (email, password) => {
-  cy.visit('localhost:3000')
-  cy.get("[data-cy=form_for_login]").within(($form) => {
+Cypress.Commands.add('signup', (email) => {
+  cy.visit('http://localhost:3000/users/sign_up')
+  cy.get("[data-cy=form_for_registration]").within(($form) => {
     cy.get('#user_email').type(email)
-    cy.get('#user_password').type(password)
+    cy.get('#user_password').type("password")
+    cy.get('#user_password_confirmation').type("password")
     cy.root().submit()
   })
-  cy.contains('Erfolgreich angemeldet.')
+  cy.contains('Sie haben sich erfolgreich registriert.')
 })
+
+Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
+  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click()
+  cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
+    cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
+      cy.get('#cv_unit_name').type(cv_unit.name)
+      cy.get('#cv_unit_content').type(cv_unit.content)
+      cy.get('#cv_unit_company').type(cv_unit.company)
+      cy.get('#cv_unit_location').type(cv_unit.location)
+      cy.get('#cv_unit_start_date_2i').select(cv_unit.start_date_2i)
+      cy.get('#cv_unit_start_date_1i').select(cv_unit.start_date_1i)
+      cy.get('#cv_unit_end_date_2i').select(cv_unit.end_date_2i)
+      cy.get('#cv_unit_end_date_1i').select(cv_unit.end_date_1i)
+    });
+    cy.root().submit()
+    cy.contains("Eintrag wurde gespeichert!");
+    cy.contains(cv_unit.name);
+    cy.contains(cv_unit.company);
+    cy.contains(cv_unit.location);
+    cy.contains(cv_unit.start_date_2i);
+    cy.contains(cv_unit.start_date_1i);
+    cy.contains(cv_unit.end_date_2i);
+    cy.contains(cv_unit.end_date_1i);
+
+  })
+})
+
 
 Cypress.Commands.add('logout', () => {
   cy.get("[data-cy=logout]").click()
@@ -47,12 +75,13 @@ Cypress.Commands.add('logout', () => {
 })
 
 Cypress.Commands.add('destroy_user_account', () => {
+  cy.visit('localhost:3000');
   cy.get("[data-cy=destroy_user_account]").click()
   cy.contains('Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.')
 })
 
 Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_name, password) => {
-  cy.visit('localhost:3000')
+  cy.visit('localhost:3000');
   cy.get('.form_for_user').within(($form) => {
     cy.get('#user_email').type(email)
     cy.get('#user_first_name').type(first_name)
@@ -62,7 +91,8 @@ Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_n
     cy.get('#user_cover').attachFile(fixtureFile);
     cy.root().submit()
   })
-  cy.contains('Account wurde erstellt!')
+  cy.contains('Account wurde erstellt!');
+  cy.logout();
 })
 
 Cypress.Commands.add('create_support_request', () => {

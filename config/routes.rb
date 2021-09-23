@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :cvs
+  get 'cv_generator/available_templates', to: "cvs#available_templates", as: "cvs_available_templates"
   get 'cv_generator/overview', to: "cv_generator#overview", as: "cv_generator_overview"
   get 'cv_generator/update_user_for_cv_page/(:user_id)', to: "cv_generator#update_user_for_cv_page", as: "cv_generator_update_user_for_cv_page"
 

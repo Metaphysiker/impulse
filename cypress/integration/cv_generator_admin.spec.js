@@ -4,15 +4,16 @@
 // If you're unfamiliar with how Cypress works,
 // check out the link below and learn how to write your first test:
 // https://on.cypress.io/writing-first-test
-describe('CV Generator', () => {
+describe('CV Generator Admin', () => {
 
   beforeEach(function () {
+    cy.create_regular_user_and_login();
     // "this" points at the test context object
     //cy.fixture('user').as('user')
   })
 
   afterEach(function(){
-    cy.destroy_user_account()
+    //cy.destroy_user_account()
   })
 
   it('creates user, enters data, generates data and expects cvs', () => {
@@ -110,8 +111,11 @@ describe('CV Generator', () => {
     cy.contains("Erstellt: 5");
     cy.contains("Erstellt: 6");
     cy.contains("Erstellt: 7");
+    cy.contains("Erstellt: 8");
     cy.contains("Erstellt: 9");
+    cy.contains("Erstellt: 10");
     cy.contains("Erstellt: 11");
+    cy.contains("Erstellt: 12");
     cy.contains("Erstellt: 13");
 
     //cy.waitUntil(() => cy.contains("Lebenslauf auswählen"));
