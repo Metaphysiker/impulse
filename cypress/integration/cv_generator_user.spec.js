@@ -2,7 +2,9 @@ describe('CvGenerator User', () => {
 
   beforeEach(function () {
 
-    cy.request('http://localhost:3000/cv_units_controller/destroy_all_cv_units')
+    cy.request('http://localhost:3000/test_data/cv_units')
+    cy.request('http://localhost:3000/test_data/users')
+    cy.request('http://localhost:3000/test_data/cvs')
 
     cy.visit('http://localhost:3000')
 
@@ -66,6 +68,8 @@ describe('CvGenerator User', () => {
         cy.contains("Erstellt: " + index);
       }
     })
+
+    //cy.downloadFile('https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg','mydownloads','example.jpg')
 
     cy.contains("Lebenslauf auswählen");
     cy.fixture('user.json').then((user) => {

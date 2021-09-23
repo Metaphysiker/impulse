@@ -8,6 +8,7 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 import 'cypress-file-upload';
+require('cypress-downloadfile/lib/downloadFileCommand');
 //
 const model_name_singular_german = "Call for Help"
 const model_name_plural_german = "Call for Help"

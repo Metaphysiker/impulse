@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  if Rails.env.development?
+    get 'test_data/cv_units'
+    get 'test_data/users'
+    get 'test_data/cvs'
+  end
+
+
   resources :admin do
     collection do
       get 'overview'
@@ -130,10 +137,6 @@ Rails.application.routes.draw do
   #devise_for :users, controllers: {
   #  sessions: 'users/sessions'
   #}
-
-  if Rails.env.development?
-    get '/cv_units_controller/destroy_all_cv_units', to: "cv_units#destroy_all_cv_units"
-  end
 
   post '/cv_units/create_cv_unit/', to: "cv_units#create_cv_unit", as: "create_cv_unit"
   post '/cv_units/remove_cv_unit/:id', to: "cv_units#remove_cv_unit", as: "remove_cv_unit"

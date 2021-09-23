@@ -99,12 +99,6 @@ class CvUnitsController < ApplicationController
     end
   end
 
-  if Rails.env.development?
-    def destroy_all_cv_units
-      CvUnit.destroy_all
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cv_unit
