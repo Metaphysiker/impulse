@@ -54,19 +54,88 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
       cy.get('#cv_unit_start_date_1i').select(cv_unit.start_date_1i)
       cy.get('#cv_unit_end_date_2i').select(cv_unit.end_date_2i)
       cy.get('#cv_unit_end_date_1i').select(cv_unit.end_date_1i)
-    });
     cy.root().submit()
-    cy.contains("Eintrag wurde gespeichert!");
-    cy.contains(cv_unit.name);
-    cy.contains(cv_unit.company);
-    cy.contains(cv_unit.location);
-    cy.contains(cv_unit.start_date_2i);
-    cy.contains(cv_unit.start_date_1i);
-    cy.contains(cv_unit.end_date_2i);
-    cy.contains(cv_unit.end_date_1i);
+    });
+  });
 
-  })
+  cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
+      cy.contains("Eintrag wurde gespeichert!");
+      cy.contains(cv_unit.name);
+      cy.contains(cv_unit.content);
+      cy.contains(cv_unit.company);
+      cy.contains(cv_unit.location);
+      cy.contains(cv_unit.start_date_2i);
+      cy.contains(cv_unit.start_date_1i);
+      cy.contains(cv_unit.end_date_2i);
+      cy.contains(cv_unit.end_date_1i);
+      cy.contains(cv_unit.name).parent().within(($parent) => {
+        cy.get("[data-cy=edit_cv_unit]").click()
+      });
+    });
+
+    cy.fixture("cv_unit_" + cv_unit_category + "_edited.json").then((cv_unit_edited) => {
+      cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
+          cy.get('#cv_unit_name').clear().type(cv_unit_edited.name)
+          cy.get('#cv_unit_content').clear().type(cv_unit_edited.content)
+          cy.get('#cv_unit_company').clear().type(cv_unit_edited.company)
+          cy.get('#cv_unit_location').clear().type(cv_unit_edited.location)
+          cy.get('#cv_unit_start_date_2i').select(cv_unit_edited.start_date_2i)
+          cy.get('#cv_unit_start_date_1i').select(cv_unit_edited.start_date_1i)
+          cy.get('#cv_unit_end_date_2i').select(cv_unit_edited.end_date_2i)
+          cy.get('#cv_unit_end_date_1i').select(cv_unit_edited.end_date_1i)
+        cy.root().submit()
+      });
+
+      cy.fixture("cv_unit_" + cv_unit_category + "_edited.json").then((cv_unit_edited) => {
+          cy.contains("Eintrag wurde aktualisiert!");
+          cy.contains(cv_unit_edited.name);
+          cy.contains(cv_unit_edited.content);
+          cy.contains(cv_unit_edited.company);
+          cy.contains(cv_unit_edited.location);
+          cy.contains(cv_unit_edited.start_date_2i);
+          cy.contains(cv_unit_edited.start_date_1i);
+          cy.contains(cv_unit_edited.end_date_2i);
+          cy.contains(cv_unit_edited.end_date_1i);
+        });
+
+    });
 })
+
+Cypress.Commands.add('fill_in_skills_cv_unit', (cv_unit_category) => {
+  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click()
+  cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
+    cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
+      cy.get('#cv_unit_name').type(cv_unit.name)
+      cy.get('#cv_unit_content').type(cv_unit.content)
+    cy.root().submit()
+    });
+  });
+
+  cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
+      cy.contains("Eintrag wurde gespeichert!");
+      cy.contains(cv_unit.name);
+      cy.contains(cv_unit.content);
+      cy.contains(cv_unit.name).parent().within(($parent) => {
+        cy.get("[data-cy=edit_cv_unit]").click()
+      });
+    });
+
+    cy.fixture("cv_unit_" + cv_unit_category + "_edited.json").then((cv_unit_edited) => {
+      cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
+          cy.get('#cv_unit_name').clear().type(cv_unit_edited.name)
+          cy.get('#cv_unit_content').clear().type(cv_unit_edited.content)
+        cy.root().submit()
+      });
+
+      cy.fixture("cv_unit_" + cv_unit_category + "_edited.json").then((cv_unit_edited) => {
+          cy.contains("Eintrag wurde aktualisiert!");
+          cy.contains(cv_unit_edited.name);
+          cy.contains(cv_unit_edited.content);
+        });
+
+    });
+})
+
 
 
 Cypress.Commands.add('logout', () => {

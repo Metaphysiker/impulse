@@ -25,7 +25,7 @@ class CvUnitsController < ApplicationController
 
     respond_to do |format|
       if @cv_unit.save
-        format.html { redirect_to @cv_unit, notice: "Cv unit was successfully created." }
+        format.html { redirect_to @cv_unit, notice: "Eintrag wurde erstellt!" }
         format.json { render :show, status: :created, location: @cv_unit }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class CvUnitsController < ApplicationController
   def update
     respond_to do |format|
       if @cv_unit.update(cv_unit_params)
-        format.html { redirect_to cv_generator_update_cv_units_for_user_page_path(@cv_unit.user), notice: "Cv unit was successfully updated." }
+        format.html { redirect_to cv_generator_update_cv_units_for_user_page_path(@cv_unit.user), notice: "Eintrag wurde aktualisiert!" }
         format.json { render :show, status: :ok, location: @cv_unit }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class CvUnitsController < ApplicationController
   def destroy
     @cv_unit.destroy
     respond_to do |format|
-      format.html { redirect_to cv_units_url, notice: "Cv unit was successfully destroyed." }
+      format.html { redirect_to cv_units_url, notice: "Eintrag wurde gelöscht!" }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class CvUnitsController < ApplicationController
 
     respond_to do |format|
       if @cv_unit.save
-        format.html { redirect_to @cv_unit, notice: 'cv_unit was successfully created.' }
+        format.html { redirect_to @cv_unit, notice: 'Eintrag wurde erstellt!' }
         format.json { render :show, status: :created, location: @cv_unit }
         format.js
       else
@@ -88,7 +88,7 @@ class CvUnitsController < ApplicationController
 
     respond_to do |format|
       if @cv_unit.update(cv_unit_params)
-        format.html { redirect_to @cv_unit, notice: 'cv_unit was successfully created.' }
+        format.html { redirect_to @cv_unit, notice: 'Eintrag wurde aktualisiert!' }
         format.json { render :show, status: :created, location: @cv_unit }
         format.js
       else

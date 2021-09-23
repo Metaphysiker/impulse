@@ -53,16 +53,8 @@ describe('CvGenerator User', () => {
 
     cy.fill_in_cv_unit("experience");
     cy.fill_in_cv_unit("education");
+    cy.fill_in_skills_cv_unit("skills");
 
-    //cy-new-entry-in-<%= category%>
-    cy.get('[data-cy=new-entry-in-skills]').click()
-    cy.get('[data-cy=form_for_cv_unit_category_skills]').within(($form) => {
-      cy.fixture('cv_unit_skills.json').then((cv_unit) => {
-        cy.get('#cv_unit_name').type(cv_unit.name)
-        cy.get('#cv_unit_content').type(cv_unit.content)
-      })
-      cy.root().submit()
-    })
 
     //cy.contains("cv_generator_loading_screen_button").first().click();
     cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
@@ -88,19 +80,19 @@ describe('CvGenerator User', () => {
       }
     });
 
-    cy.fixture('cv_unit_education.json').then((user) => {
+    cy.fixture('cv_unit_education_edited.json').then((user) => {
       for (var attribute in user) {
         cy.contains(user[attribute])
       }
     });
 
-    cy.fixture('cv_unit_experience.json').then((user) => {
+    cy.fixture('cv_unit_experience_edited.json').then((user) => {
       for (var attribute in user) {
         cy.contains(user[attribute])
       }
     });
 
-    cy.fixture('cv_unit_skills.json').then((user) => {
+    cy.fixture('cv_unit_skills_edited.json').then((user) => {
       for (var attribute in user) {
         cy.contains(user[attribute])
       }

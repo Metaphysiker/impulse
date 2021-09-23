@@ -2,7 +2,7 @@ var records_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>";
 var list_div = ".<%= @category %>_cv_unit_list_from_user_<%= @user.id %>";
 var cv_units_from_user_div = ".<%= @category %>_cv_units_from_user_<%= @user.id %>"
 
-var cv_unit = ".<%= dom_id(cv_unit) %>"
+var cv_unit = ".<%= dom_id(@cv_unit) %>"
 
 content = $("<%= escape_javascript( render "cv_units/cv_unit_list", user: @user, category: @category ) %>")
 
@@ -11,7 +11,17 @@ $( cv_units_from_user_div ).each(function( index ) {
   $( this ).fadeOut( "slow", function() {
 
       $( this ).replaceWith(function(){
-        return $(content).hide().fadeIn("slow");
+        return $(content).hide().fadeIn("slow", function(){
+
+        $(cv_unit).prepend(`<div class=\"alert alert-success\" role=\"alert\">
+                          Eintrag wurde gespeichert!
+                          </div>`);
+
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $(cv_unit).first().offset().top
+        }, 2000);
+
+        });
       });
 
   });
