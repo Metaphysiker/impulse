@@ -3,7 +3,7 @@ describe('CvGenerator User', () => {
   beforeEach(function () {
 
     cy.request('http://localhost:3000/cv_units_controller/destroy_all_cv_units')
-    
+
     cy.visit('http://localhost:3000')
 
     cy.fixture('user.json').then((user) => {
@@ -58,26 +58,16 @@ describe('CvGenerator User', () => {
     cy.fill_in_cv_unit("experience");
     cy.fill_in_cv_unit("education");
     cy.fill_in_skills_cv_unit("skills");
-
-
-    //cy.contains("cv_generator_loading_screen_button").first().click();
     cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
-
-    //cy.request('http://localhost:3000/cv_generator/available_templates')as.('available_templates');
-
     cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
       console.log(templates.body);
       for (var index = 0; index < templates.body.length; index++) {
         console.log(index);
         cy.contains("Erstellt: " + index);
       }
-
     })
 
-
-    //cy.waitUntil(() => cy.contains("Lebenslauf auswählen"));
     cy.contains("Lebenslauf auswählen");
-
     cy.fixture('user.json').then((user) => {
       for (var attribute in user) {
         cy.contains(user[attribute])
@@ -101,15 +91,5 @@ describe('CvGenerator User', () => {
         cy.contains(user[attribute])
       }
     });
-
-    //cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
-  //  var genArr = Array.from({length:250},(v,k)=>k+1)
-  //  cy.wrap(genArr).each((index) => {
-  //      cy.get("#button-" + index).click()
-  //   })
-
   })
-
-
-
 })
