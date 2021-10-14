@@ -40,6 +40,6 @@ odf-templates/rendered/*
 yarn-debug.log*
 .yarn-integrity
 
-/odf-templates/*
+/odf-templates/rendered
 
 latest.dump

@@ -32,10 +32,10 @@ Cypress.Commands.add('login', (email) => {
   cy.contains('Erfolgreich angemeldet.')
 })
 
-Cypress.Commands.add('signup', (email) => {
+Cypress.Commands.add('signup', (user) => {
   cy.visit('http://localhost:3000/users/sign_up')
   cy.get("[data-cy=form_for_registration]").within(($form) => {
-    cy.get('#user_email').type(email)
+    cy.get('#user_email').type(user["email"])
     cy.get('#user_password').type("password")
     cy.get('#user_password_confirmation').type("password")
     cy.root().submit()

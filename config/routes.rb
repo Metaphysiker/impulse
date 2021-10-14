@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'test_data/cv_units'
     get 'test_data/users'
     get 'test_data/cvs'
+    get 'test_data/generate_fake_users_and_json'
   end
 
 

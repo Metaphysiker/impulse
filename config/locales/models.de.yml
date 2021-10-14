@@ -40,3 +40,7 @@ de:
       support_request:
         title: "Titel"
         content: "Inhalt"
+      cv_unit:
+        name: "Name"
+        company: "Firma oder Organisation"
+        content: "Inhalt"

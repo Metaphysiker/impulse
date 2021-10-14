@@ -31,8 +31,15 @@ has_many :roles, :through => :user_roles
  end
 
   def self.showable_attribute_names
-    ["email", "name", "address", "phone", "localized_birth_day",
+    ["email", "name", "address", "birth_day", "phone", "localized_birth_day",
        "recruitment_consultant", "disposal_period", "personal_number", "unemployment_insurance_number",
+       "job_title", "website", "short_description", "long_description"
+     ]
+  end
+
+  def self.showable_attribute_names_for_test
+    ["email", "first_name", "last_name", "address", "location", "plz", "street", "power_word1", "power_word2", "power_word3", "birth_day", "phone", "localized_birth_day",
+      "disposal_period", "quote", "nationality", "marital_status",
        "job_title", "website", "short_description", "long_description"
      ]
   end

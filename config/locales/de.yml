@@ -30,6 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 de:
+  application_name: "Impulsiv"
+  experience: "Berufserfahrung"
+  education: "Ausbildung"
+  skills: "Fähigkeiten"
   hello: "Hello world"
   date:
     formats:
