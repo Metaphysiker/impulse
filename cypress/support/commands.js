@@ -40,7 +40,7 @@ Cypress.Commands.add('signup', (user) => {
     cy.get('#user_password_confirmation').type("password")
     cy.root().submit()
   })
-  cy.contains('Sie haben sich erfolgreich registriert.')
+  cy.contains('Sie haben sich erfolgreich registriert!')
 })
 
 Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {

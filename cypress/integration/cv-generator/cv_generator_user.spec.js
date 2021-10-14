@@ -21,9 +21,9 @@ describe('CvGenerator User', () => {
 
 
   it('tries to generate cvs', () => {
-    cy.visit('http://localhost:3000')
-    cy.get('[data-cy=i_am_mentee]').click()
-    cy.get('[data-cy=i_want_to_create_a_cv]').click()
+    //cy.visit('http://localhost:3000')
+    //cy.get('[data-cy=i_am_mentee]').click()
+    //cy.get('[data-cy=i_want_to_create_a_cv]').click()
     cy.get('[data-cy=update_user_for_cv_form]').within(($form) => {
 
       cy.fixture('first_batch_of_users.json').then((users) => {

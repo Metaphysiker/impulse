@@ -22,6 +22,11 @@ class CvGeneratorController < ApplicationController
   end
 
   def update_user_for_cv_page
+    #byebug
+    if params[:flash].present?
+      flash[:success] = params[:flash]
+    end
+
     if params[:user_id].present?
       @user = User.find(params[:user_id])
     elsif user_signed_in?
