@@ -11,15 +11,7 @@
       <div class="card-body">
         <table class="table">
         <tbody>
-          <tr>
-            <td>
-              Datum für Test
-            </td>
-            <td>
-              <%= user.birth_day.strftime("%F") %>
-            </td>
-          </tr>
-          <% User.showable_attribute_names_for_cv.each do |name| %>
+          <% User.showable_attribute_names_for_test.each do |name| %>
             <tr>
               <td>
                 <strong><%= User.human_attribute_name(name) %>: </strong>
