@@ -3,7 +3,11 @@
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Willkommen auf Impulsiv!</h1>
       <p class="lead text-muted">Auf dieser Seite können Sie neue Lebensläufe erstellen.</p>
-      <p class="">Bitte melden Sie sich an oder erstellen Sie ein neues Profil.</p>
+      <% unless user_signed_in? %>
+        <p class="">Bitte melden Sie sich an oder erstellen Sie ein neues Profil.</p>
+      <% else %>
+        <%= link_to t("create_new_cv"), cv_generator_update_user_for_cv_page_path(current_user), class: "btn btn-lg btn-primary" %>
+      <% end %>
     </div>
   </div>
 </section>

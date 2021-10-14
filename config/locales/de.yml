@@ -36,7 +36,10 @@ de:
   skills: "Fähigkeiten"
   hello: "Hello world"
   login: "Anmelden"
+  logout: "Abmelden"
   signup: "Neues Profil erstellen"
+  create_new_cv: "Lebenslauf erstellen"
+  view_my_cvs: "Lebensläufe ansehen"
   date:
     formats:
       month_year: "%B %Y"
