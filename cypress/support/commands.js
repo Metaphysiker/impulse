@@ -22,10 +22,10 @@ const lorem_ipsum_title_updated = "Lorem Ipsum Updated"
 const lorem_ipsum_content_updated = "Lorem Ipsum Content Updated"
 //
 // -- This is a parent command --
-Cypress.Commands.add('login', (email) => {
+Cypress.Commands.add('login', (user) => {
   cy.visit('http://localhost:3000/users/sign_in')
   cy.get("[data-cy=form_for_login]").within(($form) => {
-    cy.get('#user_email').type(email)
+    cy.get('#user_email').type(user["email"])
     cy.get('#user_password').type("password")
     cy.root().submit()
   })
@@ -41,6 +41,89 @@ Cypress.Commands.add('signup', (user) => {
     cy.root().submit()
   })
   cy.contains('Sie haben sich erfolgreich registriert!')
+})
+
+Cypress.Commands.add('create_cvs', (user) => {
+
+
+
+
+  cy.get('[data-cy=update_user_for_cv_form]').within(($form) => {
+
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+
+      var user = users[0];
+      //cy.get('#user_email').type(user.email)
+      //cy.get('#user_email').type(unique_email)
+      //cy.get('#user_password').type("password")
+      cy.get('#user_first_name').type(user.first_name)
+      cy.get('#user_last_name').type(user.last_name)
+      cy.get('#user_location').type(user.location)
+      cy.get('#user_plz').type(user.plz)
+      cy.get('#user_street').type(user.street)
+      cy.get('#user_phone').type(user.phone)
+      cy.get('#user_birth_day_3i').select(Number(user.birth_day.split("-")[2]).toString());
+      cy.get('#user_birth_day_2i').select(Number(user.birth_day.split("-")[1]).toString())
+      cy.get('#user_birth_day_1i').select(Number(user.birth_day.split("-")[0]).toString())
+      cy.get('#user_job_title').type(user.job_title)
+      cy.get('#user_website').type(user.website)
+      cy.get('#user_short_description').type(user.short_description)
+      cy.get('#user_long_description').type(user.long_description)
+      cy.get('#user_power_word1').type(user.power_word1)
+      cy.get('#user_power_word2').type(user.power_word2)
+      cy.get('#user_power_word3').type(user.power_word3)
+      cy.get('#user_quote').type(user.quote)
+      cy.get('#user_nationality').type(user.nationality)
+      cy.get('#user_marital_status').type(user.marital_status)
+    });
+
+    cy.root().submit()
+  })
+
+  cy.fill_in_cv_unit("experience");
+  cy.fill_in_cv_unit("education");
+  cy.fill_in_skills_cv_unit("skills");
+  cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
+  cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
+    console.log(templates.body);
+    for (var index = 0; index < templates.body.length; index++) {
+      console.log(index);
+      cy.contains("Erstellt: " + index);
+    }
+  })
+
+  //cy.downloadFile('https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg','mydownloads','example.jpg')
+
+  cy.contains("Lebenslauf auswählen");
+  cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+    var user = users[0];
+    for (var attribute in user) {
+      cy.contains(user[attribute])
+    }
+  });
+
+  cy.readFile('cypress/fixtures/cv_unit_education_edited.json').then((user) => {
+    for (var attribute in user) {
+      cy.contains(user[attribute])
+    }
+  });
+
+  cy.readFile('cypress/fixtures/cv_unit_experience_edited.json').then((user) => {
+    for (var attribute in user) {
+      cy.contains(user[attribute])
+    }
+  });
+
+  cy.readFile('cypress/fixtures/cv_unit_skills_edited.json').then((user) => {
+    for (var attribute in user) {
+      cy.contains(user[attribute])
+    }
+  });
+
+
+
+
+
 })
 
 Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {

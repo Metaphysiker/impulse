@@ -1,26 +1,59 @@
 describe('CvGenerator Admin', () => {
 
+  before(function () {
+    cy.request('http://localhost:3000/test_data/generate_json_of_translation')
+  })
+
   beforeEach(function () {
 
-    cy.request('http://localhost:3000/test_data/generate_fake_users_and_json')
     cy.request('http://localhost:3000/test_data/cv_units')
     cy.request('http://localhost:3000/test_data/users')
     cy.request('http://localhost:3000/test_data/cvs')
 
+    cy.request('http://localhost:3000/test_data/generate_fake_users_and_json')
+    cy.request('http://localhost:3000/test_data/generate_fake_admins_and_json')
+
     cy.visit('http://localhost:3000')
 
-    cy.fixture('first_batch_of_users.json').then((users) => {
-      cy.signup(users[0]);
+    cy.readFile('cypress/fixtures/first_batch_of_admins.json').then((users) => {
+      cy.login(users[0]);
     });
 
   })
 
   afterEach(function(){
-    cy.destroy_user_account();
+    cy.logout();
+  })
+
+  it('visits admin_area and expects to see people', () => {
+    cy.fixture('locales/de.json').should((de) => {
+      expect(de["de"]["admin_area"]).to.exist
+    })
+
+    cy.get('[data-cy=admin_area_button]').first().click();
+
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+      for (var number in users) {
+        expect(users[number]["first_name"]).to.exist
+        expect(users[number]["last_name"]).to.exist
+      }
+    });
+  })
+
+  it('tries to generate cvs with another user', () => {
+
+    cy.get('[data-cy=admin_area_button]').first().click();
+
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+      cy.contains(users[0]["first_name"] + " " + users[0]["last_name"]).first().parent().within(() => {
+        cy.get('[data-cy=generate_cvs_for_this_user_button]').first().click();
+      })
+    });
+
   })
 
 
-  it('tries to generate cvs', () => {
+  xit('tries to generate cvs', () => {
     //cy.visit('http://localhost:3000')
     //cy.get('[data-cy=i_am_mentee]').click()
     //cy.get('[data-cy=i_want_to_create_a_cv]').click()

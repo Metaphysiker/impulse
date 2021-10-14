@@ -40,6 +40,7 @@ de:
   signup: "Neues Profil erstellen"
   create_new_cv: "Lebenslauf erstellen"
   view_my_cvs: "Lebensläufe ansehen"
+  admin_area: "Admin-Bereich"
   date:
     formats:
       month_year: "%B %Y"
