@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
       <%= link_to root_path, class: "navbar-brand text-h-color" do %>
-          Impulse
+          Impulsiv
       <% end %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,17 +12,19 @@
           <% if policy(:admin).overview? %>
             <li class="nav-item">
               <%= link_to "Admin-Bereich", overview_admin_index_path, class:"nav-link"  %>
-            </li>         
+            </li>
           <% end %>
+          <% if false %>
           <li class="nav-item">
             <%= link_to "Tauschbörse", exchange_path, class:"nav-link"  %>
           </li>
+          <% end %>
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "Mein Impulse", workspace_path, class:"nav-link"  %>
             </li>
             <li class="nav-item">
-              <%= link_to "Lebenslauf", cv_generator_my_cvs_path(current_user), class:"nav-link"  %>
+              <%= link_to "Lebensläufe erstellen", cv_generator_my_cvs_path(current_user), class:"nav-link"  %>
             </li>
           <% end %>
         </ul>

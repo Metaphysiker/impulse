@@ -188,7 +188,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :first_name, :last_name, :email, :password, :cover,
+      :first_name, :last_name, :email, :password, :password_confirmation, :cover,
       :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
     :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number,
     :job_title, :website, :short_description, :nationality, :marital_status, :long_description, :power_word1, :power_word2, :power_word3, :quote, :expertise_ids => [])

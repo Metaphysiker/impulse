@@ -35,6 +35,8 @@ de:
   education: "Ausbildung"
   skills: "Fähigkeiten"
   hello: "Hello world"
+  login: "Anmelden"
+  signup: "Neues Profil erstellen"
   date:
     formats:
       month_year: "%B %Y"

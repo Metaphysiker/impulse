@@ -10,11 +10,7 @@ describe('CvGenerator User', () => {
     cy.visit('http://localhost:3000')
 
     cy.fixture('first_batch_of_users.json').then((users) => {
-      //const uuid = () => Cypress._.random(0, 1e6)
-      //const id = uuid()
-      //const unique_email = `${user.email}${id}`
       cy.signup(users[0]);
-      //cy.wrap(unique_email).as('unique_email')
     });
 
   })

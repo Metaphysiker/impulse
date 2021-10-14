@@ -1,0 +1,11 @@
+<%= simple_form_for user, url: create_user_as_user_path, html: { class: "form_for_user", data: { cy: "form_for_registration" }}, method: :post, remote: true do |f| %>
+<h5><u><%= t("signup") %></u></h5>
+<p>
+  <%= f.input :email%>
+  <br />
+  <%= f.input :password %>
+  <br />
+  <%= f.input :password_confirmation %>
+</p>
+  <%= f.submit "Anmelden", class: "btn btn-light border my-2" %>
+<% end %>

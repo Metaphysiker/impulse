@@ -1,13 +1,38 @@
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
+<section class="py-3 text-center container">
+  <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">Herzlich Willkommen</h1>
-      <p class="lead text-muted"> Wie können wir Ihnen helfen?</p>
-      <p>
-        <%= link_to "Ich bin ein Mentee", mentee_overview_path, class: "btn btn-lg btn-primary my-2", data: {cy: "i_am_mentee"} %>
-        <br />
-        <%= link_to "Ich bin ein Mentor", workspace_path, class: "btn btn-lg btn-success my-2" %>
-      </p>
+      <h1 class="fw-light">Willkommen auf Impulsiv!</h1>
+      <p class="lead text-muted">Auf dieser Seite können Sie neue Lebensläufe erstellen.</p>
+      <p class="">Bitte melden Sie sich an oder erstellen Sie ein neues Profil.</p>
     </div>
   </div>
 </section>
+
+<% unless user_signed_in? %>
+<section>
+  <div class="container">
+      <div class="row mb-4">
+        <div class="col-sm-12 col-md-6 mb-2">
+          <div class="border rounded p-3 h-100">
+              <%= render 'devise/sessions/new' %>
+              <div class="mt-4">
+                <p class="">
+                  <strong><u>Zum Ausprobieren:</u></strong>
+                  <br />
+                  <strong>e-Mail: </strong>test@gmail.com
+                  <br />
+                  <strong>Password: </strong>abcdef
+                </p>
+              </div>
+
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="border rounded p-3 mb-2 h-100">
+            <%= render 'devise/registrations/new', user: User.new %>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<% end %>

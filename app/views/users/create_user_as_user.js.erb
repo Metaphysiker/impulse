@@ -3,13 +3,11 @@ var errors = <%= raw @user.errors.full_messages %>;
 console.log(errors);
 
 if (jQuery.isEmptyObject(errors)) {
-  console.log("keine Fehler");
-  window.location = "<%= exchange_path(flash: 'Account wurde erstellt!') %>";
+  window.location = "<%= cv_generator_update_user_for_cv_page_path(@user, flash: 'Account wurde erstellt!') %>";
 
 } else {
-  console.log("Fehler vorhanden");
 
-    content = $("<%= escape_javascript( render 'users/form_for_user', user: @user ) %>");
+    content = $("<%= escape_javascript( render 'devise/registrations/new', user: @user ) %>");
 
     $(record_id).replaceWith(function(){
       return $(content).hide().fadeIn("slow");
