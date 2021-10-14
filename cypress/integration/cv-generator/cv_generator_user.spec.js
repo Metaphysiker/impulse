@@ -28,9 +28,9 @@ describe('CvGenerator User', () => {
     //cy.visit('http://localhost:3000')
     //cy.get('[data-cy=i_am_mentee]').click()
     //cy.get('[data-cy=i_want_to_create_a_cv]').click()
-
-
-
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+      cy.create_cvs(users[0])
+    });
 
   })
 })

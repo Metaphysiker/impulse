@@ -58,8 +58,17 @@ class CvUnitsController < ApplicationController
 
   def create_cv_unit
     @cv_unit = CvUnit.new(cv_unit_params)
-    @cv_unit.user_id = current_user.id
-    @user = current_user
+
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    elsif user_signed_in?
+      @user = current_user
+    end
+    #byebug
+    puts @user.id
+    
+    @cv_unit.user_id = @user.id
+
     @category = params[:cv_unit][:category]
 
     respond_to do |format|
@@ -78,7 +87,13 @@ class CvUnitsController < ApplicationController
   def remove_cv_unit
     @cv_unit = CvUnit.find(params[:id])
     @category = @cv_unit.category
-    @user = current_user
+
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    elsif user_signed_in?
+      @user = current_user
+    end
+
     @cv_unit.delete
   end
 

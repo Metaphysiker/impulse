@@ -21,7 +21,7 @@
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
 <% end %>
-<%= simple_form_for(cv_unit, url: update_cv_unit_path(cv_unit), method: :put, remote: true) do |f| %>
+<%= simple_form_for(cv_unit, url: update_cv_unit_path(cv_unit, user_id: @user), method: :put, remote: true) do |f| %>
 <p>
   <%= f.input :name, label: name_label %>
   <%#= f.input :content, label: false, placeholder: "" %>

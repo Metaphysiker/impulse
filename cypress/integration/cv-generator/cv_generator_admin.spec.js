@@ -50,6 +50,10 @@ describe('CvGenerator Admin', () => {
       })
     });
 
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+      cy.create_cvs(users[0])
+    });
+
   })
 
 
