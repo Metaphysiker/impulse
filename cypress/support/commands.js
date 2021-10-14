@@ -145,9 +145,9 @@ Cypress.Commands.add('logout', () => {
 })
 
 Cypress.Commands.add('destroy_user_account', () => {
-  cy.visit('localhost:3000');
-  cy.get("[data-cy=destroy_user_account]").click()
-  cy.contains('Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.')
+  //cy.visit('localhost:3000');
+  //cy.get("[data-cy=destroy_user_account]").first().click();
+  //cy.contains('Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.')
 })
 
 Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_name, password) => {

@@ -15,7 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import 'cypress-wait-until';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -23,8 +22,3 @@ import 'cypress-wait-until';
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
-
-const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
-module.exports = (on, config) => {
-  on('task', {downloadFile})
-}

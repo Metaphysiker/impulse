@@ -19,7 +19,7 @@ describe('CvGenerator User', () => {
   })
 
   afterEach(function(){
-    cy.destroy_user_account()
+    cy.destroy_user_account();
   })
 
 

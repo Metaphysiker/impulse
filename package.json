@@ -10,13 +10,14 @@
     "bootstrap": "4.5",
     "cypress-downloadfile": "^1.2.1",
     "gojs": "^2.1.23",
+    "graceful-fs": "^4.2.8",
     "jquery": "^3.5.1",
     "ol": "^6.3.1",
     "popper.js": "^1.16.1"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "cypress": "^8.3.1",
+    "cypress": "^8.6.0",
     "cypress-file-upload": "^5.0.5",
     "cypress-wait-until": "^1.7.1",
     "webpack-dev-server": "^3.11.0"
