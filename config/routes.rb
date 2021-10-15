@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
   get '/static_pages/cv_generator', to: "static_pages#cv_generator", as: 'cv_generator'
   get '/cv_generator/generate_single_cv/(:file_name)', to: "cv_generator#generate_single_cv", as: 'generate_single_cv'
-  get '/cv_generator/generate_and_get_single_cv/(:name)', to: "cv_generator#generate_and_get_single_cv", as: 'generate_and_get_single_cv'
+  get '/cv_generator/generate_and_get_single_cv(/:name)(/:user_id)', to: "cv_generator#generate_and_get_single_cv", as: 'generate_and_get_single_cv'
 
   get '/static_pages/dashboard', to: 'static_pages#dashboard', as: 'dashboard'
   get '/static_pages/impressum', to: 'static_pages#impressum', as: 'impressum'

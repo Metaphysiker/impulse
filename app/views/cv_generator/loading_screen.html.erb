@@ -37,6 +37,7 @@
 
       //var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"]
       var cv_names = <%= raw Cv.available_templates %>;
+      var user_id = <%= raw @user.id %>;
       var iteration_value = 0;
 
 
@@ -56,7 +57,7 @@
         console.log("Done: " + cv_name);
 
         $.ajax({
-          url: "<%= generate_and_get_single_cv_path %>/" + cv_name,
+          url: "<%= generate_and_get_single_cv_path %>/" + cv_name + "/" + user_id,
           method: 'GET',
           headers: {
             'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content

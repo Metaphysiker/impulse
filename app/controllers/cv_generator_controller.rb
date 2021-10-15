@@ -150,13 +150,18 @@ class CvGeneratorController < ApplicationController
   end
 
   def generate_and_get_single_cv
+    if params[:user_id].present?
+      user = User.find(params[:user_id])
+    else
+      user = current_user
+    end
+
     name = params[:name]
-    @cv = generate_single_cv_and_save(name)
+    @cv = generate_single_cv_and_save(name, user)
   end
 
-  def generate_single_cv_and_save(file_name)
+  def generate_single_cv_and_save(file_name, user)
     #attribute_array = ["last_name", "first_name"]
-    user = current_user
     #if params[:file_name].present?
     #  file_name = params[:file_name]
     #else
