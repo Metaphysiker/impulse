@@ -26,6 +26,16 @@
 
 <section class="py-1 text-center container-fluid">
 <hr />
+  <% if @user.cvs.empty? %>
+    <p>
+      <strong>Sie haben noch keine Lebensläufe erstellt!</strong>
+    </p>
+    <p>
+      Bitte erstellen Sie Ihre Lebensläufe:<br />
+      <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path(@user) %>
+    </p>
+  <% end %>
+
   <% @user.cvs.each do |cv| %>
   <div class="row">
       <div class="col-9">
