@@ -76,35 +76,40 @@ Cypress.Commands.add('create_cvs', (user) => {
   cy.fill_in_skills_cv_unit("skills");
   cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
   cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
-    console.log(templates.body);
     for (var index = 0; index < templates.body.length; index++) {
-      console.log(index);
       cy.contains("Erstellt: " + index);
     }
   })
 
-  cy.contains("Lebenslauf auswählen");
+  expect("Lebenslauf auswählen").to.exist
+
+  cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
+    for (var index = 0; index < templates.body.length; index++) {
+      expect(templates.body[index]).to.exist
+      cy.get('[data-cy=download_odt_' + templates.body[index] +']').should('be.visible');
+    }
+  })
 
     for (var attribute in user) {
-      cy.contains(user[attribute])
+      expect(user[attribute]).to.exist
     }
 
 
   cy.readFile('cypress/fixtures/cv_unit_education_edited.json').then((user) => {
     for (var attribute in user) {
-      cy.contains(user[attribute])
+      expect(user[attribute]).to.exist
     }
   });
 
   cy.readFile('cypress/fixtures/cv_unit_experience_edited.json').then((user) => {
     for (var attribute in user) {
-      cy.contains(user[attribute])
+      expect(user[attribute]).to.exist
     }
   });
 
   cy.readFile('cypress/fixtures/cv_unit_skills_edited.json').then((user) => {
     for (var attribute in user) {
-      cy.contains(user[attribute])
+      expect(user[attribute]).to.exist
     }
   });
 
