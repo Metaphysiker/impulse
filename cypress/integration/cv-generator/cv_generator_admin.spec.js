@@ -6,11 +6,11 @@ describe('CvGenerator Admin', () => {
 
   beforeEach(function () {
 
-    cy.request('http://localhost:3000/test_data/cv_units')
-    cy.request('http://localhost:3000/test_data/users')
-    cy.request('http://localhost:3000/test_data/cvs')
-
-    cy.request('http://localhost:3000/test_data/generate_fake_users_and_json')
+    cy.request('http://localhost:3000/test_data/destroy_all_cv_units')
+    cy.request('http://localhost:3000/test_data/destroy_all_users')
+    cy.request('http://localhost:3000/test_data/destroy_all_cvs')
+    cy.request('http://localhost:3000/test_data/generate_first_batch_of_users')
+    cy.request('http://localhost:3000/test_data/generate_second_batch_of_users')
     cy.request('http://localhost:3000/test_data/generate_fake_admins_and_json')
 
     cy.visit('http://localhost:3000')
@@ -50,12 +50,11 @@ describe('CvGenerator Admin', () => {
       })
     });
 
-    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+    cy.readFile('cypress/fixtures/second_batch_of_users.json').then((users) => {
       cy.create_cvs(users[0])
     });
 
   })
-
 
   xit('tries to generate cvs', () => {
     //cy.visit('http://localhost:3000')

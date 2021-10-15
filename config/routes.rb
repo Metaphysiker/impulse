@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   if Rails.env.development?
-    get 'test_data/cv_units'
-    get 'test_data/users'
-    get 'test_data/cvs'
-    get 'test_data/generate_fake_users_and_json'
+    get 'test_data/destroy_all_cv_units'
+    get 'test_data/destroy_all_users'
+    get 'test_data/destroy_all_cvs'
+    get 'test_data/generate_first_batch_of_users'
+    get 'test_data/generate_second_batch_of_users'
     get 'test_data/generate_fake_admins_and_json'
     get 'test_data/generate_json_of_translation'
   end
