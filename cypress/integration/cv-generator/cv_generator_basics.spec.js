@@ -24,10 +24,10 @@ describe('CvGenerator Basics', () => {
     });
 
     cy.get('[data-cy=view_my_cvs]').first().click();
-    
+
     cy.fixture('locales/de.json').should((de) => {
-      expect(de["de"]["no_cvs_created"]).to.exist
-      expect(de["de"]["please_create_cvs"]).to.exist
+      cy.contains(de["de"]["no_cvs_created"]).should('be.visible');
+      cy.contains(de["de"]["please_create_cvs"]).should('be.visible');
     })
 
 

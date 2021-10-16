@@ -77,39 +77,41 @@ Cypress.Commands.add('create_cvs', (user) => {
   cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
   cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
     for (var index = 0; index < templates.body.length; index++) {
-      expect("Erstellt: " + index).to.exist
+      cy.contains("Erstellt: " + index).should('be.visible');
     }
   })
 
-  expect("Lebenslauf auswählen").to.exist
+  cy.url().should('include', '/my_cvs');
+  cy.contains("Lebenslauf auswählen").should('be.visible');
 
   cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
     for (var index = 0; index < templates.body.length; index++) {
-      expect(templates.body[index]).to.exist
+      cy.contains(templates.body[index]).should('be.visible');
+
       cy.get('[data-cy=download_odt_' + templates.body[index] +']').should('be.visible');
     }
   })
 
     for (var attribute in user) {
-      expect(user[attribute]).to.exist
+      cy.contains(user[attribute]);
     }
 
 
   cy.readFile('cypress/fixtures/cv_unit_education_edited.json').then((user) => {
     for (var attribute in user) {
-      expect(user[attribute]).to.exist
+      cy.contains(user[attribute]);
     }
   });
 
   cy.readFile('cypress/fixtures/cv_unit_experience_edited.json').then((user) => {
     for (var attribute in user) {
-      expect(user[attribute]).to.exist
+      cy.contains(user[attribute]);
     }
   });
 
   cy.readFile('cypress/fixtures/cv_unit_skills_edited.json').then((user) => {
     for (var attribute in user) {
-      expect(user[attribute]).to.exist
+      cy.contains(user[attribute]);
     }
   });
 
@@ -213,13 +215,13 @@ Cypress.Commands.add('fill_in_skills_cv_unit', (cv_unit_category) => {
 
 Cypress.Commands.add('logout', () => {
   cy.get("[data-cy=logout]").click()
-  cy.contains('Erfolgreich abgemeldet.')
+  cy.contains('Erfolgreich abgemeldet.').should('be.visible');
 })
 
 Cypress.Commands.add('destroy_user_account', () => {
   cy.visit('localhost:3000');
   cy.get("[data-cy=destroy_user_account]").first().click();
-  cy.contains('Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.')
+  cy.contains('Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.');
 })
 
 Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_name, password) => {
@@ -233,13 +235,13 @@ Cypress.Commands.add('create_regular_user_and_login', (email, first_name, last_n
     cy.get('#user_cover').attachFile(fixtureFile);
     cy.root().submit()
   })
-  cy.contains('Account wurde erstellt!');
+  cy.contains('Account wurde erstellt!').should('be.visible') ;
   cy.logout();
 })
 
 Cypress.Commands.add('create_support_request', () => {
 
-  cy.visit('localhost:3000')
+  cy.visit('localhost:3000');
   //cy.contains(model_name).click()
 
   cy.get("[data-cy=" + model_name_plural + "]").click()

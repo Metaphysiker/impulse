@@ -27,15 +27,15 @@ describe('CvGenerator Admin', () => {
 
   it('visits admin_area and expects to see people', () => {
     cy.fixture('locales/de.json').should((de) => {
-      expect(de["de"]["admin_area"]).to.exist
+      cy.contains(de["de"]["admin_area"]).should('be.visible');
     })
 
     cy.get('[data-cy=admin_area_button]').first().click();
 
     cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
       for (var number in users) {
-        expect(users[number]["first_name"]).to.exist
-        expect(users[number]["last_name"]).to.exist
+        cy.contains(users[number]["first_name"]).should('be.visible');
+        cy.contains(users[number]["last_name"]).should('be.visible');
       }
     });
   })
@@ -60,13 +60,13 @@ describe('CvGenerator Admin', () => {
 
     cy.get('[data-cy=admin_area_button]').first().click();
     cy.fixture('locales/de.json').should((de) => {
-      expect(de["de"]["view_cvs"]).to.exist
+      cy.contains(de["de"]["view_cvs"]);
       cy.get('[data-cy=view_cvs_of_this_user_button]').should('be.visible');
 
-      expect(de["de"]["create_new_cvs"]).to.exist
+      cy.contains(de["de"]["create_new_cvs"]);
       cy.get('[data-cy=create_cvs_for_this_user_button]').should('be.visible');
 
-      expect(de["de"]["edit_user"]).to.exist
+      cy.contains(de["de"]["edit_user"]);
       cy.get('[data-cy=edit_user_button]').should('be.visible');
     })
   })

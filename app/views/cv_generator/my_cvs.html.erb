@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="col-3">
-        <h1><%= cv.name.capitalize %></h1>
+        <h2><%= cv.name.capitalize %></h2>
         <p>ODT:
           <% if cv.odt.attached? %>
             <%= link_to cv.odt.filename, rails_blob_path(cv.odt, disposition: "attachment"), data: {cy: "download_odt_#{cv.name}"} %>
