@@ -30,6 +30,10 @@ Cypress.Commands.add('login', (user) => {
     cy.root().submit()
   })
   cy.contains('Erfolgreich angemeldet.')
+
+  cy.fixture('locales/de.json').should((de) => {
+    cy.contains(de["de"]["logged_in_as"] + " " + user["email"]);
+  });
 })
 
 Cypress.Commands.add('signup', (user) => {
@@ -41,6 +45,11 @@ Cypress.Commands.add('signup', (user) => {
     cy.root().submit()
   })
   cy.contains('Sie haben sich erfolgreich registriert!')
+
+  cy.fixture('locales/de.json').should((de) => {
+    cy.contains(de["de"]["logged_in_as"] + " " + user["email"]);
+  });
+
 })
 
 Cypress.Commands.add('create_cvs', (user) => {

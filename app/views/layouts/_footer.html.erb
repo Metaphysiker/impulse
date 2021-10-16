@@ -36,6 +36,7 @@
         </p>
         <p class="text-white">
           <% if user_signed_in? %>
+            <%= t("logged_in_as") %> <u><%= current_user.email %></u><br />
             <%= link_to(t("logout"), destroy_user_session_path, method: :delete, class: "text-white", data: { cy: "logout" }) %>
             <br>
             <%= link_to 'Account bearbeiten', edit_user_registration_path, class: "text-white" %>

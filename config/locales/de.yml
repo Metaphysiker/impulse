@@ -47,6 +47,7 @@ de:
   please_create_cvs: "Bitte Lebensläufe erstellen"
   edit_user: "User bearbeiten"
   go_back: "Zurück"
+  logged_in_as: "Angemeldet als:"
   date:
     formats:
       month_year: "%B %Y"
