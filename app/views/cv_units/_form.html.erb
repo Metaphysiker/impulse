@@ -1,7 +1,9 @@
 <%# text_area_id = Time.now.to_f.to_s.gsub(".", "") %>
 <%#= "##{text_area_id}" %>
 <% category = cv_unit.category unless cv_unit.blank? %>
-
+<p>
+  <%= link_to t("go_back"), cv_generator_update_cv_units_for_user_page_path(cv_unit.user), data: {cy: "go_back"}, class: "btn btn-secondary" %>
+</p>
 <% if category == "experience" %>
   <% name_label = "Berufsbezeichnung" %>
   <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>

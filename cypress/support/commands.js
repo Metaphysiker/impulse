@@ -45,7 +45,7 @@ Cypress.Commands.add('signup', (user) => {
 
 Cypress.Commands.add('create_cvs', (user) => {
   cy.get('[data-cy=update_user_for_cv_form]').within(($form) => {
-      //cy.get('#user_email').type(user.email)
+      //cy.get('#user_email').clear().type(user.email)
       //cy.get('#user_email').type(unique_email)
       //cy.get('#user_password').type("password")
       cy.get('#user_first_name').clear().type(user.first_name)
@@ -93,7 +93,9 @@ Cypress.Commands.add('create_cvs', (user) => {
   })
 
     for (var attribute in user) {
-      cy.contains(user[attribute]);
+      if(attribute !== "email"){
+        cy.contains(user[attribute]);
+      }
     }
 
 
@@ -118,7 +120,9 @@ Cypress.Commands.add('create_cvs', (user) => {
 })
 
 Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
-  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click()
+
+  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click();
+
   cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
     cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
       cy.get('#cv_unit_name').type(cv_unit.name)
@@ -143,8 +147,15 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
       cy.contains(cv_unit.start_date_1i);
       cy.contains(cv_unit.end_date_2i);
       cy.contains(cv_unit.end_date_1i);
+
       cy.contains(cv_unit.name).parent().within(($parent) => {
-        cy.get("[data-cy=edit_cv_unit]").click()
+        cy.get("[data-cy=edit_cv_unit]").click();
+      });
+
+      cy.get("[data-cy=go_back]").first().click();
+
+      cy.contains(cv_unit.name).parent().within(($parent) => {
+        cy.get("[data-cy=edit_cv_unit]").click();
       });
     });
 
@@ -177,7 +188,8 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
 })
 
 Cypress.Commands.add('fill_in_skills_cv_unit', (cv_unit_category) => {
-  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click()
+  cy.get("[data-cy=new-entry-in-" + cv_unit_category + "]").click();
+
   cy.get("[data-cy=form_for_cv_unit_category_" + cv_unit_category + "]").within(($form) => {
     cy.fixture("cv_unit_" + cv_unit_category + ".json").then((cv_unit) => {
       cy.get('#cv_unit_name').type(cv_unit.name)
@@ -191,7 +203,13 @@ Cypress.Commands.add('fill_in_skills_cv_unit', (cv_unit_category) => {
       cy.contains(cv_unit.name);
       cy.contains(cv_unit.content);
       cy.contains(cv_unit.name).parent().within(($parent) => {
-        cy.get("[data-cy=edit_cv_unit]").click()
+        cy.get("[data-cy=edit_cv_unit]").click();
+      });
+
+      cy.get("[data-cy=go_back]").first().click();
+
+      cy.contains(cv_unit.name).parent().within(($parent) => {
+        cy.get("[data-cy=edit_cv_unit]").click();
       });
     });
 
@@ -215,7 +233,7 @@ Cypress.Commands.add('fill_in_skills_cv_unit', (cv_unit_category) => {
 
 Cypress.Commands.add('logout', () => {
   cy.get("[data-cy=logout]").click()
-  cy.contains('Erfolgreich abgemeldet.').should('be.visible');
+  cy.contains('Erfolgreich abgemeldet.');
 })
 
 Cypress.Commands.add('destroy_user_account', () => {

@@ -46,6 +46,7 @@ de:
   no_cvs_created: "Sie haben noch keine Lebensläufe erstellt!"
   please_create_cvs: "Bitte Lebensläufe erstellen"
   edit_user: "User bearbeiten"
+  go_back: "Zurück"
   date:
     formats:
       month_year: "%B %Y"
