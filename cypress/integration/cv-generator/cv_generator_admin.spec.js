@@ -46,7 +46,7 @@ describe('CvGenerator Admin', () => {
 
     cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
       cy.contains(users[0]["first_name"] + " " + users[0]["last_name"]).first().parent().within(() => {
-        cy.get('[data-cy=generate_cvs_for_this_user_button]').first().click();
+        cy.get('[data-cy=create_cvs_for_this_user_button]').first().click();
       })
     });
 
@@ -54,6 +54,21 @@ describe('CvGenerator Admin', () => {
       cy.create_cvs(users[0])
     });
 
+  })
+
+  it("expects to see basic functionalities in admin-area", () => {
+
+    cy.get('[data-cy=admin_area_button]').first().click();
+    cy.fixture('locales/de.json').should((de) => {
+      expect(de["de"]["view_cvs"]).to.exist
+      cy.get('[data-cy=view_cvs_of_this_user_button]').should('be.visible');
+
+      expect(de["de"]["create_new_cvs"]).to.exist
+      cy.get('[data-cy=create_cvs_for_this_user_button]').should('be.visible');
+
+      expect(de["de"]["edit_user"]).to.exist
+      cy.get('[data-cy=edit_user_button]').should('be.visible');
+    })
   })
 
   xit('tries to generate cvs', () => {

@@ -28,11 +28,11 @@
 <hr />
   <% if @user.cvs.empty? %>
     <p>
-      <strong>Sie haben noch keine Lebensläufe erstellt!</strong>
+      <strong><%= t("no_cvs_created") %></strong>
     </p>
     <p>
-      Bitte erstellen Sie Ihre Lebensläufe:<br />
-      <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path(@user) %>
+      <%= t("please_create_cvs") %>:<br />
+      <%= link_to t("create_new_cvs"), cv_generator_update_user_for_cv_page_path(@user) %>
     </p>
   <% end %>
 

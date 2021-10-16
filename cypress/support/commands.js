@@ -77,7 +77,7 @@ Cypress.Commands.add('create_cvs', (user) => {
   cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
   cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
     for (var index = 0; index < templates.body.length; index++) {
-      cy.contains("Erstellt: " + index);
+      expect("Erstellt: " + index).to.exist
     }
   })
 

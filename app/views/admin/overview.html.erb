@@ -19,9 +19,9 @@
         <td>
           <%= user.name %>
         </td>
-        <td><%= link_to "Lebensläufe ansehen", my_cvs_path(user), data: {cy: "generate_cvs_for_this_user_button"} %></td>
-        <td><%= link_to "Lebensläufe generieren", cv_generator_update_user_for_cv_page_path(user), data: {cy: "generate_cvs_for_this_user_button"} %></td>
-        <td><%= link_to "User bearbeiten", edit_user_path(user), data: {cy: "edit_user"}  %></td>
+        <td><%= link_to t("view_cvs"), cv_generator_my_cvs_path(user), data: {cy: "view_cvs_of_this_user_button"} %></td>
+        <td><%= link_to t("create_cvs"), cv_generator_update_user_for_cv_page_path(user), data: {cy: "create_cvs_for_this_user_button"} %></td>
+        <td><%= link_to t("edit_user"), edit_user_path(user), data: {cy: "edit_user_button"}  %></td>
       </tr>
       <% end %>
     </tbody>
