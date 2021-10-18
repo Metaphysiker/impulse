@@ -20,7 +20,7 @@
           <%= user.name %>
         </td>
         <td><%= link_to t("view_cvs"), cv_generator_my_cvs_path(user), data: {cy: "view_cvs_of_this_user_button"} %></td>
-        <td><%= link_to t("create_cvs"), cv_generator_update_user_for_cv_page_path(user), data: {cy: "create_cvs_for_this_user_button"} %></td>
+        <td><%= link_to t("create_new_cvs"), cv_generator_update_user_for_cv_page_path(user), data: {cy: "create_cvs_for_this_user_button"} %></td>
         <td><%= link_to t("edit_user"), edit_user_path(user), data: {cy: "edit_user_button"}  %></td>
       </tr>
       <% end %>
