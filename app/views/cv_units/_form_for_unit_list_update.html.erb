@@ -41,7 +41,7 @@
     <%= f.input :end_date, as: :date, label: "Ende", required: false, discard_day: true, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
   <% end %>
   <%= f.hidden_field :category, value: category %>
-  <%= f.submit class: "btn btn-light border my-1" %>
+  <%= f.submit t("save_entry"), class: "btn btn-primary my-1" %>
 </p>
 <% end %>
 

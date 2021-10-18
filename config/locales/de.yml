@@ -48,6 +48,7 @@ de:
   edit_user: "User bearbeiten"
   go_back: "Zurück"
   logged_in_as: "Angemeldet als:"
+  save_entry: "Eintrag speichern"
   date:
     formats:
       month_year: "%B %Y"
