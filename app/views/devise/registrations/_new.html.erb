@@ -3,8 +3,8 @@
 <p>
   <%= f.input :email%>
   <br />
-  <%= t("are_you_in_mentoring50") %><br>
-  <%= f.collection_check_boxes :are_you_in_mentoring50, [[true, 'Ja']], :first, :last, item_label_class: "p-2" %>
+
+  <%= f.input :are_you_in_mentoring50, as: :radio_buttons, collection: [["yes", 'Ja'], ["no", 'Nein']], label_method: :second, value_method: :first, label: false,item_wrapper_class: "mr-2", item_label_class: "px-2" %>
   <hr>
   <%= f.input :password %>
   <br />

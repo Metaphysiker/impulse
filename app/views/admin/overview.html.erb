@@ -5,6 +5,7 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
+        <th scope="col"><%= t("are_you_in_mentoring50") %></th>
         <th scope="col">Lebensläufe ansehen</th>
         <th scope="col">Lebensläufe erstellen</th>
         <th scope="col">User bearbeiten</th>
@@ -18,6 +19,9 @@
         </td>
         <td>
           <%= user.name %>
+        </td>
+        <td>
+          <%= t(user.are_you_in_mentoring50) %>
         </td>
         <td><%= link_to t("view_cvs"), cv_generator_my_cvs_path(user), data: {cy: "view_cvs_of_this_user_button"} %></td>
         <td><%= link_to t("create_new_cvs"), cv_generator_update_user_for_cv_page_path(user), data: {cy: "create_cvs_for_this_user_button"} %></td>

@@ -40,7 +40,7 @@ has_many :roles, :through => :user_roles
   def self.showable_attribute_names_for_test
     ["email", "first_name", "last_name", "address", "location", "plz", "street", "power_word1", "power_word2", "power_word3", "birth_day", "phone", "localized_birth_day",
       "disposal_period", "quote", "nationality", "marital_status",
-       "job_title", "website", "short_description", "long_description"
+       "job_title", "website", "short_description", "long_description", "are_you_in_mentoring50"
      ]
   end
 

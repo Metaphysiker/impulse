@@ -74,7 +74,8 @@ class TestDataController < ApplicationController
         power_word1: "Flexibel",
         power_word2: "Belastbar",
         power_word3: "Kreativ",
-        quote: "Wege entstehen dadurch, dass wir sie gehen"
+        quote: "Wege entstehen dadurch, dass wir sie gehen",
+        are_you_in_mentoring50: ["yes", "no"].sample
         )
 
       user.cover.attach(io: File.open('cypress/fixtures/images/stalin_portrait.jpg'), filename: 'stalin_portrait.jpg')
@@ -97,7 +98,8 @@ class TestDataController < ApplicationController
         power_word1: "Flexibel",
         power_word2: "Belastbar",
         power_word3: "Kreativ",
-        quote: "Wege entstehen dadurch, dass wir sie gehen"
+        quote: "Wege entstehen dadurch, dass wir sie gehen",
+        are_you_in_mentoring50: ["yes", "no"].sample
         )
 
       user.cover.attach(io: File.open('cypress/fixtures/images/stalin_portrait.jpg'), filename: 'stalin_portrait.jpg')
