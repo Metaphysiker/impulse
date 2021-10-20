@@ -3,6 +3,9 @@
 <p>
   <%= f.input :email%>
   <br />
+  <%= t("are_you_in_mentoring50") %><br>
+  <%= f.collection_check_boxes :are_you_in_mentoring50, [[true, 'Ja']], :first, :last, item_label_class: "p-2" %>
+  <hr>
   <%= f.input :password %>
   <br />
   <%= f.input :password_confirmation %>

@@ -40,6 +40,7 @@ Cypress.Commands.add('signup', (user) => {
   cy.visit('http://localhost:3000/users/sign_up')
   cy.get("[data-cy=form_for_registration]").within(($form) => {
     cy.get('#user_email').type(user["email"])
+    cy.get('#user_are_you_in_mentoring50_true').check()
     cy.get('#user_password').type("password")
     cy.get('#user_password_confirmation').type("password")
     cy.root().submit()
