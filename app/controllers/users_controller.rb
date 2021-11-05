@@ -69,6 +69,16 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: exchange_path)
   end
 
+  def delete_user
+    user = User.find(params[:id])
+
+    user.destroy
+
+    flash[:notice] = "Account wurde gelöscht!"
+    #byebug
+    redirect_back(fallback_location: overview_admin_index_path)
+  end
+
   def update
     user = User.find(params[:id])
     user.update(user_params)

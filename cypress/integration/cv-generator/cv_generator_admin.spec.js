@@ -56,6 +56,22 @@ describe('CvGenerator Admin', () => {
 
   })
 
+  it('tries to delete another user', () => {
+
+    cy.get('[data-cy=admin_area_button]').first().click();
+
+    cy.readFile('cypress/fixtures/first_batch_of_users.json').then((users) => {
+      cy.contains(users[0]["first_name"] + " " + users[0]["last_name"]).first().parent().within(() => {
+        cy.get('[data-cy=delete_user_button]').first().click();
+      })
+      cy.contains("Account wurde gelöscht!");
+      cy.contains(users[0]["first_name"] + " " + users[0]["last_name"]).should('not.exist');
+    });
+
+
+
+  })
+
   it("expects to see basic functionalities in admin-area", () => {
 
     cy.get('[data-cy=admin_area_button]').first().click();

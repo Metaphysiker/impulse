@@ -46,12 +46,15 @@ de:
   no_cvs_created: "Sie haben noch keine Lebensläufe erstellt!"
   please_create_cvs: "Bitte Lebensläufe erstellen"
   edit_user: "User bearbeiten"
+  delete_user: "User löschen"
   go_back: "Zurück"
   logged_in_as: "Angemeldet als:"
   save_entry: "Eintrag speichern"
   are_you_in_mentoring50: 'Nehmen Sie am "Mentoring 50+"-Programm von Impulse teil?'
   yes: "Ja"
+  "yes": "Ja"
   no: "Nein"
+  "no": "Nein"
   date:
     formats:
       month_year: "%B %Y"

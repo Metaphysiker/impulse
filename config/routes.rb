@@ -123,6 +123,7 @@ Rails.application.routes.draw do
   post '/user_controller/create_user_as_user', to: "users#create_user_as_user", as: "create_user_as_user"
   #post '/user_controller/create_user_as_admin', to: "users#create_user_as_admin", as: "create_user_as_admin"
   #patch '/user_controller/update_user/:id', to: "users#update_user", as: "update_user"
+  delete '/user_controller/delete_user/:id', to: "users#delete_user", as: "delete_user"
   post '/user_controller/create_new_mentor', to: "users#create_new_mentor", as: "create_new_mentor"
 
   get 'mentee/overview', to: "users#mentee_overview", as: "mentee_overview"
