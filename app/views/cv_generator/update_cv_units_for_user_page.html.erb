@@ -1,4 +1,4 @@
-<section class="py-5 container">
+<section class="py-3 container">
   <div class="row py-lg-5">
     <div class="mx-auto">
       <div class="text-center">
@@ -16,15 +16,16 @@
         </p>
       </div>
       </div>
-      <div class="border rounded p-3 mb-2">
+      <div class="border rounded p-3">
       <%= render "cv_units/cv_units", user: @user %>
       <p>
         <%#= link_to "Weiter", cv_generator_generate_cvs_path, class: "btn btn-lg btn-primary" %>
-        <%= link_to "Zurück", cv_generator_update_user_for_cv_page_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
-
-        <%= link_to "Weiter", cv_generator_loading_screen_path(@user), class: "btn btn-lg btn-primary", data: {cy: "cv_generator_loading_screen_button"} %>
+        <%= link_to "Lebensläufe erstellen", cv_generator_loading_screen_path(@user), class: "btn btn-lg btn-primary", data: {cy: "cv_generator_loading_screen_button"} %>
       </p>
       </div>
     </div>
+
   </div>
+  <%= link_to "Zurück", cv_generator_update_user_for_cv_page_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
+
 </section>

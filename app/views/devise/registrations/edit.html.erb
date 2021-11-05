@@ -7,6 +7,7 @@
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :first_name, required: true %>
     <%= f.input :last_name, required: true %>
+    <%= f.input :are_you_in_mentoring50, as: :radio_buttons, collection: [["yes", 'Ja'], ["no", 'Nein']], label_method: :second, value_method: :first, label: false,item_wrapper_class: "mr-2", item_label_class: "px-2" %>
     <%= f.file_field :cover, label: "Profilbild" %>
     <br  />
     <br />

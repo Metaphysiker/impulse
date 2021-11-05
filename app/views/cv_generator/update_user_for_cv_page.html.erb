@@ -26,6 +26,8 @@
       <%= render 'users/form_update_user_for_cv', user: @user %>
       <%#= render 'users/form_update_user_for_cv', user: User.new if @user.blank? %>
       <%#= render 'users/card', user: current_user if current_user.present? %>
+      <%= link_to "Zurück", root_path, class: "btn btn-lg btn-secondary", data: {cy: ""} %>
+
     </div>
   </div>
 </section>

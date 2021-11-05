@@ -17,6 +17,9 @@
   </div>
   <br />
   <%= f.input :location %>
+  <br>
+  <%= f.input :are_you_in_mentoring50, as: :radio_buttons, collection: [["yes", 'Ja'], ["no", 'Nein']], label_method: :second, value_method: :first, label: false,item_wrapper_class: "mr-2", item_label_class: "px-2" %>
+
   <br />
   <%= f.input :plz %>
   <br />

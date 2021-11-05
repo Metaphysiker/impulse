@@ -19,22 +19,23 @@ Expertise.expertises.each do |expertise|
   Expertise.create(title: expertise)
 end
 
-nicole = User.create(email: "nicole.bertherin@impulse.swiss", password: "abcdef", password_confirmation: "abcdef", first_name: "Nicole", last_name: "Bertherin")
+nicole = User.create(email: "nicole.bertherin@impulse.swiss", password: "abcdef", password_confirmation: "abcdef", first_name: "Nicole", last_name: "Bertherin", are_you_in_mentoring50: "yes")
 nicole.roles << Role.find_by_name("admin") unless nicole.roles.where(name: "admin").exists?
 nicole.roles << Role.find_by_name("mentor") unless nicole.roles.where(name: "mentor").exists?
 
 
-admin = User.create(email: "admin@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Admin", last_name: "Admin")
+admin = User.create(email: "admin@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Admin", last_name: "Admin", are_you_in_mentoring50: "yes")
 admin.roles << Role.find_by_name("admin") unless admin.roles.where(name: "admin").exists?
 admin.roles << Role.find_by_name("mentor") unless admin.roles.where(name: "mentor").exists?
 
-mentor = User.create(email: "mentor@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Mentor", last_name: "Mentor")
+mentor = User.create(email: "mentor@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Mentor", last_name: "Mentor", are_you_in_mentoring50: "yes")
 mentor.roles << Role.find_by_name("mentor") unless mentor.roles.where(name: "mentor").exists?
 
-regular = User.create(email: "regular@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Regular", last_name: "Regular")
+regular = User.create(email: "regular@gmail.com", password: "abcdef", password_confirmation: "abcdef", first_name: "Regular", last_name: "Regular", are_you_in_mentoring50: "yes")
 
 
 testuser = User.create(email: "test@gmail.com", password: "abcdef",
+  are_you_in_mentoring50: "yes",
   password_confirmation: "abcdef", first_name: "Isabella", last_name: "Merlin",
   location: "Basel", plz: "8400", street: "Hauptstrasse 4", birth_day: Date.today - 50.years,
   phone: "1234567890", recruitment_consultant: "Paul Müller",
