@@ -21,6 +21,15 @@ class CvGeneratorController < ApplicationController
     #send_data zip
   end
 
+  def update_motivation_letter_for_cv_page
+
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    elsif user_signed_in?
+      @user = current_user
+    end
+  end
+
   def update_user_for_cv_page
     #byebug
     if params[:flash].present?
@@ -57,7 +66,7 @@ class CvGeneratorController < ApplicationController
     #else
     #  user = User.new
     #end
-
+    #byebug
 
     #@user = user
     #byebug
@@ -321,6 +330,7 @@ class CvGeneratorController < ApplicationController
       :location, :plz, :street, :phone, :birth_day,
     :job_title, :website, :short_description, :marital_status,
     :nationality, :long_description, :power_word1, :power_word2, :power_word3,
+    :motivation_letter_why_you, :motivation_letter_why_me, :motivation_letter_why_us,
     :quote, :expertise_ids => [])
   end
 

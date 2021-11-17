@@ -58,6 +58,7 @@ Cypress.Commands.add('signup', (user) => {
 
 Cypress.Commands.add('create_cvs', (user) => {
 
+  //first button
   cy.get("[data-cy=enter_personal_informations_button]").first().click();
 
   cy.get('[data-cy=update_user_for_cv_form]').within(($form) => {
@@ -87,14 +88,24 @@ Cypress.Commands.add('create_cvs', (user) => {
     cy.root().submit()
   })
 
+  //second button
   cy.get("[data-cy=enter_cv_units_button]").first().click();
-
 
   cy.fill_in_cv_unit("experience");
   cy.fill_in_cv_unit("education");
   cy.fill_in_skills_cv_unit("skills");
 
   cy.get('[data-cy=go_back_button]').first().click();
+
+  //third button
+  cy.get("[data-cy=enter_motivation_letter_button]").first().click();
+
+  cy.get('[data-cy=update_motivation_letter_for_cv_form]').within(($form) => {
+      cy.get('#user_motivation_letter_why_you').clear().type(user.motivation_letter_why_you)
+      cy.get('#user_motivation_letter_why_me').clear().type(user.motivation_letter_why_me)
+      cy.get('#user_motivation_letter_why_us').clear().type(user.motivation_letter_why_us)
+    cy.root().submit()
+  })
 
   cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
 

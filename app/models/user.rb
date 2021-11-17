@@ -40,12 +40,13 @@ has_many :roles, :through => :user_roles
   def self.showable_attribute_names_for_test
     ["email", "first_name", "last_name", "address", "location", "plz", "street", "power_word1", "power_word2", "power_word3", "birth_day", "phone", "localized_birth_day",
       "disposal_period", "quote", "nationality", "marital_status",
-       "job_title", "website", "short_description", "long_description", "are_you_in_mentoring50"
+       "job_title", "website", "short_description", "long_description", "are_you_in_mentoring50",
+       "motivation_letter_why_you", "motivation_letter_why_me", "motivation_letter_why_us"
      ]
   end
 
   def self.showable_attribute_names_for_cv
-    ["email", "first_name", "last_name", "name", "address", "phone", "localized_birth_day", "job_title", "website", "short_description", "long_description", "power_word1", "power_word2", "power_word3", "street", "location", "plz_with_location", "marital_status", "nationality", "quote"]
+    ["email", "first_name", "last_name", "name", "address", "phone", "localized_birth_day", "job_title", "website", "short_description", "long_description", "power_word1", "power_word2", "power_word3", "street", "location", "plz_with_location", "marital_status", "nationality", "quote", "motivation_letter_why_you", "motivation_letter_why_me", "motivation_letter_why_us"]
   end
 
   def name

@@ -1,0 +1,27 @@
+<section class="py-5 container">
+  <div class="row py-lg-5">
+    <div class="mx-auto">
+      <div class="text-center">
+      <h1 class="fw-light"><%= t("enter_motivation_letter") %></h1>
+        <p class="">
+          <ol class="fs-5" style="display: inline-block; text-align: left;">
+            <li class="">
+                Tragen Sie unten Ihre Daten ein.
+              </li>
+              <li>
+                Wenn Sie fertig sind, drücken Sie auf "<%= t("save_and_go_back") %>".
+              </li>
+          </ol>
+
+        </p>
+      </div>
+      <div class="text-left">
+        <%#= @user.inspect %>
+      <%= render 'users/form_update_motivation_letter_for_cv', user: @user %>
+      <%#= render 'users/form_update_user_for_cv', user: User.new if @user.blank? %>
+      <%#= render 'users/card', user: current_user if current_user.present? %>
+      <%= link_to t("go_back_without_save"), root_with_user_id_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
+
+    </div>
+  </div>
+</section>

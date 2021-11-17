@@ -1,6 +1,7 @@
 <div class="d-grid gap-3 col-8 mx-auto">
   <%= link_to t("enter_personal_informations"), cv_generator_update_user_for_cv_page_path(user), class: "btn btn-primary btn-lg", data: {cy: "enter_personal_informations_button"} %>
   <%= link_to t("enter_cv_units"), cv_generator_update_cv_units_for_user_page_path(user), class: "btn btn-primary btn-lg", data: {cy: "enter_cv_units_button"} %>
+  <%= link_to t("enter_motivation_letter"), cv_generator_update_motivation_letter_for_cv_page_path(user), class: "btn btn-primary btn-lg", data: {cy: "enter_motivation_letter_button"} %>
   <%= link_to t("create_new_cvs"), cv_generator_loading_screen_path(user), class: "btn btn-warning btn-lg", data: {cy: "cv_generator_loading_screen_button"} %>
   <hr>
   <%= link_to "Lebensläufe ansehen", cv_generator_my_cvs_path(user), class:"btn btn-primary btn-lg", data: { cy: "view_my_cvs"}  %>

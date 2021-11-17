@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'cv_generator/available_templates', to: "cvs#available_templates", as: "cvs_available_templates"
   get 'cv_generator/overview', to: "cv_generator#overview", as: "cv_generator_overview"
   get 'cv_generator/update_user_for_cv_page/(:user_id)', to: "cv_generator#update_user_for_cv_page", as: "cv_generator_update_user_for_cv_page"
+  get 'cv_generator/form_update_motivational_letter_for_cv_page/(:user_id)', to: "cv_generator#update_motivation_letter_for_cv_page", as: "cv_generator_update_motivation_letter_for_cv_page"
+
 
   post 'cv_generator/update_user_for_cv/(:user_id)', to: "cv_generator#update_user_for_cv", as: "cv_generator_update_user_for_cv"
 

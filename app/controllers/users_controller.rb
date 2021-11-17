@@ -204,7 +204,8 @@ class UsersController < ApplicationController
       :location, :plz, :street, :phone, :birth_day, :recruitment_consultant,
     :disposal_period_start, :disposal_period_end, :personal_number, :unemployment_insurance_number,
     :job_title, :website, :short_description, :nationality, :marital_status, :long_description,
-    :power_word1, :power_word2, :power_word3, :quote, :are_you_in_mentoring50, :expertise_ids => [])
+    :power_word1, :power_word2, :power_word3, :quote, :are_you_in_mentoring50, :motivation_letter_why_you, :motivation_letter_why_me, :motivation_letter_why_us,
+     :expertise_ids => [])
   end
 
   def set_user

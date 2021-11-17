@@ -1,0 +1,16 @@
+<div class="border rounded p-3 mb-2">
+<%= simple_form_for user, url: cv_generator_update_user_for_cv_path(user), html: { class: "form_update_motivation_letter_for_cv", data: {cy: "update_motivation_letter_for_cv_form"}}, method: :post, remote: true do |f| %>
+<%#= simple_form_for user do |f| %>
+<p>
+  <%= f.input :motivation_letter_why_you,
+  placeholder: "z.B."
+  %>
+  <br />
+  <%= f.input :motivation_letter_why_me, placeholder: "z.B."%>
+  <br />
+  <%= f.input :motivation_letter_why_us, placeholder: "z.B."%>
+  <br />
+</p>
+  <%= f.submit t("save_and_go_back"), class: "btn btn-lg btn-primary border my-2" %>
+<% end %>
+</div>

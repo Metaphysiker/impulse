@@ -75,7 +75,10 @@ class TestDataController < ApplicationController
         power_word2: "Belastbar",
         power_word3: "Kreativ",
         quote: "Wege entstehen dadurch, dass wir sie gehen",
-        are_you_in_mentoring50: ["yes", "no"].sample
+        are_you_in_mentoring50: ["yes", "no"].sample,
+        motivation_letter_why_you: Faker::Lorem.sentence(word_count: 5, supplemental: false, random_words_to_add: 4),
+        motivation_letter_why_me: Faker::Lorem.sentence(word_count: 5, supplemental: false, random_words_to_add: 4),
+        motivation_letter_why_us: Faker::Lorem.sentence(word_count: 5, supplemental: false, random_words_to_add: 4)
         )
 
       user.cover.attach(io: File.open('cypress/fixtures/images/stalin_portrait.jpg'), filename: 'stalin_portrait.jpg')
