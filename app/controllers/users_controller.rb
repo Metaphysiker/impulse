@@ -14,14 +14,16 @@ class UsersController < ApplicationController
     #byebug
     sign_in user
     flash[:notice] = "Account wurde erstellt!"
-    redirect_back(fallback_location: exchange_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def create_user_as_user
     @user = User.new(user_params)
+    @path = "nothing"
 
       if @user.save
         sign_in @user
+        @path = root_with_user_id_path(@user, flash: 'Sie haben sich erfolgreich registriert!')
         #flash[:notice] = "Account wurde erstellt!"
         #redirect_back(fallback_location: exchange_path)
         #format.html { redirect_to @skill, notice: 'Skill was successfully created.' }

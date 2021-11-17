@@ -42,6 +42,18 @@
   <body class="d-flex flex-column h-100">
     <%= render "layouts/navigation" %>
     <%= render "layouts/flash_messages" if flash %>
+    <% if user_signed_in? && current_user.admin? && !@user.blank? %>
+      <div class="container-fluid bg-info">
+        <div class="text-center py-2">
+          <p>
+            Folgender User wird zurzeit bearbeitet: <br>
+            <strong>
+              <%= @user.name %> - <%= @user.email %>
+            </strong>
+          </p>
+        </div>
+      </div>
+    <% end %>
 
     <%= yield %>
 

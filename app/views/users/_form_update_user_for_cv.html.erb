@@ -2,7 +2,7 @@
 <%= simple_form_for user, url: cv_generator_update_user_for_cv_path(user), html: { class: "form_update_user_for_cv", data: {cy: "update_user_for_cv_form"}}, method: :post, remote: true do |f| %>
 <%#= simple_form_for user do |f| %>
 <p>
-  <%= f.input :email, placeholder: "max.muster@gmail.com"%>
+  <%= f.input :email, placeholder: "z.B. max.muster@gmail.com"%>
   <br />
   <% unless user_signed_in? %>
     <%= f.input :password %>
@@ -10,54 +10,54 @@
   <br />
   <div class="row">
     <div class="col-6">
-      <%= f.input :first_name, placeholder: "Max" %>
+      <%= f.input :first_name, placeholder: "z.B. Max" %>
     </div>
     <div class="col-6">
-      <%= f.input :last_name, placeholder: "Muster" %>
+      <%= f.input :last_name, placeholder: "z.B. Muster" %>
     </div>
   </div>
   <br />
   <hr />
   <div class="row">
     <div class="col-6">
-        <%= f.input :location, placeholder: "Basel" %>
+        <%= f.input :location, placeholder: "z.B. Basel" %>
     </div>
     <div class="col-6">
-      <%= f.input :plz, placeholder: "4000" %>
+      <%= f.input :plz, placeholder: "z.B. 4000" %>
     </div>
   </div>
   <br />
-  <%= f.input :street, placeholder: "Hauptstrasse 5" %>
+  <%= f.input :street, placeholder: "z.B. Hauptstrasse 5" %>
   <br />
   <hr />
-  <%= f.input :phone, placeholder: "079 123 45 67" %>
+  <%= f.input :phone, placeholder: "z.B. 079 123 45 67" %>
   <br />
   <%= f.input :birth_day, start_year: Date.today.year - 100,
                               end_year: Date.today.year - 18 %>
   <br />
   <hr />
-  <%= f.input :job_title, placeholder: "Automechaniker" %>
+  <%= f.input :job_title, placeholder: "z.B. Automechaniker" %>
   <br />
-  <%= f.input :website, placeholder: "www.meine-webseite.ch" %>
+  <%= f.input :website, placeholder: "z.B. Linkedin oder www.meine-webseite.ch" %>
   <br />
-  <%= f.input :short_description, placeholder: "Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \n" %>
+  <%= f.input :short_description, placeholder: "z.B. Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \n" %>
   <br />
-  <%= f.input :long_description, placeholder: "Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \nIch möchte...\nDas ist wichtig für mich...", :input_html => {:rows => 6} %>
+  <%= f.input :long_description, placeholder: "z.B. Autos zu reparieren ist meine Leidenschaft...\nMeine Stärken sind... \nIch möchte...\nDas ist wichtig für mich...", :input_html => {:rows => 6} %>
   <br />
-  <%= f.input :power_word1, placeholder: "Flexibel" %>
+  <%= f.input :power_word1, placeholder: "z.B. Flexibel" %>
   <br />
-  <%= f.input :power_word2, placeholder: "Belastbar" %>
+  <%= f.input :power_word2, placeholder: "z.B. Belastbar" %>
   <br />
-  <%= f.input :power_word3, placeholder: "Kreativ" %>
+  <%= f.input :power_word3, placeholder: "z.B. Kreativ" %>
   <br />
-  <%= f.input :quote, placeholder:"Alle Träume können wahr werden, wenn wir den Mut haben, ihnen zu folgen." %>
+  <%= f.input :quote, placeholder:"z.B. Alle Träume können wahr werden, wenn wir den Mut haben, ihnen zu folgen." %>
   <br />
-  <%= f.input :nationality, placeholder: "Schweiz" %>
+  <%= f.input :nationality, placeholder: "z.B. Schweiz" %>
   <br />
-  <%= f.input :marital_status, placeholder: "ledig" %>
+  <%= f.input :marital_status, placeholder: "z.B. ledig" %>
   <br />
   <%#= f.input :password %>
 </p>
-  <%= f.submit "Speichern und Weiter", class: "btn btn-lg btn-primary border my-2" %>
+  <%= f.submit t("save_and_go_back"), class: "btn btn-lg btn-primary border my-2" %>
 <% end %>
 </div>

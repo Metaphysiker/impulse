@@ -30,23 +30,6 @@
   <%= f.input :birth_day, start_year: Date.today.year - 100,
                               end_year: Date.today.year %>
   <br />
-  <%= f.input :recruitment_consultant %>
-  <br />
-  <%= f.input :disposal_period_start %>
-  <br />
-  <%= f.input :disposal_period_end %>
-  <br />
-  <%= f.input :personal_number %>
-  <br />
-  <%= f.input :unemployment_insurance_number %>
-  <br />
-  <%= f.input :job_title %>
-  <br />
-  <%= f.input :website %>
-  <br />
-  <%= f.input :short_description %>
-  <br />
-  <%#= f.input :password %>
 </p>
   <%= f.submit class: "btn btn-light border my-2" %>
 <% end %>

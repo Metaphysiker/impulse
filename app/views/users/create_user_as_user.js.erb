@@ -1,9 +1,11 @@
 var record_id = ".form_for_user";
 var errors = <%= raw @user.errors.full_messages %>;
+var path = "<%= @path %>";
+
 console.log(errors);
 
 if (jQuery.isEmptyObject(errors)) {
-  window.location = "<%= cv_generator_update_user_for_cv_page_path(@user, flash: 'Sie haben sich erfolgreich registriert!') %>";
+  window.location = path;
 
 } else {
 

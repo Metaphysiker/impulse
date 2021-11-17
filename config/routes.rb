@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static_pages#welcome'
+  get '/static_pages/welcome/:user_id', to: 'static_pages#welcome', as: "root_with_user_id"
   #root 'static_pages#exchange'
   get '/static_pages/texts', to: 'static_pages#texts', as: 'texts'
 

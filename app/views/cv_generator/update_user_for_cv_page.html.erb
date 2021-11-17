@@ -2,14 +2,14 @@
   <div class="row py-lg-5">
     <div class="mx-auto">
       <div class="text-center">
-      <h1 class="fw-light">Lebenslauf erstellen</h1>
+      <h1 class="fw-light"><%= t("enter_personal_informations") %></h1>
         <p class="">
           <ol class="fs-5" style="display: inline-block; text-align: left;">
             <li class="">
                 Tragen Sie unten Ihre Daten ein.
               </li>
               <li>
-                Wenn Sie fertig sind, drücken Sie auf "Weiter".
+                Wenn Sie fertig sind, drücken Sie auf "Speichern".
               </li>
           </ol>
 
@@ -26,7 +26,7 @@
       <%= render 'users/form_update_user_for_cv', user: @user %>
       <%#= render 'users/form_update_user_for_cv', user: User.new if @user.blank? %>
       <%#= render 'users/card', user: current_user if current_user.present? %>
-      <%= link_to "Zurück", root_path, class: "btn btn-lg btn-secondary", data: {cy: ""} %>
+      <%= link_to t("go_back_without_save"), root_with_user_id_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
 
     </div>
   </div>

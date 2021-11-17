@@ -57,6 +57,9 @@ Cypress.Commands.add('signup', (user) => {
 })
 
 Cypress.Commands.add('create_cvs', (user) => {
+
+  cy.get("[data-cy=enter_personal_informations_button]").first().click();
+
   cy.get('[data-cy=update_user_for_cv_form]').within(($form) => {
       //cy.get('#user_email').clear().type(user.email)
       //cy.get('#user_email').type(unique_email)
@@ -84,10 +87,17 @@ Cypress.Commands.add('create_cvs', (user) => {
     cy.root().submit()
   })
 
+  cy.get("[data-cy=enter_cv_units_button]").first().click();
+
+
   cy.fill_in_cv_unit("experience");
   cy.fill_in_cv_unit("education");
   cy.fill_in_skills_cv_unit("skills");
+
+  cy.get('[data-cy=go_back_button]').first().click();
+
   cy.get('[data-cy=cv_generator_loading_screen_button]').first().click();
+
   cy.request('http://localhost:3000/cv_generator/available_templates').then((templates) => {
     for (var index = 0; index < templates.body.length; index++) {
       cy.contains("Erstellt: " + index, { timeout: 10000 }).should('be.visible');

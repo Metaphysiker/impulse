@@ -6,12 +6,12 @@
         <p class="">
           <ol class="fs-5" style="display: inline-block; text-align: left;">
             <li class="">
-                Wählen Sie das CV aus, welches Ihnen am besten gefällt.
+                Wählen Sie den Lebenslauf aus, welcher Ihnen am besten gefällt.
               </li>
           </ol>
         </p>
         <p>
-          <%= link_to "Lebensläufe aktualisieren", cv_generator_update_user_for_cv_page_path(@user) %>
+          <%= link_to "Lebensläufe aktualisieren", root_with_user_id_path(@user) %>
         </p>
         <p>
           <%= link_to "Alle PDFs herunterladen", cv_controller_download_all_pdfs_path(@user) %>
@@ -32,7 +32,7 @@
     </p>
     <p>
       <%= t("please_create_cvs") %>:<br />
-      <%= link_to t("create_new_cvs"), cv_generator_update_user_for_cv_page_path(@user) %>
+      <%= link_to t("create_new_cvs"), root_with_user_id_path(@user) %>
     </p>
   <% end %>
 

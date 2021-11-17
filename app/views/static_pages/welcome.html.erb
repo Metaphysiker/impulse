@@ -6,7 +6,15 @@
       <% unless user_signed_in? %>
         <p class="">Bitte melden Sie sich an oder erstellen Sie ein neues Profil.</p>
       <% else %>
-        <%= link_to t("create_new_cv"), cv_generator_update_user_for_cv_page_path(current_user), class: "btn btn-lg btn-primary" %>
+      <hr>
+      <p class="">
+        Drücken Sie auf die untenstehenden Buttons und tragen Sie Ihre Daten ein.
+      </p>
+      <p class="">
+        Wenn Sie auf den Button "<%= t("create_new_cvs") %>" drücken, dann werden verschiedene Lebensläufe mit ihren eingegebenen Daten erstellt.
+      </p>
+      <hr>
+        <%= render "cv_generator/buttons", user: @user %>
       <% end %>
     </div>
   </div>

@@ -10,7 +10,7 @@
                 Tragen Sie unten Ihre Berufserfahrungen, Ausbildungen und Fähigkeiten ein.
               </li>
               <li>
-                Wenn Sie fertig sind, drücken Sie auf "Weiter".
+                Wenn Sie fertig sind, drücken Sie auf "<%= t("go_back") %>".
               </li>
           </ol>
         </p>
@@ -19,13 +19,14 @@
       <div class="border rounded p-3">
       <%= render "cv_units/cv_units", user: @user %>
       <p>
+        <%= link_to t("go_back"), root_with_user_id_path(@user), class: "btn btn-lg btn-primary", data: {cy: "go_back_button"} %>
+
         <%#= link_to "Weiter", cv_generator_generate_cvs_path, class: "btn btn-lg btn-primary" %>
-        <%= link_to "Lebensläufe erstellen", cv_generator_loading_screen_path(@user), class: "btn btn-lg btn-primary", data: {cy: "cv_generator_loading_screen_button"} %>
+        <%#= link_to "Lebensläufe erstellen", cv_generator_loading_screen_path(@user), class: "btn btn-lg btn-primary", data: {cy: "cv_generator_loading_screen_button"} %>
       </p>
       </div>
     </div>
 
   </div>
-  <%= link_to "Zurück", cv_generator_update_user_for_cv_page_path(@user), class: "btn btn-lg btn-secondary", data: {cy: ""} %>
 
 </section>

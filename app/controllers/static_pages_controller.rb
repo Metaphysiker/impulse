@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
   def welcome
+    if params[:flash].present?
+      flash[:success] = params[:flash]
+    end
+    
     image = ActionController::Base.helpers.asset_url("pigs.jpg", type: :image)
 
     set_meta_tags title: "Kennsch Ethik?", reverse: true,
@@ -10,6 +14,14 @@ class StaticPagesController < ApplicationController
                 url: root_path,
                 image: image
               }
+
+      if params[:user_id].present?
+        @user = User.find(params[:user_id])
+      elsif user_signed_in?
+        @user = current_user
+      else
+        @user = nil
+      end
   end
 
   def texts
