@@ -3,12 +3,15 @@
 <%#= simple_form_for user do |f| %>
 <p>
   <%= f.input :motivation_letter_why_you,
-  placeholder: "z.B."
+  placeholder: "z.B.:\n«Hoppla», dachte ich, als ich auf Ihrer Webseite ein mir bekanntes Produkt entdeckte, «das kenne ich doch!»: Noch nicht lange her, habe ich meinem Bekannten dieses Produkt vorgestellt, damit er seine Probleme lösen kann.
+
+In dieser Zeit lernte ich Ihr Unternehmen kennen und auch die Kunden, die mit Ihrem Produkt schon elegant arbeiten oder sich noch damit schwertun. Spannend fand ich, die vielen kleinen Probleme zu lösen, die mit Ihrem Produkt in einer Praxis auftauchen.", :input_html => {:rows => 6}
   %>
   <br />
-  <%= f.input :motivation_letter_why_me, placeholder: "z.B."%>
+  <%= f.input :motivation_letter_why_me,
+  placeholder: "z.B.:\nZuhören, verstehen und schnell eine Lösung finden sind meine Stärken. Dazu gehört auch, Entscheidungen ruhig und sicher zu kommunizieren. Ihre bestehende Kundschaft bei ihren Problemen zu beraten, kann ich mir sehr gut vorstellen. Und als Supporter für die internen Kunden in Ihrem Haus bewege ich mich wie ein Fisch im Wasser. Ich finde mich in neuen diversen Umgebungen sehr schnell zurecht und es fällt mir leicht Abläufe in Teams sicher zu stellen.", :input_html => {:rows => 6} %>
   <br />
-  <%= f.input :motivation_letter_why_us, placeholder: "z.B."%>
+  <%= f.input :motivation_letter_why_us, placeholder: "z.B.:\nFalls Sie gerade jetzt - oder demnächst - Bedarf an Unterstützung in Ihrem Betrieb oder im Aussendienst haben, würde ich mich sehr darüber freuen mit Ihrem Verantwortlichen ins Gespräch zu kommen, um noch mehr über Ihr Unternehmen zu erfahren und uns dabei darüber zu unterhalten, wo und wie ich für Ihr Unternehmen den grössten Nutzen erzeugen kann.", :input_html => {:rows => 6} %>
   <br />
 </p>
   <%= f.submit t("save_and_go_back"), class: "btn btn-lg btn-primary border my-2" %>

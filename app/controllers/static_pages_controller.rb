@@ -3,11 +3,11 @@ class StaticPagesController < ApplicationController
     if params[:flash].present?
       flash[:success] = params[:flash]
     end
-    
+
     image = ActionController::Base.helpers.asset_url("pigs.jpg", type: :image)
 
-    set_meta_tags title: "Kennsch Ethik?", reverse: true,
-              description: "Kennsch Ethik? ist ein Portal für Tierethik und Tierschutz-Aktivismus.",
+    set_meta_tags title: "Wilkommen", reverse: true,
+              description: "Lebensläufe erstellen mit Impulsiv, dem Tool von Impulse",
               og: {
                 title: :title,
                 description: :description,
