@@ -17,16 +17,16 @@
       <% @users.each do |user| %>
       <tr>
         <td>
-          <%= user.id %>
+          <%= user.id unless user.id.blank? %>
         </td>
         <td>
-          <%= user.name %>
+          <%= user.name unless user.name.blank? %>
         </td>
         <td>
-          <%= user.email %>
+          <%= user.email unless user.email.blank? %>
         </td>
         <td>
-          <%= t(user.are_you_in_mentoring50) %>
+          <%= t(user.are_you_in_mentoring50) unless user.are_you_in_mentoring50.blank? %>
         </td>
         <td><%= link_to t("view_cvs"), cv_generator_my_cvs_path(user), data: {cy: "view_cvs_of_this_user_button"} %></td>
         <td><%= link_to t("create_new_cvs"), root_with_user_id_path(user), data: {cy: "create_cvs_for_this_user_button"} %></td>
