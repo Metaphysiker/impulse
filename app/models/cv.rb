@@ -5,6 +5,6 @@ class Cv < ApplicationRecord
   has_one_attached :pdf
 
   def self.available_templates
-   ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"]
+   ["leftblack", "stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red"]
   end
 end
