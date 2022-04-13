@@ -2,7 +2,7 @@ class CvUnit < ApplicationRecord
   belongs_to :user
 
   def self.categories
-    ["experience", "education", "skills"]
+    ["experience", "education", "skills", "reserve1", "reserve2"]
   end
 
   def content_html_safe
