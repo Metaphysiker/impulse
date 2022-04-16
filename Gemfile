@@ -89,3 +89,5 @@ gem 'mini_magick'
 
 gem "rack", ">= 2.2.3"
 gem "websocket-extensions", ">= 0.1.5"
+
+gem "importmap-rails", "~> 1.0"
