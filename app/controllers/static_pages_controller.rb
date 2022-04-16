@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
       flash[:success] = params[:flash]
     end
 
-    image = ActionController::Base.helpers.asset_url("pigs.jpg", type: :image)
+    #image = ActionController::Base.helpers.asset_url("pigs.jpg", type: :image)
 
     set_meta_tags title: "Wilkommen", reverse: true,
               description: "Lebensläufe erstellen mit Impulsiv, dem Tool von Impulse",
@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
                 title: :title,
                 description: :description,
                 url: root_path,
-                image: image
+            #    image: image
               }
 
       if params[:user_id].present?
