@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '3.1.1'
 
+gem 'psych', '< 4'
 gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 gem 'rubyzip'
 gem 'libreconv'
@@ -26,11 +27,12 @@ gem 'seed_dump'
 #gem 'bootstrap', '~> 4.5.0'
 #gem 'jquery-rails'
 gem 'ancestry'
+gem "sprockets-rails"
 
 gem 'devise'
 gem 'simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 7.0.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
