@@ -15,11 +15,18 @@ $f-color: #5fa778;
 $g-color: #B4C760;
 $h-color: #27945E;
 
+
+$font-size-base: 1.2rem;
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
 body {
+
   //background-color: $base-color;
 	//font-family: Nunito;
   //font-family: "Axiforma Medium", Verdana, sans-serif;
-    font-family: 'Montserrat', sans-serif;
+  //font-family: 'Montserrat', sans-serif;
   //font-family: Verdana, sans-serif;
   //font-family: Calibri;
 }
