@@ -28,7 +28,7 @@ has_many :roles, :through => :user_roles
 
   def admin?
    roles.where(name: "admin").exists?
- end
+  end
 
   def self.showable_attribute_names
     ["email", "name", "address", "birth_day", "phone", "localized_birth_day",

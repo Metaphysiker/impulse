@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
+  skip_before_action :verify_authenticity_token
 
   def new
     @user = User.new
@@ -33,6 +34,8 @@ class UsersController < ApplicationController
         #render :js => "/users/create_user_as_user.js.erb"
         #format.html { render :new }
       end
+
+      render 'create_user_as_user.js.erb'
   end
 
   def create_user_as_admin

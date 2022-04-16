@@ -118,7 +118,7 @@ Rails.application.routes.draw do
   get '/exchange', to: "static_pages#exchange", as: "exchange"
 
   #user controller
-  resources :users
+  #resources :users
   #get '/user_controller/new', to: "users#new", as: "new_user"
   #get '/user_controller/:id/edit', to: "users#edit", as: "edit_user"
   #post '/user_controller/', to: "users#create", as: "create_user"
