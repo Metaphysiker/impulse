@@ -9,6 +9,9 @@
 /odf-templates/rendered/*
 odf-templates/rendered/*
 
+/config/database.yml
+
+
 # Ignore bundler config.
 /.bundle
 
