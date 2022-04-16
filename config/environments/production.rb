@@ -31,6 +31,8 @@ Rails.application.configure do
   config.assets.compile = false
   config.assets.digest = true
 
+  config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
