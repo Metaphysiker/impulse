@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= display_meta_tags site: 'Impulse' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+
+    <%= favicon_link_tag asset_path('favicon-red-dot.png') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167716956-1"></script>
     <script>
@@ -10,22 +21,6 @@
 
       gtag('config', 'UA-167716956-1');
     </script>
-
-
-    <%= display_meta_tags site: 'Impulse' %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%#= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application' %>
-    <%#= javascript_pack_tag 'application' %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-
-    <%= favicon_link_tag asset_path('favicon-red-dot.png') %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= javascript_importmap_tags %>
   </head>
 
   <body class="d-flex flex-column h-100">
