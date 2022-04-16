@@ -1,4 +1,6 @@
-<%= simple_form_for(user, url: create_user_as_user_path, html: { class: "form_for_user", data: { cy: "form_for_registration" }}, method: :post, remote: true) do |f| %>
+<%#= simple_form_for(user, url: create_user_as_user_path, html: { class: "form_for_user", data: { cy: "form_for_registration" }}, method: :post, remote: true) do |f| %>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
 <h5><u><%= t("signup") %></u></h5>
 <p>
   <%= f.input :email%>

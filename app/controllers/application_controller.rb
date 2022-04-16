@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :store_user_location!, if: :storable_location?
+  #before_action :store_user_location!, if: :storable_location?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
