@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     #image = ActionController::Base.helpers.asset_url("pigs.jpg", type: :image)
 
     set_meta_tags title: "Wilkommen", reverse: true,
-              description: "Lebensläufe erstellen mit Impulsiv, dem Tool von Impulse",
+              description: "Lebensläufe erstellen mit #{ I18n.t("application_name")}, dem Tool von Impulse",
               og: {
                 title: :title,
                 description: :description,
