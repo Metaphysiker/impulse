@@ -2,24 +2,23 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_113336) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_messages", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "message_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_messages_on_account_id"
     t.index ["message_id"], name: "index_account_messages_on_message_id"
   end
@@ -27,8 +26,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "account_options", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "option_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_options_on_account_id"
     t.index ["option_id"], name: "index_account_options_on_option_id"
   end
@@ -36,16 +35,16 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "account_slides", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "slide_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_slides_on_account_id"
     t.index ["slide_id"], name: "index_account_slides_on_slide_id"
   end
 
   create_table "accounts", force: :cascade do |t|
     t.integer "current_slide", default: 1
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "portrait_name", default: "portrait_frau.png"
   end
 
@@ -54,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -65,17 +64,24 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.string "commentable_type"
     t.bigint "commentable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   end
 
@@ -85,8 +91,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.text "content", default: ""
     t.date "start_date"
     t.date "end_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "location", default: ""
     t.string "company", default: ""
@@ -96,19 +102,19 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
 
   create_table "cvs", force: :cascade do |t|
     t.string "name", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.string "title", default: ""
     t.text "description", default: ""
     t.text "content", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "search_field"
-    t.datetime "start_of_date"
-    t.datetime "end_of_date"
+    t.datetime "start_of_date", precision: nil
+    t.datetime "end_of_date", precision: nil
     t.string "slug"
     t.string "location", default: ""
     t.string "hyperlink", default: ""
@@ -123,8 +129,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "title", default: ""
     t.text "description", default: ""
     t.text "content", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -132,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -143,8 +149,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "name", default: ""
     t.string "chatter", default: "vegan"
     t.text "content", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "target_message_id"
     t.integer "target_message_id_for_option"
     t.string "ancestry"
@@ -159,16 +165,16 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
 
   create_table "newsletters", force: :cascade do |t|
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "options", force: :cascade do |t|
     t.string "content", default: ""
     t.string "target_slide", default: ""
     t.bigint "slide_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "status", default: "published"
     t.string "email", default: ""
     t.index ["slide_id"], name: "index_options_on_slide_id"
@@ -178,8 +184,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "title"
     t.text "description"
     t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
@@ -189,8 +195,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "last_name", default: ""
     t.string "email", default: ""
     t.string "status", default: "active"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "period_start"
     t.date "period_end"
   end
@@ -198,8 +204,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "post_tags", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "tag_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_tags_on_post_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
@@ -208,8 +214,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "title"
     t.text "description"
     t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "search_field"
     t.string "slug"
     t.string "author", default: ""
@@ -218,15 +224,15 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "title", default: ""
     t.string "category", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
@@ -234,8 +240,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "slides", force: :cascade do |t|
     t.string "name", default: ""
     t.text "content", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "show_suggestion", default: "yes"
     t.string "starting_slide", default: "no"
   end
@@ -243,8 +249,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "support_request_expertises", force: :cascade do |t|
     t.bigint "support_request_id"
     t.bigint "expertise_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["expertise_id"], name: "index_support_request_expertises_on_expertise_id"
     t.index ["support_request_id"], name: "index_support_request_expertises_on_support_request_id"
   end
@@ -252,8 +258,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "support_request_users", force: :cascade do |t|
     t.bigint "support_request_id"
     t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["support_request_id"], name: "index_support_request_users_on_support_request_id"
     t.index ["user_id"], name: "index_support_request_users_on_user_id"
   end
@@ -261,21 +267,21 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "support_requests", force: :cascade do |t|
     t.string "title", default: ""
     t.text "content", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_cvs", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cv_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_user_cvs_on_cv_id"
     t.index ["user_id"], name: "index_user_cvs_on_user_id"
   end
@@ -283,8 +289,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "user_expertises", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "expertise_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["expertise_id"], name: "index_user_expertises_on_expertise_id"
     t.index ["user_id"], name: "index_user_expertises_on_user_id"
   end
@@ -292,8 +298,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "user_messages", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "message_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
     t.index ["user_id"], name: "index_user_messages_on_user_id"
   end
@@ -301,8 +307,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "role_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
@@ -311,10 +317,10 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "role", default: ""
     t.string "first_name", default: ""
     t.string "last_name", default: ""
@@ -347,6 +353,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_113336) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cv_units", "users"
   add_foreign_key "skills", "users"
 end
