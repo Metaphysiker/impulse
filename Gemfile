@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
 
+gem 'sassc-rails'
 gem 'psych', '< 4'
 gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 gem 'rubyzip'

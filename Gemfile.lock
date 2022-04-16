@@ -403,6 +403,7 @@ DEPENDENCIES
   rubyzip
   sanitize (>= 5.2.1)
   sass-rails (>= 6)
+  sassc-rails
   seed_dump
   selenium-webdriver
   simple_form
