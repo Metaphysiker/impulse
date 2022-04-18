@@ -63,7 +63,7 @@ class CvGeneratorController < ApplicationController
       sign_in @user
     end
 
-    redirect_to root_with_user_id_path(@user)
+    #redirect_to root_with_user_id_path(@user)
     #if User.find_by_email(params[:email]).present?
     #  user = User.find_by_email(params[:email])
     #else
