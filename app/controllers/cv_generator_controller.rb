@@ -1,7 +1,6 @@
 require 'libreconv'
 
 class CvGeneratorController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
 
   include Rails.application.routes.url_helpers
@@ -63,6 +62,8 @@ class CvGeneratorController < ApplicationController
       @user.update(user_params)
       sign_in @user
     end
+
+    redirect_to root_with_user_id_path(@user)
     #if User.find_by_email(params[:email]).present?
     #  user = User.find_by_email(params[:email])
     #else

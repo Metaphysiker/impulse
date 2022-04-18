@@ -1,13 +1,18 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
   include Pundit
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :store_user_location!, if: :storable_location?
+  before_action :store_user_location!, if: :storable_location?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 
   private
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
 
   def storable_location?
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
@@ -23,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:alert] = "Sie sind dazu nicht erlaubt. Bitte einloggen."
+    #flash[:alert] = "Sie sind dazu nicht erlaubt. Bitte einloggen."
     redirect_to(root_path)
   end
 

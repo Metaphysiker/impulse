@@ -21,7 +21,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   config.navigational_formats = ['*/*', :html, :turbo_stream]
-
+  
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
