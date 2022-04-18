@@ -1,6 +1,8 @@
 require 'libreconv'
 
 class CvGeneratorController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
 
   include Rails.application.routes.url_helpers
 
