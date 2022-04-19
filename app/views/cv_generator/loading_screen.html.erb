@@ -31,8 +31,14 @@
 
 </section>
 
-<script>
-  $( document ).ready(function() {
+<script type="text/javascript">
+
+  //function defer waits for jquery to be ready
+  function defer(method) {
+    if (window.jQuery) {
+
+
+
       console.log( "CV-Generator ready!" );
 
       //var cv_names = ["stats", "orangeblock", "wave", "blueblock", "bubbles", "dotty", "bluetop", "greenblock", "greenleft", "substantial", "bluey", "simple", "classical", "red", "personal"]
@@ -98,5 +104,15 @@
         });
       }
 
-  });
+
+
+
+
+
+    } else {
+        setTimeout(function() { defer(method) }, 50);
+    }
+  }
+
+  defer();
 </script>

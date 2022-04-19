@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         #format.html { render :new }
       end
 
-      render 'create_user_as_user.js.erb'
+      #render 'create_user_as_user.js.erb'
   end
 
   def create_user_as_admin

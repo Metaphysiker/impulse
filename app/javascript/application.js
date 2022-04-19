@@ -3,6 +3,7 @@
 import jQuery from 'jquery'
 window.$ = jQuery;
 window.jQuery = jQuery;
+
 import Rails from '@rails/ujs';
 
 Rails.start();
