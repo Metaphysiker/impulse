@@ -24,6 +24,14 @@
   <% name_label = "Fähigkeiten, Kompetenzen, Kenntnisse, Interessen" %>
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
+<% else %>
+  <% name_label = "Berufsbezeichnung" %>
+  <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
+  <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
+  <% location_placeholder = "Frankfurt" %>
+  <% company_placeholder = "Novartis, Raiffeisen, Post" %>
+  <% location_label = "Ort" %>
+  <% company_label = "Name der Firma oder Institution" %>
 <% end %>
 <%= simple_form_for cv_unit, data: {cy: "form_for_cv_unit_category_#{category}"} do |f| %>
 <p>
