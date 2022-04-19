@@ -41,6 +41,8 @@
             <%#= link_to t("logout"), destroy_user_session_path, data: { "turbo-method": :delete, cy: "logout" }, class: "text-white" %>
             <br>
             <%= link_to 'Account bearbeiten', edit_user_registration_path, class: "text-white" %>
+            <br>
+            <%= link_to "Account löschen", registration_path(current_user), class: "text-white", data: { confirm: "Sind Sie sicher?", cy: "destroy_user_account" }, method: :delete %>
           <% else %>
 
             <%= link_to(t('login'), new_user_session_path, class: "text-white", data: { cy: "login" }) %>
