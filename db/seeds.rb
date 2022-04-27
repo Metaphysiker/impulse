@@ -85,3 +85,29 @@ testuser.cv_units << CvUnit.create(
 testuser.cv_units << CvUnit.create(
   category: "skills", name: "Erziehung",
   content: "Analysen erstellen von Sozialisation, Erziehung und Bildung\nErstellen von Lernstrategien\nErkennen von Lernschwächen")
+
+
+  testuser.cv_units << CvUnit.create(
+    category: "education", name: "MSC in Psychologie",
+    company: "Goethe-Universität", location: "Frankfurt",
+    content: "Thema der Masterarbeit: Neue Ansätze für spezialisierte Erwachsenenbildung und -training\nVorstand im Debattierclub", start_date: Date.today - 3.year, end_date: Date.today - 2.year)
+
+  testuser.cv_units << CvUnit.create(
+    category: "reserve1", name: "MSC in Psychologie",
+    company: "Goethe-Universität", location: "Frankfurt",
+    content: "Thema der Masterarbeit: Neue Ansätze für spezialisierte Erwachsenenbildung und -training\nVorstand im Debattierclub", start_date: Date.today - 3.year, end_date: Date.today - 2.year)
+
+  testuser.cv_units << CvUnit.create(
+    category: "reserve1", name: "BSC in Psychologie",
+    company: "Fachhochschule Graubünden", location: "Chur",
+    content: "Thema der Bachelorarbeit: Können Kinder besser lernen als Erwachsene?", start_date: Date.today - 5.year, end_date: Date.today - 4.year)
+
+  testuser.cv_units << CvUnit.create(
+    category: "reserve2", name: "MSC in Psychologie",
+    company: "Goethe-Universität", location: "Frankfurt",
+    content: "Thema der Masterarbeit: Neue Ansätze für spezialisierte Erwachsenenbildung und -training\nVorstand im Debattierclub", start_date: Date.today - 3.year, end_date: Date.today - 2.year)
+
+  testuser.cv_units << CvUnit.create(
+    category: "reserve2", name: "BSC in Psychologie",
+    company: "Fachhochschule Graubünden", location: "Chur",
+    content: "Thema der Bachelorarbeit: Können Kinder besser lernen als Erwachsene?", start_date: Date.today - 5.year, end_date: Date.today - 4.year)

@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   enable_extension "plpgsql"
 
   create_table "account_messages", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "message_id"
+    t.integer "account_id"
+    t.integer "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_messages_on_account_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "account_options", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "option_id"
+    t.integer "account_id"
+    t.integer "option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_options_on_account_id"
@@ -33,8 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "account_slides", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "slide_id"
+    t.integer "account_id"
+    t.integer "slide_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_slides_on_account_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.string "commentable_type"
-    t.bigint "commentable_id"
+    t.integer "commentable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at", precision: nil
+    t.datetime "created_at"
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -172,7 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   create_table "options", force: :cascade do |t|
     t.string "content", default: ""
     t.string "target_slide", default: ""
-    t.bigint "slide_id"
+    t.integer "slide_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "published"
@@ -202,8 +202,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "tag_id"
+    t.integer "post_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_tags_on_post_id"
@@ -247,8 +247,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "support_request_expertises", force: :cascade do |t|
-    t.bigint "support_request_id"
-    t.bigint "expertise_id"
+    t.integer "support_request_id"
+    t.integer "expertise_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expertise_id"], name: "index_support_request_expertises_on_expertise_id"
@@ -256,8 +256,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "support_request_users", force: :cascade do |t|
-    t.bigint "support_request_id"
-    t.bigint "user_id"
+    t.integer "support_request_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["support_request_id"], name: "index_support_request_users_on_support_request_id"
@@ -278,8 +278,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "user_cvs", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "cv_id"
+    t.integer "user_id"
+    t.integer "cv_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_user_cvs_on_cv_id"
@@ -287,8 +287,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "user_expertises", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "expertise_id"
+    t.integer "user_id"
+    t.integer "expertise_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expertise_id"], name: "index_user_expertises_on_expertise_id"
@@ -296,8 +296,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "user_messages", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "message_id"
+    t.integer "user_id"
+    t.integer "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
@@ -305,8 +305,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_141442) do
   end
 
   create_table "user_roles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
