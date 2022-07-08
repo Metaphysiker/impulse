@@ -29,7 +29,9 @@
   <% location_label = "Ort" %>
   <% company_label = "Name der Firma oder Institution" %>
 <% end %>
-<%= simple_form_for :cv_unit, url: create_cv_unit_path(user_id: @user), method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"} do |f| %>
+<%#= simple_form_for :cv_unit, url: create_cv_unit_path(user_id: @user), method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"}, html: {id: "form_for_cv_unit_category_#{category}"} do |f| %>
+<%= simple_form_for cv_unit, url: create_cv_unit_path(user_id: @user), method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"}, html: {id: "form_for_cv_unit_category_#{category}"} do |f| %>
+
 <p>
   <%= f.input :name, label: name_label, placeholder: name_placeholder %>
   <%#= f.input :content, label: false, placeholder: "" %>
