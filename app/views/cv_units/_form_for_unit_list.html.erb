@@ -46,6 +46,12 @@
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
   <% unless category == "skills" %>
+    <%= f.input :start_date_month, collection: 1..12  %>
+    <%= f.input :start_date_year, collection: (Date.today - 100.years).year..(Date.today + 5.years).year  %>
+
+    <%= f.input :end_date_month, collection: 1..12  %>
+    <%= f.input :end_date_year, collection: (Date.today - 100.years).year..(Date.today + 5.years).year  %>
+
     <%= f.input :start_date, as: :date, label: "Start", required: false, discard_day: true, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
     <%= f.input :end_date, as: :date, label: "Ende", required: false, discard_day: true, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
   <% end %>
