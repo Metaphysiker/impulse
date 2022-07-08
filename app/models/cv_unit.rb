@@ -29,6 +29,14 @@ class CvUnit < ApplicationRecord
     end
   end
 
+  def start_date_month_year_old
+    unless self.start_date.blank?
+      "#{I18n.l(self.start_date, format: :month_year)}"
+    else
+      ""
+    end
+  end
+
   def start_date_month_year
     unless self.start_date.blank?
       "#{I18n.l(self.start_date, format: :month_year)}"
