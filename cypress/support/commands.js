@@ -165,7 +165,6 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
       cy.get('#cv_unit_location').type(cv_unit.location)
       cy.get('#cv_unit_start_date_month').select(cv_unit.start_date_month)
       cy.get('#cv_unit_start_date_year').select(cv_unit.start_date_year)
-
       cy.get('#cv_unit_end_date_month').select(cv_unit.end_date_month)
       cy.get('#cv_unit_end_date_year').select(cv_unit.end_date_year)
 
@@ -179,10 +178,10 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
       cy.contains(cv_unit.content);
       cy.contains(cv_unit.company);
       cy.contains(cv_unit.location);
-      cy.contains(cv_unit.start_date_2i);
-      cy.contains(cv_unit.start_date_1i);
-      cy.contains(cv_unit.end_date_2i);
-      cy.contains(cv_unit.end_date_1i);
+      cy.contains(cv_unit.start_date_month);
+      cy.contains(cv_unit.start_date_year);
+      cy.contains(cv_unit.end_date_month);
+      cy.contains(cv_unit.end_date_year);
 
       cy.contains(cv_unit.name).parent().within(($parent) => {
         cy.get("[data-cy=edit_cv_unit]").click();
@@ -201,10 +200,10 @@ Cypress.Commands.add('fill_in_cv_unit', (cv_unit_category) => {
           cy.get('#cv_unit_content').clear().type(cv_unit_edited.content)
           cy.get('#cv_unit_company').clear().type(cv_unit_edited.company)
           cy.get('#cv_unit_location').clear().type(cv_unit_edited.location)
-          cy.contains(cv_unit_edited.start_date_month);
-          cy.contains(cv_unit_edited.start_date_year);
-          cy.contains(cv_unit_edited.end_date_month);
-          cy.contains(cv_unit_edited.end_date_year);
+          cy.get('#cv_unit_start_date_month').select(cv_unit_edited.start_date_month)
+          cy.get('#cv_unit_start_date_year').select(cv_unit_edited.start_date_year)
+          cy.get('#cv_unit_end_date_month').select(cv_unit_edited.end_date_month)
+          cy.get('#cv_unit_end_date_year').select(cv_unit_edited.end_date_year)
         cy.root().submit()
       });
 
