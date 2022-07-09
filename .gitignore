@@ -46,3 +46,4 @@ yarn-debug.log*
 /odf-templates/rendered
 
 latest.dump
+latest.sql
