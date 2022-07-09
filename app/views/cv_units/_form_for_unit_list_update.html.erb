@@ -20,31 +20,51 @@
   <% name_label = "Fähigkeiten, Kompetenzen, Kenntnisse, Interessen" %>
   <% name_placeholder = "Sprachen" %>
   <% content_placeholder = "Deutsch: Muttersprache\nFranzösisch: Gute Kenntnisse\nRussisch: Grundkenntnisse" %>
-  <% else %>
-    <% name_label = "Berufsbezeichnung" %>
-    <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
-    <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
-    <% location_placeholder = "Frankfurt" %>
-    <% company_placeholder = "Novartis, Raiffeisen, Post" %>
-    <% location_label = "Ort" %>
-    <% company_label = "Name der Firma oder Institution" %>
+<% else %>
+  <% name_label = "Berufsbezeichnung" %>
+  <% name_placeholder = "Abteilungsleiterin, Mechaniker, Buchhaltung" %>
+  <% content_placeholder = "Leitung der verschiedenen Teams der Abteilung für Erwachsenenbildung \nBeurteilung und Einstellung von Personal \nGenehmigung von Budgets für spezielle Bildungsprojekte" %>
+  <% location_placeholder = "Frankfurt" %>
+  <% company_placeholder = "Novartis, Raiffeisen, Post" %>
+  <% location_label = "Ort" %>
+  <% company_label = "Name der Firma oder Institution" %>
 <% end %>
+<%#= simple_form_for :cv_unit, url: create_cv_unit_path(user_id: @user), method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"}, html: {id: "form_for_cv_unit_category_#{category}"} do |f| %>
+<%= simple_form_for cv_unit, url: update_cv_unit_path(cv_unit, user_id: @user), method: :post, remote: true, data: {cy: "form_for_cv_unit_category_#{category}"}, html: {id: "form_for_cv_unit_category_#{category}"} do |f| %>
 
-<%= simple_form_for(cv_unit, url: update_cv_unit_path(cv_unit, user_id: @user), method: :put, remote: true) do |f| %>
 <p>
-  <%= f.input :name, label: name_label %>
+  <%= f.input :name, label: name_label, placeholder: name_placeholder %>
   <%#= f.input :content, label: false, placeholder: "" %>
   <br />
   <% unless category == "skills" %>
-    <%= f.input :company, label: company_label, required: false %>
+    <%= f.input :company, label: company_label, placeholder: company_placeholder, required: false %>
     <br>
-    <%= f.input :location, label: location_label, required: false %>
+    <%= f.input :location, label: location_label, placeholder: location_placeholder, required: false %>
   <% end %>
   <br>
   <%= f.input :content, as: :text, label: false, placeholder: content_placeholder, input_html: { rows: 5} %>
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
   <% unless category == "skills" %>
+  <div class="row">
+    <strong>Start</strong>
+      <div class="col-6">
+        <%= f.input :start_date_month, label: "Monat", collection: (1..12).map {|number| [t("date.month_names")[number], number]}  %>
+      </div>
+      <div class="col-6">
+        <%= f.input :start_date_year, label: "Jahr", collection: (Date.today - 100.years).year..(Date.today + 5.years).year, selected: Date.today.year  %>
+      </div>
+  </div>
+
+  <div class="row">
+    <strong>Ende</strong>
+    <div class="col-6">
+      <%= f.input :end_date_month, label: "Monat", collection: (1..12).map {|number| [t("date.month_names")[number], number]} %>
+    </div>
+    <div class="col-6">
+      <%= f.input :end_date_year, label: "Jahr", collection: (Date.today - 100.years).year..(Date.today + 5.years).year, selected: Date.today.year  %>
+    </div>
+  </div>
     <%= f.input :start_date, as: :date, label: "Start", required: false, discard_day: true, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
     <%= f.input :end_date, as: :date, label: "Ende", required: false, discard_day: true, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
   <% end %>

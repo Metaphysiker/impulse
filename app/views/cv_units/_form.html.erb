@@ -48,8 +48,25 @@
 
   <%#= f.input :content, as: :text, label: false, class: "tinymce", input_html: { rows: 3, class: "tinymce"} %>
   <% unless category == "skills" %>
-    <%= f.input :start_date, as: :date, label: "Start", discard_day: true, required: false, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
-    <%= f.input :end_date, as: :date, label: "Ende", discard_day: true, required: false, start_year: Date.today.year - 100, end_year: Date.today.year + 10 %>
+  <div class="row">
+    <strong>Start</strong>
+      <div class="col-6">
+        <%= f.input :start_date_month, label: "Monat", collection: (1..12).map {|number| [t("date.month_names")[number], number]}  %>
+      </div>
+      <div class="col-6">
+        <%= f.input :start_date_year, label: "Jahr", collection: (Date.today - 100.years).year..(Date.today + 5.years).year  %>
+      </div>
+  </div>
+
+  <div class="row">
+    <strong>Ende</strong>
+    <div class="col-6">
+      <%= f.input :end_date_month, label: "Monat", collection: (1..12).map {|number| [t("date.month_names")[number], number]} %>
+    </div>
+    <div class="col-6">
+      <%= f.input :end_date_year, label: "Jahr", collection: (Date.today - 100.years).year..(Date.today + 5.years).year %>
+    </div>
+  </div>
   <% end %>
   <%= f.hidden_field :category, value: category %>
   <%= f.submit t("save_entry"), class: "btn btn-primary my-1" %>

@@ -13,22 +13,6 @@ class CvUnit < ApplicationRecord
     self.content_html_safe.split("\n")
   end
 
-  def start_date_year
-    unless self.start_date.blank?
-      "#{I18n.l(self.start_date, format: :year)}"
-    else
-      ""
-    end
-  end
-
-  def end_date_year
-    unless self.end_date.blank?
-      "#{I18n.l(self.end_date, format: :year)}"
-    else
-      ""
-    end
-  end
-
   def start_date_month_year_old
     unless self.start_date.blank?
       "#{I18n.l(self.start_date, format: :month_year)}"
@@ -38,19 +22,15 @@ class CvUnit < ApplicationRecord
   end
 
   def start_date_month_year
-    unless self.start_date.blank?
-      "#{I18n.l(self.start_date, format: :month_year)}"
-    else
-      ""
-    end
+    month = self.start_date_month == 0 || self.start_date_month.blank? ? "" : I18n.t("date.month_names")[self.start_date_month]
+    year = self.start_date_year == 0 ? "" : self.start_date_year.to_s
+    [month, year].reject(&:empty?).join(' ')
   end
 
   def end_date_month_year
-    unless self.end_date.blank?
-      "#{I18n.l(self.end_date, format: :month_year)}"
-    else
-      ""
-    end
+    month = self.end_date_month == 0 || self.end_date_month.blank? ? "" : I18n.t("date.month_names")[self.end_date_month]
+    year = self.end_date_year == 0 ? "" : self.end_date_year.to_s
+    [month, year].reject(&:empty?).join(' ')
   end
 
 end

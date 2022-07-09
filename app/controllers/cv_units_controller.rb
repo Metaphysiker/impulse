@@ -66,7 +66,7 @@ class CvUnitsController < ApplicationController
     end
     #byebug
     puts @user.id
-    
+
     @cv_unit.user_id = @user.id
 
     @category = params[:cv_unit][:category]
@@ -122,6 +122,6 @@ class CvUnitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cv_unit_params
-      params.require(:cv_unit).permit(:category, :name, :content, :start_date, :end_date, :location, :company, :job)
+      params.require(:cv_unit).permit(:category, :name, :content, :start_date, :end_date, :start_date_month, :start_date_year, :end_date_month, :end_date_year, :location, :company, :job)
     end
 end
