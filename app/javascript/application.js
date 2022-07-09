@@ -11,4 +11,3 @@ Rails.start();
 //import "controllers"
 
 import "bootstrap"
-import "sortablejs"

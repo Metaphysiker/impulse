@@ -1,0 +1,25 @@
+<% content_for :head do %>
+  <%= javascript_import_module_tag "cv_units_sortable" %>
+<% end %>
+
+<div class="container">
+
+  <p>
+    <%= link_to t("go_back"), cv_generator_update_cv_units_for_user_page_path(@cv_units.first.user), data: {cy: "go_back"}, class: "btn btn-secondary" %>
+  </p>
+
+  <div id="handle" class="row">
+    <h4 class="col-12">Handle</h4>
+    <div id="cv_units" class="list-group col">
+
+      <% @cv_units.each do |cv_unit| %>
+        <div class="list-group-item">
+          <i class="fas fa-arrows-alt handle"></i>&nbsp;&nbsp; <%= cv_unit.name %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

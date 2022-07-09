@@ -114,6 +114,12 @@ class CvUnitsController < ApplicationController
     end
   end
 
+  def update_order_page
+    category = params[:category]
+    user_id = params[:user_id]
+    @cv_units = CvUnit.where(category: category, user_id: user_id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cv_unit

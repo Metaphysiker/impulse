@@ -38,7 +38,12 @@ Rails.application.routes.draw do
 
   resources :expertises
   resources :support_requests
-  resources :cv_units
+  resources :cv_units do
+    collection do
+      get "update_order_page"
+      put "update_order"
+    end
+  end
 
 
   #resources :users
