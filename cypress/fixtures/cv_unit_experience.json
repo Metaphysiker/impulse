@@ -3,8 +3,8 @@
   "company": "Novartis",
   "location": "Basel",
   "content": "Leitung der verschiedenen Teams",
-  "start_date_2i": "12",
-  "start_date_1i": "2015",
-  "end_date_2i": "2",
-  "end_date_1i": "2017"
+  "start_date_month": "1",
+  "start_date_year": "1993",
+  "end_date_month": "7",
+  "end_date_year": "1999"
 }

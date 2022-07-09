@@ -3,8 +3,8 @@
   "company": "Fachhochschule",
   "location": "Basel",
   "content": "Logik",
-  "start_date_2i": "12",
-  "start_date_1i": "2015",
-  "end_date_2i": "2",
-  "end_date_1i": "2017"
+  "start_date_month": "2",
+  "start_date_year": "1991",
+  "end_date_month": "6",
+  "end_date_year": "2007"
 }

@@ -3,8 +3,8 @@
   "company": "Konservatorium",
   "location": "Zürich",
   "content": "Geige",
-  "start_date_2i": "9",
-  "start_date_1i": "2014",
-  "end_date_2i": "6",
-  "end_date_1i": "2016"
+  "start_date_month": "3",
+  "start_date_year": "1996",
+  "end_date_month": "7",
+  "end_date_year": "2010"
 }
