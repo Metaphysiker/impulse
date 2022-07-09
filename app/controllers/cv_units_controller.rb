@@ -120,6 +120,18 @@ class CvUnitsController < ApplicationController
     @cv_units = CvUnit.where(category: category, user_id: user_id)
   end
 
+  def update_order
+    params["order"].each_with_index do |id, index|
+      CvUnit.find(id).update(sort: index)
+    end
+
+    first_cv_unit = CvUnit.find(params["order"][0])
+
+    flash[:notice] = 'Reihenfolge wurde aktualisiert.'
+    flash.keep(:notice)
+    render js: "window.location = '#{cv_generator_update_cv_units_for_user_page_path(user_id: first_cv_unit.user)}'"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cv_unit

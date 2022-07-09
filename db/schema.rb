@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_213842) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_09_153412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_213842) do
     t.integer "start_date_month", default: 0
     t.integer "end_date_year", default: 0
     t.integer "end_date_month", default: 0
+    t.integer "sort", default: 0
     t.index ["user_id"], name: "index_cv_units_on_user_id"
   end
 

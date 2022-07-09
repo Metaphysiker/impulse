@@ -1,5 +1,7 @@
 class CvUnit < ApplicationRecord
   belongs_to :user
+  after_create :set_sort
+
 
   def self.categories
     ["experience", "education", "skills", "reserve1", "reserve2"]
@@ -31,6 +33,14 @@ class CvUnit < ApplicationRecord
     month = self.end_date_month == 0 || self.end_date_month.blank? ? "" : I18n.t("date.month_names")[self.end_date_month]
     year = self.end_date_year == 0 ? "" : self.end_date_year.to_s
     [month, year].reject(&:empty?).join(' ')
+  end
+
+
+  private
+
+  def set_sort
+    highest_value = CvUnit.order(:sort).last.sort
+    self.update(sort: highest_value + 1)
   end
 
 end

@@ -9,17 +9,20 @@
   </p>
 
   <div id="handle" class="row">
-    <h4 class="col-12">Handle</h4>
+    <h4 class="col-12"><%= t("update_order") %></h4>
     <div id="cv_units" class="list-group col">
 
-      <% @cv_units.each do |cv_unit| %>
-        <div class="list-group-item">
+      <% @cv_units.order(:sort).each do |cv_unit| %>
+        <div class="list-group-item" data-id="<%= cv_unit.id %>">
           <i class="fas fa-arrows-alt handle"></i>&nbsp;&nbsp; <%= cv_unit.name %>
         </div>
 
       <% end %>
 
     </div>
+    <p>
+      <button type="button" id="cv-units-sortable-update-order" class="btn btn-lg btn-primary border my-2"><%= t("save_and_go_back") %></button>
+    </p>
   </div>
 
 </div>

@@ -1,4 +1,4 @@
-<% cv_units = user.cv_units.where(category: category).order(:start_date).reverse_order %>
+<% cv_units = user.cv_units.where(category: category).order(:sort) %>
 
 <%#= render 'cv_units/form_for_unit_list', cv_unit: CvUnit.new %>
 <div class="<%= category %>_cv_units_from_user_<%= user.id %>">

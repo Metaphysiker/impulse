@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :cv_units do
     collection do
       get "update_order_page"
-      put "update_order"
+      post "update_order"
     end
   end
 
