@@ -14,7 +14,19 @@
 
       <% @cv_units.order(:sort).each do |cv_unit| %>
         <div class="list-group-item" data-id="<%= cv_unit.id %>">
-          <i class="fas fa-arrows-alt handle"></i>&nbsp;&nbsp; <%= cv_unit.name %>
+          <div class="row">
+            <div class="col-1">
+              <i class="fas fa-arrows-alt handle"></i>
+            </div>
+            <div class="col-11">
+              <strong><%= cv_unit.name %></strong>
+              <br>
+              <%= cv_unit.company %>, <%= cv_unit.location %>
+              <br>
+              <%= cv_unit.start_date_month_year %> - <%= cv_unit.end_date_month_year %>
+            </div>
+          </div>
+
         </div>
 
       <% end %>
